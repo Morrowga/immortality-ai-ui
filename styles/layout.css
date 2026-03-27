@@ -1,0 +1,185 @@
+/* ─────────────────────────────────────────────
+   sidebar.css
+   Styles for DashboardLayout:
+   shell, sidebar, nav, language toggle, sign-out
+   ───────────────────────────────────────────── */
+
+/* ── shell ── */
+.layout-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--imm-sand);
+}
+
+/* ── sidebar ── */
+.sidebar {
+  width: 208px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--imm-sand2);
+  border-right: 1px solid var(--imm-bdr);
+}
+
+.sidebar-brand {
+  padding: 28px 20px 22px;
+}
+.sidebar-logo {
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.sidebar-logo span {
+  color: var(--imm-gold);
+  font-style: italic;
+}
+.sidebar-username {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.sidebar-memories {
+  font-size: 11px;
+  color: var(--imm-txt3);
+}
+
+/* ── nav ── */
+.sidebar-nav {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--imm-txt3);
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+  margin-bottom: 2px;
+}
+.nav-item:hover {
+  background: var(--imm-sand3);
+  color: var(--imm-txt);
+}
+.nav-item.active {
+  background: var(--imm-gold-light);
+  color: var(--imm-brown);
+  font-weight: 500;
+}
+.nav-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.65;
+  transition: opacity 0.18s ease;
+}
+.nav-item:hover svg {
+  opacity: 0.9;
+}
+.nav-item.active svg {
+  opacity: 1;
+  color: var(--imm-gold);
+}
+
+/* ── separator ── */
+.sidebar-sep {
+  height: 1px;
+  background: var(--imm-bdr);
+  margin: 10px 4px;
+}
+
+/* ── language toggle ── */
+.sidebar-lang {
+  padding: 0 14px 12px;
+}
+.sidebar-lang-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  opacity: 0.6;
+  padding: 0 2px;
+  margin-bottom: 6px;
+}
+.lang-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--imm-txt3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  margin-bottom: 2px;
+}
+.lang-btn:hover {
+  background: var(--imm-sand3);
+  color: var(--imm-txt);
+}
+.lang-btn.active {
+  background: var(--imm-gold-light);
+  color: var(--imm-brown);
+  font-weight: 500;
+}
+
+/* ── sign out ── */
+.sidebar-footer {
+  padding: 0 10px 20px;
+}
+.signout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--imm-txt3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+.signout-btn:hover {
+  background: rgba(201, 146, 74, 0.08);
+  color: var(--imm-brown);
+  opacity: 1;
+}
+.signout-btn svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+/* ── divider between sidebar and main ── */
+.layout-divider {
+  width: 1px;
+  flex-shrink: 0;
+  background: var(--imm-bdr);
+}
+
+/* ── main content area ── */
+.layout-main {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}

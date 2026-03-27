@@ -1,0 +1,335 @@
+/* ─────────────────────────────────────────────
+   dashboard.css
+   Styles for app/dashboard/page.tsx
+   ───────────────────────────────────────────── */
+
+/* ── root: fills <main> exactly, no scroll ── */
+.d-root {
+  font-family: 'DM Sans', sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 36px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ── entrance animations ── */
+@keyframes dFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .d-fu { animation: dFadeUp 0.42s ease both; }
+}
+.d-fu:nth-child(1) { animation-delay: 0.00s; }
+.d-fu:nth-child(2) { animation-delay: 0.06s; }
+.d-fu:nth-child(3) { animation-delay: 0.12s; }
+.d-fu:nth-child(4) { animation-delay: 0.18s; }
+
+/* ────────────────────────────────
+   TOP BAR
+   ──────────────────────────────── */
+.d-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.d-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--imm-gold);
+  margin-bottom: 4px;
+}
+.d-greeting-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--imm-txt);
+  margin-bottom: 4px;
+}
+.d-greeting-title em {
+  font-style: italic;
+  color: var(--imm-brown);
+}
+.d-greeting-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--imm-txt2);
+  line-height: 1.5;
+}
+.d-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 99px;
+  font-size: 12px;
+  color: var(--imm-txt2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.d-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6BBF8A;
+  flex-shrink: 0;
+}
+
+/* ────────────────────────────────
+   STAT CARDS ROW
+   ──────────────────────────────── */
+.d-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  flex-shrink: 0;
+}
+.d-stat {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 14px;
+  padding: 16px 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.d-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(61, 43, 32, 0.07);
+}
+.d-stat-orb {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.d-stat-badge {
+  display: inline-block;
+  background: rgba(139, 111, 94, 0.08);
+  border-radius: 99px;
+  padding: 2px 9px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin-bottom: 9px;
+}
+.d-stat-num {
+  font-family: 'Lora', serif;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--imm-txt);
+  margin-bottom: 3px;
+}
+.d-stat-lbl {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+}
+
+/* ────────────────────────────────
+   MIDDLE ROW (progress + right col)
+   ──────────────────────────────── */
+.d-mid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 14px;
+  flex: 1;
+  min-height: 0; /* lets children shrink below content size */
+}
+
+/* ── progress card (left) ── */
+.d-progress-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+.d-card-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+.d-prog-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 0;
+}
+.d-prog-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.d-prog-name {
+  font-size: 13px;
+  color: var(--imm-txt2);
+}
+.d-prog-ct {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-variant-numeric: tabular-nums;
+}
+.d-track {
+  height: 4px;
+  background: var(--imm-sand3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.d-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--imm-brown), var(--imm-gold));
+  transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.d-empty-msg {
+  font-size: 13px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ── right column ── */
+.d-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+/* ── action cards (train / chat) ── */
+.d-action {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 16px 18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.d-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(61, 43, 32, 0.09);
+  border-color: rgba(201, 146, 74, 0.35);
+}
+.d-action-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.d-action-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.d-action-title {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+.d-action-sub {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+  line-height: 1.4;
+}
+.d-action-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(201, 146, 74, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--imm-gold);
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.d-action-arrow svg {
+  width: 13px;
+  height: 13px;
+}
+.d-action:hover .d-action-arrow {
+  background: rgba(201, 146, 74, 0.22);
+  transform: translateX(2px);
+}
+
+/* ── mini cards (memories / family) ── */
+.d-mini {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 14px;
+  padding: 14px 18px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.d-mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 16px rgba(61, 43, 32, 0.06);
+}
+.d-mini-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(201, 146, 74, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.d-mini-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--imm-gold);
+}
+.d-mini-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin-bottom: 1px;
+}
+.d-mini-hint {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+}

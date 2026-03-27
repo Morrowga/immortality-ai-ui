@@ -1,0 +1,279 @@
+{
+  "survey": {
+    "title": "Foundation Survey",
+    "subtitle": "Help your agent understand who you are",
+    "section": "Section",
+    "of": "of",
+    "back": "Back",
+    "next": "Next",
+    "complete": "Complete Survey",
+    "saving": "Saving...",
+    "animation": "Animations",
+    "question": "Question",
+    "required": "Please answer this question before continuing"
+  },
+  "interview": {
+    "title": "Voice Interview",
+    "subtitle": "Answer 8 questions about your life. Speak naturally in your language.",
+    "questionOf": "Question {current} of {total}",
+    "holdToRecord": "Hold to Record",
+    "tapToRecord": "Tap to start recording",
+    "tapToStop": "Tap again to stop",
+    "recording": "Recording...",
+    "processing": "Transcribing...",
+    "retake": "Retake",
+    "next": "Next Question",
+    "finish": "Finish Interview",
+    "reviewTitle": "Review Your Answers",
+    "reviewSubtitle": "This is what the system understood. Edit anything that doesn't feel right.",
+    "confirmSave": "Confirm & Save",
+    "saving": "Saving your memories...",
+    "done": "Your foundation is set.",
+    "doneSubtitle": "Your agent now knows who you are. Start training to go deeper.",
+    "goToDashboard": "Go to Dashboard",
+    "transcriptLabel": "What you said",
+    "editTranscript": "Edit transcript",
+    "memoryExtracted": "What the agent understood",
+    "noAudioSupport": "Your browser doesn't support audio recording. Please use Chrome or Firefox.",
+    "micPermission": "Microphone permission denied. Please allow access in your browser settings.",
+    "emptyTranscript": "No speech detected. Please try again.",
+    "answerRequired": "Please record an answer before continuing."
+  },
+  "nav": {
+    "home": "Home",
+    "train": "Train",
+    "chat": "Chat",
+    "slang": "Slang",
+    "signout": "Sign Out"
+  },
+  "dashboard": {
+    "greeting": "Good to see you",
+    "subtitle": "Your agent grows with every memory you share.",
+    "totalMemories": "Total Memories",
+    "accuracy": "Estimated Accuracy",
+    "wisdom": "Wisdom Score",
+    "trainingProgress": "Training Progress",
+    "memories": "memories",
+    "trainAgent": "Train Your Agent",
+    "trainSubtitle": "Share memories and feelings",
+    "talkAgent": "Talk to Your Agent",
+    "talkSubtitle": "See how it responds like you"
+  },
+  "questions": {
+    "stranger_formality": "With strangers, you are:",
+    "disagreement_style": "When you disagree with someone, you:",
+    "response_length": "How long are your typical responses when talking?",
+    "close_friends_talking_style": "Describe how you talk with your close friends:",
+    "anger_expression": "When you get angry, people around you:",
+    "conflict_handling": "How do you handle conflict?",
+    "stress_behaviour": "When stressed, you:",
+    "stranger_first_instinct": "When you meet someone new, your first instinct is:",
+    "trust_speed": "How long does it take you to trust someone?",
+    "misunderstood_trait": "What do people misunderstand about you?",
+    "slang_frequency": "How often do you use slang?",
+    "language_mixing": "Do you mix languages when talking?",
+    "humor_style": "Your humor style:",
+    "swearing_frequency": "Do you swear?",
+    "decision_style": "When making a decision you:",
+    "advice_style": "How do you give advice to people you care about?",
+    "worldview": "How do you see the world generally?",
+    "core_thinking_trait": "Something core about how you think that people should know:",
+    "daily_language_style": "When you talk or write day to day, you use:",
+    "language_mix_frequency": "How naturally do you mix languages mid-sentence?",
+    "other_languages": "Any other languages you can speak or understand? (optional)",
+    "options": {
+      "stranger_formality": [
+        "Very formal — professional tone always",
+        "Polite but casual — friendly without being too open",
+        "Friendly immediately — treat everyone like I know them",
+        "Depends on the vibe — I read the person first"
+      ],
+      "disagreement_style": [
+        "Say it directly — I tell them what I think",
+        "Say it carefully — I make sure not to offend",
+        "Stay quiet — not worth the conflict",
+        "Depends who it is"
+      ],
+      "response_length": [
+        "Short — I get to the point fast",
+        "Medium — I explain enough to be understood",
+        "Long — I give full context so nothing is misunderstood"
+      ],
+      "anger_expression": [
+        "Know immediately — it shows on my face and tone",
+        "Can tell but I control it — I don't explode",
+        "Usually can't tell — I keep it inside",
+        "I go quiet — silence is my anger"
+      ],
+      "stress_behaviour": [
+        "Talk more — I need to process out loud",
+        "Go quiet — I need space to think",
+        "Get irritable — small things bother me more",
+        "Focus and work through it — stress makes me productive"
+      ],
+      "stranger_first_instinct": [
+        "Open and curious — I want to know them",
+        "Friendly but watching — I'm nice but I'm observing",
+        "Polite but guarded — I keep distance until I know them",
+        "Reserved — I let them come to me"
+      ],
+      "trust_speed": [
+        "Quick — I give people a chance until they prove otherwise",
+        "Medium — I need to see them be consistent over time",
+        "Long — trust is earned, not given",
+        "Rarely fully trust anyone"
+      ],
+      "slang_frequency": [
+        "Rarely — I speak pretty standard",
+        "Sometimes — with close people mainly",
+        "Often — it's natural in my speech",
+        "Heavy — slang is just how I talk"
+      ],
+      "language_mixing": [
+        "Never — I stick to one language",
+        "Sometimes — certain words just fit better in another language",
+        "Often — I naturally switch mid-sentence",
+        "Depends on who I'm talking to"
+      ],
+      "humor_style": [
+        "Dry/deadpan — I say funny things with a straight face",
+        "Sarcastic — I joke by saying the opposite",
+        "Warm and obvious — I laugh at my own jokes",
+        "Dark — I find humor in dark things",
+        "Rarely — I'm not really a joke person"
+      ],
+      "swearing_frequency": [
+        "Never",
+        "Only when very frustrated",
+        "Sometimes — casually, not aggressively",
+        "Often — it's just part of how I talk"
+      ],
+      "decision_style": [
+        "Go with gut immediately — I trust my instinct",
+        "Think it through logically — I need to analyze",
+        "Talk to people first — I want input",
+        "Sleep on it — I need time"
+      ],
+      "advice_style": [
+        "Direct — I tell them exactly what I think even if it's hard",
+        "Gentle — I ask questions to guide them to the answer",
+        "Only if asked — I don't give unsolicited advice",
+        "I share my experience and let them decide"
+      ],
+      "worldview": [
+        "Optimist — things work out",
+        "Realist — I see things as they are",
+        "Pessimist — I prepare for the worst",
+        "Depends on the area of life"
+      ],
+      "daily_language_style": [
+        "My native language only — I rarely use English",
+        "Mostly my native language — some English words mixed in naturally",
+        "Half native, half English — I switch constantly",
+        "Mostly English — my native language comes in sometimes"
+      ],
+      "language_mix_frequency": [
+        "Always — it just comes out that way",
+        "Often — especially with friends",
+        "Sometimes — only certain words",
+        "Rarely — I try to stay in one language"
+      ]
+    }
+  },
+  "train": {
+    "title": "Train Your Agent",
+    "subtitle": "Share a memory, feeling, or belief. Your agent learns from everything you share.",
+    "placeholder": "Tell me something about yourself. A memory, a belief, how you feel about something. Speak naturally — like you're talking to someone who wants to understand you.",
+    "characters": "characters",
+    "process": "Process Memory",
+    "processing": "Processing...",
+    "captured": "What the system captured",
+    "whatHappened": "What happened",
+    "howFelt": "How you felt",
+    "whyMattered": "Why it mattered",
+    "whatLearned": "What you learned",
+    "instinct": "Instinct formed",
+    "originalVersion": "Original language version",
+    "memoryWeight": "Memory Weight",
+    "minor": "Minor",
+    "lifeDefining": "Life-defining",
+    "neverForget": "★ This will be marked as never forget",
+    "section": "Section",
+    "coreMemory": "Core Memory",
+    "startOver": "Start Over",
+    "confirm": "Confirm & Save",
+    "saving": "Saving...",
+    "trainAnother": "Train Another Memory",
+    "reinforced": "Memory Reinforced",
+    "sharedTimes": "times now. Weight increased to",
+    "agentSays": "Your Agent Says",
+    "languageNote": "You can write in any language. The system handles translation automatically."
+  },
+  "chat": {
+    "title": "Talk to Your Agent",
+    "subtitle": "Ask anything. It responds like you.",
+    "placeholder": "Ask your agent something...",
+    "send": "Send",
+    "sending": "Sending...",
+    "memoriesUsed": "memories used",
+    "thumbsUp": "Sounds like me",
+    "thumbsDown": "Doesn't sound like me",
+    "correctionPlaceholder": "How would you actually say this?",
+    "submitCorrection": "Submit Correction",
+    "cancel": "Cancel",
+    "noMemories": "Train your agent first before chatting.",
+    "trainFirst": "Go to Training"
+  },
+  "slang": {
+    "title": "Slang Dictionary",
+    "subtitle": "Teach your agent how you really talk.",
+    "addNew": "Add Slang",
+    "word": "Word or Phrase",
+    "wordPlaceholder": "e.g. no cap",
+    "meanings": "Meanings",
+    "meaningPlaceholder": "Add a meaning and press Enter",
+    "examples": "Example Sentences",
+    "examplePlaceholder": "Add an example and press Enter",
+    "grammar": "Grammar Note (optional)",
+    "grammarPlaceholder": "e.g. comes at end of sentence",
+    "usage": "Usage Context (optional)",
+    "usagePlaceholder": "e.g. casual approval with close friends",
+    "language": "Language",
+    "save": "Save",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "noSlang": "No slang added yet.",
+    "addFirst": "Add your first slang word"
+  },
+  "auth": {
+    "login": "Welcome back",
+    "loginSubtitle": "Continue building your agent",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "noAccount": "No account yet?",
+    "beginJourney": "Begin your journey",
+    "register": "Begin your journey",
+    "registerSubtitle": "Your agent is waiting to be born",
+    "name": "Your Name",
+    "namePlaceholder": "How should your agent know you?",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "••••••••",
+    "primaryLanguage": "Primary Language",
+    "createAgent": "Create My Agent",
+    "creatingAgent": "Creating your agent...",
+    "alreadyStarted": "Already started?",
+    "signInLink": "Sign in"
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add"
+  }
+}

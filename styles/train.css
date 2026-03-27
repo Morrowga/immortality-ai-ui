@@ -1,0 +1,470 @@
+/* ─────────────────────────────────────────────
+   train.css
+   Styles for app/train/page.tsx
+   Three steps: input → review → done
+   ───────────────────────────────────────────── */
+
+/* ── root: fills <main> exactly, scrollable if needed ── */
+.t-root {
+  font-family: 'DM Sans', sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 44px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  gap: 0;
+}
+
+/* ── entrance animation ── */
+@keyframes tFadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .t-fu { animation: tFadeUp 0.4s ease both; }
+}
+.t-fu:nth-child(1) { animation-delay: 0.00s; }
+.t-fu:nth-child(2) { animation-delay: 0.06s; }
+.t-fu:nth-child(3) { animation-delay: 0.12s; }
+.t-fu:nth-child(4) { animation-delay: 0.18s; }
+.t-fu:nth-child(5) { animation-delay: 0.24s; }
+
+/* ────────────────────────────────
+   PAGE HEADER
+   ──────────────────────────────── */
+.t-header {
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+.t-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--imm-gold);
+  margin-bottom: 6px;
+}
+.t-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.t-title em {
+  font-style: italic;
+  color: var(--imm-brown);
+}
+.t-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--imm-txt2);
+  line-height: 1.55;
+}
+
+/* ── step indicator ── */
+.t-steps {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  flex-shrink: 0;
+}
+.t-step {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 400;
+}
+.t-step.active {
+  color: var(--imm-txt);
+  font-weight: 500;
+}
+.t-step.done {
+  color: var(--imm-green);
+}
+.t-step-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--imm-bdr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--imm-txt3);
+  background: var(--imm-sand2);
+  flex-shrink: 0;
+}
+.t-step.active .t-step-dot {
+  border-color: var(--imm-gold);
+  color: var(--imm-gold);
+  background: var(--imm-gold-light);
+}
+.t-step.done .t-step-dot {
+  border-color: var(--imm-green);
+  background: rgba(107, 191, 138, 0.12);
+  color: var(--imm-green);
+}
+.t-step-line {
+  flex: 1;
+  height: 1px;
+  background: var(--imm-bdr);
+  max-width: 40px;
+}
+
+/* ────────────────────────────────
+   STEP 1 — INPUT
+   ──────────────────────────────── */
+.t-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.t-textarea-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+.t-textarea-card:focus-within {
+  border-color: rgba(201, 146, 74, 0.45);
+}
+
+.t-textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 20px 22px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--imm-txt);
+  line-height: 1.7;
+  min-height: 180px;
+}
+.t-textarea::placeholder {
+  color: var(--imm-txt3);
+  opacity: 0.7;
+}
+
+.t-textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 22px 16px;
+  border-top: 1px solid var(--imm-bdr);
+}
+.t-char-count {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-hint {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ────────────────────────────────
+   STEP 2 — REVIEW
+   ──────────────────────────────── */
+.t-review-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+
+/* captured feelings card */
+.t-capture-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 24px 26px;
+}
+.t-capture-row {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--imm-bdr);
+}
+.t-capture-row:first-child { padding-top: 0; }
+.t-capture-row:last-child  { border-bottom: none; padding-bottom: 0; }
+
+.t-capture-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin-bottom: 5px;
+}
+.t-capture-value {
+  font-size: 14px;
+  color: var(--imm-txt);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* original language toggle */
+.t-original-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--imm-bdr);
+  font-size: 12px;
+  color: var(--imm-txt3);
+  background: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: color 0.18s ease;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+.t-original-toggle:hover { color: var(--imm-txt); }
+.t-original-toggle svg { width: 13px; height: 13px; }
+.t-original-text {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--imm-txt2);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* right side panel */
+.t-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* weight card */
+.t-weight-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 20px 22px;
+}
+.t-weight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+.t-weight-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--imm-txt);
+}
+.t-weight-value {
+  font-family: 'Lora', serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  line-height: 1;
+}
+.t-weight-value span {
+  font-size: 13px;
+  color: var(--imm-txt3);
+  font-family: 'DM Sans', sans-serif;
+}
+.t-slider {
+  width: 100%;
+  accent-color: var(--imm-gold);
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+.t-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--imm-txt3);
+}
+.t-never-forget {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--imm-gold);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.t-never-forget svg { width: 12px; height: 12px; }
+
+/* meta card */
+.t-meta-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.t-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.t-meta-key {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-weight: 400;
+}
+.t-meta-val {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  background: var(--imm-sand3);
+  padding: 2px 10px;
+  border-radius: 99px;
+}
+.t-meta-val.core {
+  background: var(--imm-gold-light);
+  color: var(--imm-brown);
+}
+
+/* tags */
+.t-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+.t-tag {
+  font-size: 11px;
+  color: var(--imm-brown);
+  background: var(--imm-gold-light);
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-weight: 400;
+}
+
+/* review action row */
+.t-review-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* ────────────────────────────────
+   STEP 3 — DONE
+   ──────────────────────────────── */
+.t-done-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.t-done-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 24px 26px;
+}
+.t-done-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(107, 191, 138, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.t-done-icon svg { width: 20px; height: 20px; color: var(--imm-green); }
+
+.t-done-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin-bottom: 10px;
+}
+.t-acknowledgment {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--imm-txt2);
+  line-height: 1.7;
+}
+.t-reinforced-text {
+  font-size: 14px;
+  color: var(--imm-txt);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.t-reinforced-meta {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+}
+
+.t-done-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* ────────────────────────────────
+   SHARED BUTTONS
+   ──────────────────────────────── */
+.t-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--imm-gold);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  text-decoration: none;
+}
+.t-btn-primary:hover  { opacity: 0.88; transform: translateY(-1px); }
+.t-btn-primary:active { transform: scale(0.98); }
+.t-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+.t-btn-primary svg { width: 15px; height: 15px; }
+
+.t-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--imm-sand2);
+  color: var(--imm-txt2);
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: 'DM Sans', sans-serif;
+  border: 1px solid var(--imm-bdr);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+.t-btn-ghost:hover  { background: var(--imm-sand3); color: var(--imm-txt); transform: translateY(-1px); }
+.t-btn-ghost:active { transform: scale(0.98); }
+.t-btn-ghost svg { width: 14px; height: 14px; }
