@@ -12,25 +12,49 @@ interface AuthStore {
   user: User | null
   token: string | null
   isLoading: boolean
-  displayLanguage: string       
+  displayLanguage: string
+  darkMode: boolean
   setAuth: (user: User, token: string) => void
   logout: () => void
   loadFromStorage: () => void
-  setDisplayLanguage: (lang: string) => void  
+  setDisplayLanguage: (lang: string) => void
+  toggleDarkMode: () => void
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
-  user: null,
-  token: null,
-  isLoading: true,
-  displayLanguage: "en",         // ← add this
+function readStorage(): { user: User | null; token: string | null; darkMode: boolean } {
+  if (typeof window === "undefined") return { user: null, token: null, darkMode: false }
+  try {
+    const token   = localStorage.getItem("immortality_token")
+    const userStr = localStorage.getItem("immortality_user")
+    const dark    = localStorage.getItem("immortality_dark") === "true"
+    if (token && userStr) {
+      return { user: JSON.parse(userStr), token, darkMode: dark }
+    }
+  } catch {}
+  return { user: null, token: null, darkMode: false }
+}
 
-  setDisplayLanguage: (lang) => set({ displayLanguage: lang }),  // ← add this
+const initial = readStorage()
+
+export const useAuthStore = create<AuthStore>((set, get) => ({
+  user:            initial.user,
+  token:           initial.token,
+  isLoading:       false,
+  displayLanguage: initial.user?.language ?? "en",
+  darkMode:        initial.darkMode,
+
+  setDisplayLanguage: (lang) => set({ displayLanguage: lang }),
+
+  toggleDarkMode: () => {
+    const next = !get().darkMode
+    localStorage.setItem("immortality_dark", String(next))
+    set({ darkMode: next })
+  },
 
   setAuth: (user, token) => {
     localStorage.setItem("immortality_token", token)
     localStorage.setItem("immortality_user", JSON.stringify(user))
-    set({ user, token, isLoading: false, displayLanguage: user.language })  // ← set display language on login
+    set({ user, token, isLoading: false, displayLanguage: user.language })
   },
 
   logout: () => {
@@ -40,18 +64,5 @@ export const useAuthStore = create<AuthStore>((set) => ({
     window.location.href = "/login"
   },
 
-  loadFromStorage: () => {
-    const token = localStorage.getItem("immortality_token")
-    const userStr = localStorage.getItem("immortality_user")
-    if (token && userStr) {
-      try {
-        const user = JSON.parse(userStr)
-        set({ user, token, isLoading: false, displayLanguage: user.language })  // ← restore display language
-      } catch {
-        set({ isLoading: false })
-      }
-    } else {
-      set({ isLoading: false })
-    }
-  },
+  loadFromStorage: () => {},
 }))

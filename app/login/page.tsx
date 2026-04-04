@@ -1,24 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
-import { useState } from "react"
+import { useState, useEffect, memo } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { useMutation } from "@tanstack/react-query"
 import { authAPI, setToken } from "@/lib/api"
 import { useAuthStore } from "@/store/auth"
 import { toast } from "sonner"
 import { useTranslation } from "@/locales"
 import { Loader2, ArrowLeft, LogIn } from "lucide-react"
-import "@/styles/auth.css"
+import { GlitchTitle } from "@/components/landing/GlitchTitle"
+import "@/styles/home.css"
+
+const RainCanvas = memo(dynamic(
+  () => import("@/components/landing/RainCanvas").then(m => ({ default: m.RainCanvas })),
+  { ssr: false }
+))
+
+const MemoryStack = memo(dynamic(
+  () => import("@/components/landing/MemoryStack").then(m => ({ default: m.MemoryStack })),
+  { ssr: false }
+))
 
 export default function LoginPage() {
   const router = useRouter()
-  const { user: storedUser, setAuth } = useAuthStore()
-  const { t } = useTranslation(storedUser?.language || "en")
-  const [form, setForm] = useState({ email: "", password: "" })
+  const { user, isLoading, setAuth } = useAuthStore()
+  const { t } = useTranslation(user?.language ?? "en")
+
+  const [email, setEmail]       = useState("")
+  const [password, setPassword] = useState("")
+
+  useEffect(() => {
+    if (!isLoading && user) router.push("/dashboard")
+  }, [user, isLoading])
 
   const mutation = useMutation({
-    mutationFn: async (formData: typeof form) => {
-      const loginRes = await authAPI.login(formData)
+    mutationFn: async () => {
+      const loginRes = await authAPI.login({ email, password })
       setToken(loginRes.data.access_token)
       const meRes = await authAPI.me()
       return { ...loginRes.data, language: meRes.data.language }
@@ -26,7 +46,7 @@ export default function LoginPage() {
     onSuccess: (data) => {
       const { access_token, user_id, name, agent_id, language } = data
       setAuth(
-        { id: user_id, name, email: form.email, language, agent_id },
+        { id: user_id, name, email, language, agent_id },
         access_token
       )
       router.push("/dashboard")
@@ -36,38 +56,23 @@ export default function LoginPage() {
     },
   })
 
+  if (isLoading) return null
+
   return (
     <main className="auth-shell">
+      <RainCanvas />
 
-      {/* ── Left panel ── */}
+      {/* ── Left ── */}
       <div className="auth-left">
-        <div className="auth-left-orb" />
-        <div className="auth-left-orb2" />
-
-        <div className="auth-brand">
-          imm<span>or</span>tality
+        <div className="title-block">
+          <GlitchTitle text="IMMORTAL AI" speed={200} />
         </div>
-
-        <div className="auth-left-body">
-          <h2 className="auth-left-headline">
-            Your memories,<br /><em>living on</em>
-          </h2>
-          <p className="auth-left-sub">
-            Train an AI agent on everything that makes you — your feelings, stories, and instincts. So the people who love you can still feel your presence.
-          </p>
-          <div className="auth-left-quote">
-            <p>
-              "I want an AI that knows my feelings, my attitude, my problems — and still sounds like me."
-            </p>
-          </div>
-        </div>
-
-        <p className="auth-left-footer">
-          Your memories are stored securely and never shared.
-        </p>
+        <MemoryStack />
+        <div className="auth-corner auth-corner-tl" />
+        <div className="auth-corner auth-corner-bl" />
       </div>
 
-      {/* ── Right panel: form ── */}
+      {/* ── Right: form ── */}
       <div className="auth-right">
         <div className="auth-form-wrap">
 
@@ -82,15 +87,15 @@ export default function LoginPage() {
 
           <form
             className="auth-form"
-            onSubmit={(e) => { e.preventDefault(); mutation.mutate(form) }}
+            onSubmit={(e) => { e.preventDefault(); mutation.mutate() }}
           >
             <div className="auth-field">
               <label className="auth-label">{t("auth.email")}</label>
               <input
                 className="auth-input"
                 type="email"
-                value={form.email}
-                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 placeholder={t("auth.emailPlaceholder")}
                 required
               />
@@ -101,8 +106,8 @@ export default function LoginPage() {
               <input
                 className="auth-input"
                 type="password"
-                value={form.password}
-                onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 placeholder={t("auth.passwordPlaceholder")}
                 required
               />

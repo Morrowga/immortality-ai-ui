@@ -1,28 +1,36 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import Link from "next/link"
 import { useAuthStore } from "@/store/auth"
 import { useQuery } from "@tanstack/react-query"
 import { agentAPI } from "@/lib/api"
-import { MessageSquare, BookOpen, LogOut, Home } from "lucide-react"
+import { MessageSquare, BookOpen, LogOut, Home, Settings, Brain, Sun, Moon } from "lucide-react"
 import { useTranslation } from "@/locales"
 import "@/styles/layout.css"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
+  const router   = useRouter()
   const pathname = usePathname()
-  const { user, isLoading, loadFromStorage, logout, displayLanguage, setDisplayLanguage } = useAuthStore()
-  const { t } = useTranslation(displayLanguage)
+  const {
+    user, isLoading, logout,
+    displayLanguage, setDisplayLanguage,
+    darkMode, toggleDarkMode,
+  } = useAuthStore()
 
-  // Slang hidden for now
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const lang = mounted ? displayLanguage : "en"
+  const { t } = useTranslation(lang)
+
   const NAV = [
-    { href: "/dashboard", label: t("nav.home"),  icon: Home },
-    { href: "/train",     label: t("nav.train"), icon: BookOpen },
-    { href: "/chat",      label: t("nav.chat"),  icon: MessageSquare },
+    { href: "/dashboard", label: t("nav.home"),      icon: Home },
+    { href: "/train",     label: t("nav.train"),     icon: BookOpen },
+    { href: "/chat",      label: t("nav.chat"),      icon: MessageSquare },
+    { href: "/settings",  label: t("nav.settings"),  icon: Settings },
+    { href: "/memories",  label: t("nav.memories"),  icon: Brain },
   ]
-
-  useEffect(() => { loadFromStorage() }, [])
 
   useEffect(() => {
     if (!isLoading && !user) router.push("/login")
@@ -30,8 +38,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const { data: agentData } = useQuery({
     queryKey: ["agent"],
-    queryFn: () => agentAPI.me().then(r => r.data),
-    enabled: !!user,
+    queryFn:  () => agentAPI.me().then(r => r.data),
+    enabled:  !!user,
+    staleTime: 1000 * 60 * 5,
+    gcTime:    1000 * 60 * 10,
   })
 
   useEffect(() => {
@@ -46,88 +56,95 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
   }, [agentData, pathname])
 
-  if (isLoading || !user) return null
-
   return (
-    <div className="layout-shell">
+    <div
+      className={`layout-shell dashboard${darkMode ? " dark-panel" : ""}`}
+      suppressHydrationWarning
+    >
+      <aside className="sidebar" suppressHydrationWarning>
 
-      {/* Sidebar */}
-      <aside className="sidebar">
-
-        {/* Brand */}
-        <div className="sidebar-brand">
-          <p className="sidebar-logo">
-            imm<span>or</span>tality
+        <div className="sidebar-brand" suppressHydrationWarning>
+          <p className="sidebar-username" suppressHydrationWarning>
+            {user?.name ?? ""}
           </p>
-          <p className="sidebar-username">{user.name}</p>
-          {agentData && (
-            <p className="sidebar-memories">{agentData.total_memories} memories</p>
-          )}
+          <p className="sidebar-memories" suppressHydrationWarning>
+            {agentData ? `${agentData.total_memories} ${t("dashboard.memories")}` : ""}
+          </p>
         </div>
 
-        {/* Nav */}
-        <nav className="sidebar-nav">
+        <nav className="sidebar-nav" suppressHydrationWarning>
           {NAV.map(item => {
-            const Icon = item.icon
+            const Icon   = item.icon
             const active = pathname === item.href
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`nav-item ${active ? "active" : ""}`}
+                suppressHydrationWarning
               >
                 <Icon />
-                {item.label}
+                <span suppressHydrationWarning>{item.label}</span>
               </Link>
             )
           })}
         </nav>
 
-        {/* Language toggle */}
-        {user?.language && user.language !== "en" && (
-          <div className="sidebar-lang">
-            <div className="sidebar-sep" />
-            <p className="sidebar-lang-label">Language</p>
-            <button
-              onClick={() => setDisplayLanguage("en")}
-              className={`lang-btn ${displayLanguage === "en" ? "active" : ""}`}
-            >
-              English
-            </button>
-            <button
-              onClick={() => setDisplayLanguage(user.language)}
-              className={`lang-btn ${displayLanguage === user.language ? "active" : ""}`}
-            >
-              {user.language === "my" ? "မြန်မာ" :
-               user.language === "th" ? "ภาษาไทย" :
-               user.language === "zh" ? "中文" :
-               user.language === "ja" ? "日本語" :
-               user.language === "ko" ? "한국어" :
-               user.language === "ar" ? "العربية" :
-               user.language.toUpperCase()}
-            </button>
-          </div>
-        )}
+        <div className="sidebar-lang" suppressHydrationWarning>
+          {mounted && user?.language && user.language !== "en" && (
+            <>
+              <div className="sidebar-sep" />
+              <p className="sidebar-lang-label" suppressHydrationWarning>{t("nav.language")}</p>
+              <button
+                onClick={() => setDisplayLanguage("en")}
+                className={`lang-btn ${displayLanguage === "en" ? "active" : ""}`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => setDisplayLanguage(user.language)}
+                className={`lang-btn ${displayLanguage === user.language ? "active" : ""}`}
+              >
+                {user.language === "my" ? "မြန်မာ" :
+                user.language === "th" ? "ภาษาไทย" :
+                user.language === "ja" ? "日本語" :
+                user.language === "ko" ? "한국어" :
+                user.language === "ar" ? "العربية" :
+                user.language === "ru" ? "Русский" :
+                user.language === "vi" ? "Tiếng Việt" :
+                user.language === "spain" ? "Español" :
+                user.language === "de" ? "Deutsch" :
+                user.language.toUpperCase()}
+              </button>
+            </>
+          )}
+        </div>
 
-        {/* Sign out */}
+        <div className="sidebar-theme" suppressHydrationWarning>
+          <div className="sidebar-sep" />
+          <button className="theme-toggle-btn" onClick={toggleDarkMode} suppressHydrationWarning>
+            {darkMode
+              ? <><Sun /><span suppressHydrationWarning>Light</span></>
+              : <><Moon /><span suppressHydrationWarning>Dark</span></>
+            }
+          </button>
+        </div>
+
         <div className="sidebar-footer">
           <div className="sidebar-sep" />
-          <button onClick={logout} className="signout-btn">
+          <button onClick={logout} className="signout-btn" suppressHydrationWarning>
             <LogOut />
-            {t("nav.signout")}
+            <span suppressHydrationWarning>{t("nav.signout")}</span>
           </button>
         </div>
 
       </aside>
 
-      {/* Divider */}
       <div className="layout-divider" />
 
-      {/* Main */}
       <main className="layout-main">
         {children}
       </main>
-
     </div>
   )
 }

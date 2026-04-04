@@ -1,56 +1,88 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
 import { useAuthStore } from "@/store/auth"
 import Link from "next/link"
+import dynamic from "next/dynamic"
+import { useGlitch } from "@/hooks/useGlitch"
+import { CinematicHeadline } from "@/components/landing/CinematicHeadline"
+import "@/styles/home.css"
+
+const RainCanvas = dynamic(
+  () => import("@/components/landing/RainCanvas").then(m => ({ default: m.RainCanvas })),
+  { ssr: false }
+)
+const MemoryStack = dynamic(
+  () => import("@/components/landing/MemoryStack").then(m => ({ default: m.MemoryStack })),
+  { ssr: false }
+)
 
 export default function Home() {
-  const router = useRouter()
-  const { user, isLoading, loadFromStorage } = useAuthStore()
+  const [glitchTitle, setGlitchTitle] = useState(false)
+  const titleText = useGlitch('IMMORTAL AI', glitchTitle, 200)
+  const { isLoading } = useAuthStore()
+  const [visible,     setVisible]     = useState(false)
+  const [glitchBegin, setGlitchBegin] = useState(false)
+  const [glitchSign,  setGlitchSign]  = useState(false)
 
-  useEffect(() => {
-    loadFromStorage()
-  }, [])
+  const beginText = useGlitch('ENTER THE CONSTRUCT', glitchBegin)
+  const signText  = useGlitch('SIGN IN', glitchSign)
 
-  useEffect(() => {
-    if (!isLoading && user) {
-      router.push("/dashboard")
-    }
-  }, [user, isLoading])
+  useEffect(() => { const t = setTimeout(() => setVisible(true), 80);     return () => clearTimeout(t) }, [])
+  useEffect(() => { const t = setTimeout(() => setGlitchTitle(true), 300); return () => clearTimeout(t) }, [])
 
   if (isLoading) return null
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
-      <p className="text-xs tracking-widest uppercase text-muted-foreground mb-6">
-        Immortality
-      </p>
+    <main className="root">
+      <RainCanvas />
+      <div className="vignette" />
 
-      <h1 className="text-5xl md:text-7xl font-serif mb-6 max-w-2xl leading-tight">
-        What if the people you love never had to truly leave?
-      </h1>
+      <div className="grid">
 
-      <p className="text-muted-foreground text-lg max-w-md mb-12 leading-relaxed">
-        Train an AI agent with your memories, feelings, and wisdom.
-        Your presence. Forever.
-      </p>
+        {/* ── LEFT ── */}
+        <div className={`left${visible ? ' visible' : ''}`}>
+          <div className="title-block">
+            <div className="title">{titleText}</div>
+          </div>
+          <MemoryStack />
+          <div className="btn-row">
+            <Link href="/register" style={{ textDecoration: 'none' }}>
+              <button
+                className="btn-primary"
+                onMouseEnter={() => { setGlitchBegin(true); setTimeout(() => setGlitchBegin(false), 700) }}
+              >
+                <span className="btn-label">{beginText}</span>
+                <span className="arrow">▶</span>
+              </button>
+            </Link>
+            <Link href="/login" style={{ textDecoration: 'none' }}>
+              <button
+                className="btn-secondary"
+                onMouseEnter={() => { setGlitchSign(true); setTimeout(() => setGlitchSign(false), 700) }}
+              >
+                <span className="btn-label-sm">{signText}</span>
+              </button>
+            </Link>
+          </div>
+        </div>
 
-      <div className="flex gap-4">
-        <Link href="/register">
-          <button className="bg-primary text-primary-foreground px-6 py-3 rounded-md text-sm font-medium hover:opacity-90 transition">
-            Begin Your Journey
-          </button>
-        </Link>
-        <Link href="/login">
-          <button className="border border-border px-6 py-3 rounded-md text-sm text-muted-foreground hover:text-foreground transition">
-            Sign In
-          </button>
-        </Link>
+        {/* ── RIGHT ── */}
+        <div className="right">
+          <div className="right-inner">
+            <CinematicHeadline />
+            <div className="hero-wrap">
+              <img src="/hero.png" alt="" className="hero-img" />
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <p className="text-muted-foreground/40 text-xs mt-20 tracking-widest">
-        Open source · Community owned · Forever
-      </p>
+      <div className="corner corner-tl" />
+      <div className="corner corner-tr" />
+      <div className="corner corner-bl" />
+      <div className="corner corner-br" />
     </main>
   )
 }

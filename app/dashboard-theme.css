@@ -1,0 +1,69 @@
+/* ═══════════════════════════════════════════════════════
+   dashboard-theme.css — LIGHT MODE (default)
+   Dark mode lives in layout.css as .dark-panel
+   ═══════════════════════════════════════════════════════ */
+
+.dashboard {
+  --imm-sand:        #F4F6F3;
+  --imm-sand2:       #FFFFFF;
+  --imm-sand3:       #EEF2EC;
+  --imm-sand4:       #E8EDE6;
+
+  --imm-gold:        #16A34A;
+  --imm-gold-light:  #F0FBF4;
+  --imm-brown:       #15803D;
+  --imm-brown-dark:  #14532D;
+
+  --imm-txt:         #111827;
+  --imm-txt2:        #374151;
+  --imm-txt3:        #6B7280;
+
+  --imm-bdr:         rgba(22, 163, 74, 0.18);
+  --imm-green:       #16A34A;
+
+  --imm-matrix:      #16A34A;
+  --imm-matrix-dim:  #15803D;
+  --imm-matrix-glow: rgba(22, 163, 74, 0.12);
+  --imm-terminal-bdr: rgba(22, 163, 74, 0.20);
+
+  --background:           #F4F6F3;
+  --foreground:           #111827;
+  --card:                 #FFFFFF;
+  --card-foreground:      #111827;
+  --popover:              #FFFFFF;
+  --popover-foreground:   #111827;
+  --primary:              #16A34A;
+  --primary-foreground:   #FFFFFF;
+  --secondary:            #EEF2EC;
+  --secondary-foreground: #374151;
+  --muted:                #EEF2EC;
+  --muted-foreground:     #6B7280;
+  --accent:               #E8EDE6;
+  --accent-foreground:    #111827;
+  --border:               rgba(22, 163, 74, 0.18);
+  --input:                rgba(22, 163, 74, 0.10);
+  --ring:                 #16A34A;
+  --destructive:          oklch(0.577 0.245 27.325);
+}
+
+.dashboard input,
+.dashboard textarea,
+.dashboard select {
+  color: #111827;
+  background-color: #E8EDE6;
+}
+
+.dashboard input::placeholder,
+.dashboard textarea::placeholder {
+  color: #6B7280;
+  opacity: 0.8;
+}
+
+.dashboard option {
+  background-color: #FFFFFF;
+  color: #111827;
+}
+
+.dashboard .imm-badge  { color: #374151; }
+.dashboard .imm-label  { color: #6B7280; }
+.dashboard .imm-muted  { color: #6B7280; }

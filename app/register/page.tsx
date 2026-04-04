@@ -1,47 +1,70 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
-import { useState } from "react"
+import { useState, useEffect, memo } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { useMutation } from "@tanstack/react-query"
 import { authAPI } from "@/lib/api"
 import { useAuthStore } from "@/store/auth"
 import { toast } from "sonner"
 import { useTranslation } from "@/locales"
-import { Loader2, ArrowLeft, Sparkles, Circle } from "lucide-react"
-import "@/styles/auth.css"
+import { Loader2, ArrowLeft, Circle } from "lucide-react"
+import { GlitchTitle } from "@/components/landing/GlitchTitle"
+import "@/styles/home.css"
+
+const RainCanvas = memo(dynamic(
+  () => import("@/components/landing/RainCanvas").then(m => ({ default: m.RainCanvas })),
+  { ssr: false }
+))
+
+const MemoryStack = memo(dynamic(
+  () => import("@/components/landing/MemoryStack").then(m => ({ default: m.MemoryStack })),
+  { ssr: false }
+))
 
 const LANGUAGES = [
   { code: "en", label: "English" },
   { code: "my", label: "Burmese" },
   { code: "th", label: "Thai" },
-  { code: "zh", label: "Chinese" },
   { code: "ja", label: "Japanese" },
   { code: "ko", label: "Korean" },
   { code: "es", label: "Spanish" },
-  { code: "fr", label: "French" },
+  { code: "de", label: "German" },
   { code: "ar", label: "Arabic" },
-  { code: "id", label: "Indonesian" },
+  { code: "vi", label: "Vietnamese" },
+  { code: "ru", label: "Russia" },
+]
+
+const GENDERS = [
+  { value: "male",   label: "Male" },
+  { value: "female", label: "Female" },
 ]
 
 export default function RegisterPage() {
   const router = useRouter()
-  const { setAuth } = useAuthStore()
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    language: "en",
-  })
+  const { user, isLoading, setAuth } = useAuthStore()
 
-  // Use selected language in real time as user picks it
-  const { t } = useTranslation(form.language)
+  useEffect(() => {
+    if (!isLoading && user) router.push("/dashboard")
+  }, [user, isLoading])
+
+  // Split state so useTranslation only re-runs when language changes, not on every keystroke
+  const [language, setLanguage] = useState("en")
+  const [gender, setGender]     = useState("male")
+  const [name, setName]         = useState("")
+  const [email, setEmail]       = useState("")
+  const [password, setPassword] = useState("")
+
+  const { t } = useTranslation(language)
 
   const mutation = useMutation({
-    mutationFn: authAPI.register,
+    mutationFn: () => authAPI.register({ name, email, password, language, gender }),
     onSuccess: (res) => {
-      const { access_token, user_id, name, agent_id } = res.data
+      const { access_token, user_id, name: resName, agent_id } = res.data
       setAuth(
-        { id: user_id, name, email: form.email, language: form.language, agent_id },
+        { id: user_id, name: resName, email, language, agent_id },
         access_token
       )
       router.push("/survey")
@@ -51,44 +74,23 @@ export default function RegisterPage() {
     },
   })
 
-  const fields = [
-    { key: "name",     label: t("auth.name"),     type: "text",     placeholder: t("auth.namePlaceholder") },
-    { key: "email",    label: t("auth.email"),    type: "email",    placeholder: t("auth.emailPlaceholder") },
-    { key: "password", label: t("auth.password"), type: "password", placeholder: t("auth.passwordPlaceholder") },
-  ]
+  if (isLoading) return null
 
   return (
     <main className="auth-shell">
+      <RainCanvas />
 
-      {/* ── Left panel ── */}
+      {/* ── Left ── */}
       <div className="auth-left">
-        <div className="auth-left-orb" />
-        <div className="auth-left-orb2" />
-
-        <div className="auth-brand">
-          imm<span>or</span>tality
+        <div className="title-block">
+          <GlitchTitle text="IMMORTAL AI" speed={80} />
         </div>
-
-        <div className="auth-left-body">
-          <h2 className="auth-left-headline">
-            Begin your<br /><em>legacy</em>
-          </h2>
-          <p className="auth-left-sub">
-            Share your memories, feelings, and stories. Your agent learns what makes you — so the people who love you never have to say goodbye.
-          </p>
-          <div className="auth-left-quote">
-            <p>
-              "Every memory you share becomes a part of something that will outlast you."
-            </p>
-          </div>
-        </div>
-
-        <p className="auth-left-footer">
-          Your memories are stored securely and never shared.
-        </p>
+        <MemoryStack />
+        <div className="auth-corner auth-corner-tl" />
+        <div className="auth-corner auth-corner-bl" />
       </div>
 
-      {/* ── Right panel: form ── */}
+      {/* ── Right: form ── */}
       <div className="auth-right">
         <div className="auth-form-wrap">
 
@@ -96,44 +98,81 @@ export default function RegisterPage() {
             <ArrowLeft /> Immortality
           </Link>
 
-          <h1 className="auth-heading">
-            Create your <em>agent</em>
-          </h1>
+          <h1 className="auth-heading">Create your <em>agent</em></h1>
           <p className="auth-subheading">{t("auth.registerSubtitle")}</p>
 
           <form
             className="auth-form"
-            onSubmit={(e) => { e.preventDefault(); mutation.mutate(form) }}
+            onSubmit={(e) => { e.preventDefault(); mutation.mutate() }}
           >
-            {/* Language selector first — so UI switches immediately */}
+            {/* Name + Language on same line */}
+            <div className="auth-field-row">
+              <div className="auth-field">
+                <label className="auth-label">{t("auth.name")}</label>
+                <input
+                  className="auth-input"
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder={t("auth.namePlaceholder")}
+                  required
+                />
+              </div>
+              <div className="auth-field">
+                <label className="auth-label">{t("auth.primaryLanguage")}</label>
+                <select
+                  className="auth-select"
+                  value={language}
+                  onChange={e => setLanguage(e.target.value)}
+                >
+                  {LANGUAGES.map(l => (
+                    <option key={l.code} value={l.code}>{l.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <div className="auth-field">
-              <label className="auth-label">{t("auth.primaryLanguage")}</label>
-              <select
-                className="auth-select"
-                value={form.language}
-                onChange={e => setForm(f => ({ ...f, language: e.target.value }))}
-              >
-                {LANGUAGES.map(l => (
-                  <option key={l.code} value={l.code}>{l.label}</option>
+              <label className="auth-label">Gender</label>
+              <div className="auth-gender-row">
+                {GENDERS.map(g => (
+                  <button
+                    key={g.value}
+                    type="button"
+                    className={`auth-gender-btn ${gender === g.value ? "selected" : ""}`}
+                    onClick={() => setGender(g.value)}
+                  >
+                    {g.label}
+                  </button>
                 ))}
-              </select>
+              </div>
             </div>
 
             <div className="auth-divider" />
 
-            {fields.map(field => (
-              <div key={field.key} className="auth-field">
-                <label className="auth-label">{field.label}</label>
-                <input
-                  className="auth-input"
-                  type={field.type}
-                  value={(form as any)[field.key]}
-                  onChange={e => setForm(f => ({ ...f, [field.key]: e.target.value }))}
-                  placeholder={field.placeholder}
-                  required
-                />
-              </div>
-            ))}
+            <div className="auth-field">
+              <label className="auth-label">{t("auth.email")}</label>
+              <input
+                className="auth-input"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder={t("auth.emailPlaceholder")}
+                required
+              />
+            </div>
+
+            <div className="auth-field">
+              <label className="auth-label">{t("auth.password")}</label>
+              <input
+                className="auth-input"
+                type="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder={t("auth.passwordPlaceholder")}
+                required
+              />
+            </div>
 
             <button
               type="submit"

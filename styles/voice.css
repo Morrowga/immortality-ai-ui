@@ -1,0 +1,457 @@
+/* ─────────────────────────────────────────────
+   voice.css
+   Settings → My Voice — two-slot training page
+   ───────────────────────────────────────────── */
+
+.v-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Header ── */
+.v-header {
+  padding: 32px 40px 24px;
+  border-bottom: 1px solid var(--imm-bdr);
+  flex-shrink: 0;
+}
+.v-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin-bottom: 6px;
+}
+.v-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin: 0 0 6px;
+}
+.v-title em { font-style: italic; color: var(--imm-brown); }
+.v-subtitle { font-size: 13px; color: var(--imm-txt3); font-weight: 300; margin: 0; }
+
+/* ── Scrollable body ── */
+.v-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.v-body::-webkit-scrollbar { width: 4px; }
+.v-body::-webkit-scrollbar-track { background: transparent; }
+.v-body::-webkit-scrollbar-thumb { background: var(--imm-bdr); border-radius: 99px; }
+
+.v-content {
+  max-width: 760px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Two-card grid ── */
+.v-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Individual voice card ── */
+.v-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color 0.2s;
+}
+.v-card.trained {
+  border-color: rgba(201,146,74,0.3);
+  background: var(--imm-gold-light);
+}
+.v-card.optional {
+  border-style: dashed;
+}
+
+/* Card header row */
+.v-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.v-card-lang {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.v-card-lang-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--imm-txt);
+}
+.v-card-lang-local {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+}
+.v-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.v-card-badge.trained {
+  background: rgba(107,191,138,0.15);
+  color: #3a9e63;
+  border: 1px solid rgba(107,191,138,0.3);
+}
+.v-card-badge.optional {
+  background: var(--imm-sand3);
+  color: var(--imm-txt3);
+  border: 1px solid var(--imm-bdr);
+}
+.v-card-badge svg { width: 11px; height: 11px; }
+
+/* Trained state — duration + retrain button */
+.v-card-trained-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v-card-duration {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+}
+.v-card-duration strong { color: var(--imm-txt2); font-weight: 500; }
+.v-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Untrained state — prompt text */
+.v-card-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v-card-empty-text {
+  font-size: 13px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ── Shared card buttons ── */
+.v-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--imm-gold);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.18s, transform 0.15s;
+  white-space: nowrap;
+}
+.v-btn-primary:hover   { opacity: 0.88; transform: translateY(-1px); }
+.v-btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+.v-btn-primary svg { width: 14px; height: 14px; }
+
+.v-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--imm-bdr);
+  background: none;
+  color: var(--imm-txt3);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.v-btn-ghost:hover { background: var(--imm-sand3); color: var(--imm-txt); }
+.v-btn-ghost svg { width: 13px; height: 13px; }
+
+.v-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--imm-bdr);
+  background: none;
+  color: var(--imm-txt3);
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.v-btn-danger:hover { background: rgba(220,53,69,0.08); border-color: rgba(220,53,69,0.25); color: #dc3545; }
+.v-btn-danger:disabled { opacity: 0.4; cursor: not-allowed; }
+.v-btn-danger svg { width: 12px; height: 12px; }
+
+/* ── Training panel (shown below cards when active) ── */
+.v-panel {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.v-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--imm-bdr);
+  background: var(--imm-sand3);
+}
+.v-panel-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--imm-txt2);
+}
+.v-panel-lang-tag {
+  font-size: 11px;
+  color: var(--imm-gold);
+  font-weight: 500;
+  background: var(--imm-gold-light);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.v-panel-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Template text block */
+.v-template-block {
+  background: var(--imm-sand);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v-template-instruction {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--imm-txt3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.v-template-text {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--imm-txt);
+  line-height: 1.75;
+}
+
+/* Recording area */
+.v-record-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  background: var(--imm-sand);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 12px;
+}
+
+.v-record-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--imm-bdr);
+  background: var(--imm-sand2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
+}
+.v-record-btn:hover { background: var(--imm-gold-light); border-color: rgba(201,146,74,0.4); }
+.v-record-btn.recording {
+  background: rgba(220,53,69,0.06);
+  border-color: rgba(220,53,69,0.25);
+  animation: v-pulse 1.8s ease-in-out infinite;
+}
+.v-record-btn svg { width: 24px; height: 24px; color: var(--imm-txt2); }
+.v-record-btn.recording svg { color: #dc3545; }
+
+@keyframes v-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220,53,69,0.12); }
+  50%       { box-shadow: 0 0 0 10px rgba(220,53,69,0.04); }
+}
+
+.v-duration {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.v-duration-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #dc3545;
+  flex-shrink: 0;
+  animation: v-blink 1s step-start infinite;
+}
+@keyframes v-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+.v-duration-time {
+  font-size: 26px;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color: var(--imm-txt);
+  letter-spacing: 0.04em;
+}
+
+.v-state-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  text-align: center;
+  margin: 0;
+}
+
+.v-audio-preview {
+  width: 100%;
+  max-width: 340px;
+  height: 34px;
+  accent-color: var(--imm-gold);
+}
+
+/* Panel footer — noise toggle + submit */
+.v-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.v-noise-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  cursor: pointer;
+}
+.v-noise-toggle input { accent-color: var(--imm-gold); cursor: pointer; }
+
+.v-panel-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.v-rerecord-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  cursor: pointer;
+  transition: color 0.15s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.v-rerecord-btn:hover { color: var(--imm-txt); }
+
+/* ── Tips card ── */
+.v-tips-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 12px;
+  padding: 14px 20px;
+}
+.v-tips-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin: 0 0 10px;
+}
+.v-tips-list {
+  margin: 0;
+  padding: 0 0 0 16px;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--imm-txt2);
+  line-height: 2;
+}
+
+/* ── Not-enabled / coming soon state ── */
+.v-unavailable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 56px 24px;
+  text-align: center;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.v-unavailable-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--imm-sand3);
+  border: 1px solid var(--imm-bdr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-unavailable-icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--imm-txt3);
+}
+.v-unavailable-title {
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin: 0;
+}
+.v-unavailable-body {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  line-height: 1.65;
+  margin: 0;
+}

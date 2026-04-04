@@ -1,387 +1,216 @@
 "use client"
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect } from "react"
 import DashboardLayout from "@/components/layout/DashboardLayout"
-import { useMutation } from "@tanstack/react-query"
-import { chatAPI, feedbackAPI } from "@/lib/api"
+import { useChat }     from "@/hooks/useChat"
 import { useAuthStore } from "@/store/auth"
 import { useTranslation } from "@/locales"
-import { toast } from "sonner"
-import { ChatMessage } from "@/types"
-import { Send, ThumbsUp, ThumbsDown, Loader2, X, Check, MessageSquareText, ArrowRight } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { ChatGate }    from "@/components/chat/ChatGate"
+import { ChatMessages } from "@/components/chat/ChatMessages"
+import { ChatInputBar } from "@/components/chat/ChatInputBar"
 import "@/styles/chat.css"
+import "@/styles/settings.css"
 
-// Must match backend RELATIONSHIP_TYPES keys
-const RELATIONSHIPS = [
-  {
-    key: "owner",
-    label: "This is me",
-    sub: "I am the person this agent was built from",
-    icon: "✦",
-  },
-  {
-    key: "close_friend",
-    label: "Close friend",
-    sub: "We trust each other deeply",
-    icon: "★",
-  },
-  {
-    key: "partner",
-    label: "Partner",
-    sub: "Romantic partner",
-    icon: "♥",
-  },
-  {
-    key: "family",
-    label: "Family",
-    sub: "Family member",
-    icon: "⌂",
-  },
-  {
-    key: "friend",
-    label: "Friend",
-    sub: "Friend, not super close",
-    icon: "◎",
-  },
-  {
-    key: "coworker",
-    label: "Coworker",
-    sub: "Work colleague",
-    icon: "◈",
-  },
-  {
-    key: "stranger",
-    label: "Stranger",
-    sub: "Just met or don't know well",
-    icon: "○",
-  },
-]
+// ── Skeleton ──────────────────────────────────────────────────────────────
 
-interface Speaker {
-  name: string
-  relationship: string
+function ChatGateSkeleton() {
+  return (
+    <div className="c-root">
+      <style>{`
+        .c-sk {
+          background-color: var(--imm-brown-dark);
+          background-image: linear-gradient(90deg, transparent 25%, var(--imm-brown-dark) 50%, transparent 75%);
+          background-size: 200% 100%;
+          animation: c-shimmer 1.4s ease-in-out infinite;
+          opacity: 0.18;
+          border-radius: 6px;
+          flex-shrink: 0;
+        }
+        @keyframes c-shimmer {
+          0%   { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
+
+      {/* Header — eyebrow / title / subtitle */}
+      <div className="c-header">
+        <div className="c-header-left">
+          <div className="c-sk" style={{ width: 48, height: 10, marginBottom: 14 }} />
+          <div className="c-sk" style={{ width: 80, height: 28, marginBottom: 10 }} />
+          <div className="c-sk" style={{ width: 200, height: 13 }} />
+        </div>
+      </div>
+
+      {/* Gate card */}
+      <div className="c-identity-wrap">
+        <div className="c-gate-card">
+
+          {/* Card label */}
+          <div className="c-sk" style={{ width: 160, height: 13, marginBottom: 20 }} />
+
+          {/* 5 type rows */}
+          {[1, 2, 3, 4, 5].map(i => (
+            <div key={i} style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "14px 16px",
+              borderRadius: 12,
+              border: "1px solid var(--imm-bdr)",
+              background: "var(--imm-sand2)",
+              marginBottom: i < 5 ? 10 : 0,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <div className="c-sk" style={{ width: 60, height: 13 }} />
+                <div className="c-sk" style={{ width: 44, height: 11, opacity: 0.12 }} />
+              </div>
+              <div className="c-sk" style={{ width: 14, height: 14, borderRadius: 3 }} />
+            </div>
+          ))}
+
+        </div>
+      </div>
+    </div>
+  )
 }
 
+// ── Page ──────────────────────────────────────────────────────────────────
+
 export default function ChatPage() {
-  const { user } = useAuthStore()
-  const { t } = useTranslation(user?.language || "en")
+  const c = useChat()
+  const { displayLanguage } = useAuthStore()
 
-  // Identity gate state
-  const [speaker, setSpeaker] = useState<Speaker | null>(null)
-  const [nameInput, setNameInput] = useState("")
-  const [selectedRel, setSelectedRel] = useState("")
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+  const lang = mounted ? displayLanguage : "en"
+  const { t } = useTranslation(lang)
 
-  // Chat state
-  const [messages, setMessages]             = useState<ChatMessage[]>([])
-  const [input, setInput]                   = useState("")
-  const [correcting, setCorrecting]         = useState<string | null>(null)
-  const [correctionText, setCorrectionText] = useState("")
-  const bottomRef = useRef<HTMLDivElement>(null)
+  // ── Loading ──────────────────────────────────────────────────────────
+  if (!mounted || c.typesLoading || !c.typesData) return (
+    <DashboardLayout>
+      <ChatGateSkeleton />
+    </DashboardLayout>
+  )
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages])
+  const header = (eyebrow: string, subtitle: string) => (
+    <div className="c-header">
+      <div className="c-header-left">
+        <div className="c-eyebrow">{eyebrow}</div>
+        <h1 className="c-title"><em>{t("chat.eyebrow")}</em></h1>
+        <p className="c-subtitle">{subtitle}</p>
+      </div>
+    </div>
+  )
 
-  const chatMutation = useMutation({
-    mutationFn: chatAPI.send,
-    onSuccess: (res) => {
-      const agentMessage: ChatMessage = {
-        id: crypto.randomUUID(),
-        role: "agent",
-        content: res.data.response,
-        memories_used: res.data.memories_used,
-        response_id: res.data.response_id,
-        timestamp: new Date(),
-      }
-      setMessages(m => [...m, agentMessage])
-    },
-    onError: (err: any) => {
-      toast.error(err.response?.data?.detail || "Failed to get response")
-    },
-  })
+  // ── Gate steps ───────────────────────────────────────────────────────
+  if (c.gateStep !== "ready") {
+    const eyebrow = c.gateStep === "type"
+      ? t("chat.eyebrow")
+      : c.gateStep === "role" || c.gateStep === "stranger_info"
+        ? `${t("chat.eyebrow")} · ${c.selectedType?.type_name}`
+        : `${t("chat.eyebrow")} · ${c.selectedType?.type_name} · ${c.selectedRole?.name}`
 
-  const feedbackMutation = useMutation({
-    mutationFn: feedbackAPI.submit,
-    onSuccess: (_, vars) => {
-      if (vars.feedback === "like") toast.success("👍 Noted")
-      if (vars.feedback === "corrected") {
-        toast.success("Correction saved. Agent will learn from this.")
-        setCorrecting(null)
-        setCorrectionText("")
-      }
-    },
-    onError: () => toast.error("Failed to save feedback"),
-  })
+    const subtitle = c.gateStep === "type"
+      ? t("chat.gateWhoAreYou")
+      : c.gateStep === "stranger_info"
+        ? t("chat.gateAboutYourself")
+        : c.gateStep === "role"
+          ? t("chat.gateYourRole")
+          : t("chat.gateAlmostThere")
 
-  const handleSend = () => {
-    if (!input.trim() || chatMutation.isPending || !speaker) return
-    const userMessage: ChatMessage = {
-      id: crypto.randomUUID(),
-      role: "user",
-      content: input,
-      timestamp: new Date(),
-    }
-    setMessages(m => [...m, userMessage])
-    chatMutation.mutate({
-      message: input,
-      language: user?.language || "en",
-      speaker_name: speaker.name,
-      relationship: speaker.relationship,
-    })
-    setInput("")
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend() }
-  }
-
-  const handleLike = (responseId: string) => {
-    feedbackMutation.mutate({ response_id: responseId, feedback: "like" })
-  }
-
-  const handleDislike = (responseId: string) => {
-    setCorrecting(responseId)
-  }
-
-  const handleSubmitCorrection = (responseId: string) => {
-    if (!correctionText.trim()) return
-    feedbackMutation.mutate({
-      response_id: responseId,
-      feedback: "corrected",
-      correction_text: correctionText,
-    })
-  }
-
-  const handleStartChat = () => {
-    const name = nameInput.trim()
-    if (!name || !selectedRel) return
-    setSpeaker({ name, relationship: selectedRel })
-  }
-
-  const selectedRelInfo = RELATIONSHIPS.find(r => r.key === selectedRel)
-
-  // ── Identity gate ─────────────────────────────────────────────────────────
-  if (!speaker) {
     return (
       <DashboardLayout>
         <div className="c-root">
-          <div className="c-header">
-            <div className="c-header-left">
-              <div className="c-eyebrow">Agent</div>
-              <h1 className="c-title"><em>{t("chat.title")}</em></h1>
-              <p className="c-subtitle">Before we begin — who are you?</p>
-            </div>
-          </div>
-
-          <div className="c-identity-wrap">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
-              className="c-identity-card"
-            >
-              {/* Name input */}
-              <div className="c-id-section">
-                <div className="c-id-label">Your name</div>
-                <input
-                  className="c-id-input"
-                  type="text"
-                  placeholder="Enter your name…"
-                  value={nameInput}
-                  onChange={e => setNameInput(e.target.value)}
-                  onKeyDown={e => { if (e.key === "Enter" && selectedRel) handleStartChat() }}
-                  autoFocus
-                />
-              </div>
-
-              {/* Relationship selector */}
-              <div className="c-id-section">
-                <div className="c-id-label">Your relationship to this person</div>
-                <div className="c-rel-grid">
-                  {RELATIONSHIPS.map(rel => (
-                    <button
-                      key={rel.key}
-                      className={`c-rel-btn ${selectedRel === rel.key ? "selected" : ""}`}
-                      onClick={() => setSelectedRel(rel.key)}
-                    >
-                      <span className="c-rel-icon">{rel.icon}</span>
-                      <div>
-                        <div className="c-rel-label">{rel.label}</div>
-                        <div className="c-rel-sub">{rel.sub}</div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Start button */}
-              <button
-                className="c-id-start"
-                onClick={handleStartChat}
-                disabled={!nameInput.trim() || !selectedRel}
-              >
-                Start conversation
-                <ArrowRight style={{ width: 15, height: 15 }} />
-              </button>
-            </motion.div>
-          </div>
+          {header(eyebrow, subtitle)}
+          <ChatGate
+            gateStep={c.gateStep}
+            selectedType={c.selectedType}
+            selectedRole={c.selectedRole}
+            typesData={c.typesData}
+            isPending={c.identifyMutation.isPending}
+            nameInput={c.nameInput}           setNameInput={c.setNameInput}
+            gender={c.gender}                 setGender={c.setGender}
+            speakerAgeInput={c.speakerAgeInput} setSpeakerAgeInput={c.setSpeakerAgeInput}
+            fieldErr={c.fieldErr}             setFieldErr={c.setFieldErr}
+            onTypeSelect={c.handleTypeSelect}
+            onRoleSelect={c.handleRoleSelect}
+            onNameContinue={c.handleNameContinue}
+            onStrangerContinue={c.handleStrangerContinue}
+            onBackToType={() => {
+              c.setSelectedType(null)
+              c.setFieldErr(null)
+              c.setGateStep("type")
+            }}
+            onBackToRole={() => {
+              c.setSelectedRole(null)
+              c.setFieldErr(null)
+              c.setGateStep("role")
+            }}
+            t={t}
+          />
         </div>
       </DashboardLayout>
     )
   }
 
-  // ── Chat UI ───────────────────────────────────────────────────────────────
+  // ── Chat UI ──────────────────────────────────────────────────────────
   return (
     <DashboardLayout>
       <div className="c-root">
-
-        {/* Header */}
         <div className="c-header">
           <div className="c-header-left">
-            <div className="c-eyebrow">Agent</div>
-            <h1 className="c-title"><em>{t("chat.title")}</em></h1>
-            <p className="c-subtitle">{t("chat.subtitle")}</p>
+            <div className="c-eyebrow">{t("chat.eyebrow")}</div>
+            <h1 className="c-title"><em>{t("chat.eyebrow")}</em></h1>
+            <p className="c-subtitle">{t("chat.startTalking")}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            {/* Speaker pill */}
-            <div className="c-speaker-pill">
-              <span className="c-speaker-icon">{selectedRelInfo?.icon}</span>
-              <span>{speaker.name}</span>
-              <span className="c-speaker-rel">· {selectedRelInfo?.label}</span>
-            </div>
-            {/* Change identity */}
-            <button className="c-change-btn" onClick={() => {
-              setSpeaker(null)
-              setMessages([])
-              setNameInput("")
-              setSelectedRel("")
-            }}>
-              Change
-            </button>
-            <div className="c-agent-pill">
-              <div className="c-agent-dot" />
-              Listening
-            </div>
-          </div>
-        </div>
-
-        {/* Messages */}
-        <div className="c-messages">
-          {messages.length === 0 && (
-            <div className="c-empty">
-              <div className="c-empty-icon">
-                <MessageSquareText />
-              </div>
-              <div>
-                <p className="c-empty-title">Start talking</p>
-                <p className="c-empty-sub">{t("chat.subtitle")}</p>
-              </div>
-            </div>
-          )}
-
-          <AnimatePresence initial={false}>
-            {messages.map((msg) => (
-              <motion.div
-                key={msg.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.18 }}
-                className={`c-msg-row ${msg.role}`}
-              >
-                <div className={`c-bubble ${msg.role}`}>{msg.content}</div>
-
-                {msg.role === "agent" && (
-                  <div className="c-meta">
-                    {msg.memories_used !== undefined && (
-                      <p className="c-memories-used">
-                        {msg.memories_used} {t("chat.memoriesUsed")}
-                      </p>
-                    )}
-                    {msg.response_id && correcting !== msg.response_id && (
-                      <div className="c-feedback">
-                        <button className="c-fb-btn like" onClick={() => handleLike(msg.response_id!)}>
-                          <ThumbsUp /> {t("chat.thumbsUp")}
-                        </button>
-                        <button className="c-fb-btn dislike" onClick={() => handleDislike(msg.response_id!)}>
-                          <ThumbsDown /> {t("chat.thumbsDown")}
-                        </button>
-                      </div>
-                    )}
-                    {correcting === msg.response_id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        className="c-correction"
-                      >
-                        <textarea
-                          autoFocus
-                          className="c-correction-textarea"
-                          value={correctionText}
-                          onChange={e => setCorrectionText(e.target.value)}
-                          placeholder={t("chat.correctionPlaceholder")}
-                          rows={2}
-                        />
-                        <div className="c-correction-actions">
-                          <button
-                            className="c-correction-submit"
-                            onClick={() => handleSubmitCorrection(msg.response_id!)}
-                            disabled={!correctionText.trim() || feedbackMutation.isPending}
-                          >
-                            <Check /> {t("chat.submitCorrection")}
-                          </button>
-                          <button
-                            className="c-correction-cancel"
-                            onClick={() => { setCorrecting(null); setCorrectionText("") }}
-                          >
-                            <X /> {t("chat.cancel")}
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
+            {c.speaker && (
+              <div className="c-speaker-pill">
+                <span className="c-speaker-name">{c.speaker.display_name}</span>
+                <span className="c-speaker-rel">· {c.speaker.role_name_local || c.speaker.role_name}</span>
+                {c.speaker.found_person && (
+                  <span className="c-speaker-known" title="Known person — personal settings loaded">✓</span>
                 )}
-              </motion.div>
-            ))}
-          </AnimatePresence>
-
-          {chatMutation.isPending && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="c-typing">
-              <div className="c-typing-bubble">
-                <div className="c-typing-dot" />
-                <div className="c-typing-dot" />
-                <div className="c-typing-dot" />
               </div>
-            </motion.div>
-          )}
-
-          <div ref={bottomRef} />
-        </div>
-
-        {/* Input bar */}
-        <div className="c-input-bar">
-          <div className="c-input-row">
-            <textarea
-              className="c-textarea"
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={t("chat.placeholder")}
-              rows={1}
-            />
-            <button
-              className="c-send-btn"
-              onClick={handleSend}
-              disabled={!input.trim() || chatMutation.isPending}
-            >
-              {chatMutation.isPending
-                ? <Loader2 style={{ width: 18, height: 18, color: "#fff" }} className="animate-spin" />
-                : <Send />
-              }
-            </button>
+            )}
+            <button className="c-change-btn" onClick={c.handleReset}>{t("chat.change")}</button>
+            <div className="c-agent-pill">
+              <div className="c-agent-dot" /> {t("chat.listening")}
+            </div>
           </div>
-          <p className="c-input-hint">Enter to send · Shift+Enter for new line</p>
         </div>
 
+        <ChatMessages
+          messages={c.messages}
+          correcting={c.correcting}
+          correctionText={c.correctionText}
+          setCorrecting={c.setCorrecting}
+          setCorrectionText={c.setCorrectionText}
+          isPending={c.chatMutation.isPending}
+          feedbackPending={c.feedbackMutation.isPending}
+          bottomRef={c.bottomRef}
+          emptyTitle={t("chat.startTalking")}
+          emptySubtitle={t("chat.startTalking")}
+          memoriesLabel={t("chat.memoriesUsed")}
+          thumbsUpLabel={t("chat.thumbsUp")}
+          thumbsDownLabel={t("chat.thumbsDown")}
+          correctionPlaceholder={t("chat.correctionPlaceholder")}
+          submitCorrectionLabel={t("chat.submitCorrection")}
+          cancelLabel={t("chat.cancel")}
+          onLike={id => c.feedbackMutation.mutate({ response_id: id, feedback: "like" })}
+          onCorrect={(id, text) => c.feedbackMutation.mutate({
+            response_id: id, feedback: "corrected", correction_text: text,
+          })}
+        />
+
+        <ChatInputBar
+          input={c.input}
+          setInput={c.setInput}
+          isPending={c.chatMutation.isPending}
+          placeholder={t("chat.inputPlaceholder")}
+          hint={t("chat.inputHint")}
+          onSend={c.handleSend}
+          onKeyDown={c.handleKeyDown}
+        />
       </div>
     </DashboardLayout>
   )

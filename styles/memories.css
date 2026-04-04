@@ -1,0 +1,802 @@
+/* ─────────────────────────────────────────────
+   memories.css
+   Styles for /memories page:
+   header, tabs, search, memory cards, empty state
+   ───────────────────────────────────────────── */
+
+/* ── page shell ── */
+.mem-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--imm-sand);
+}
+
+/* ── header ── */
+.mem-header {
+  padding: 28px 32px 0;
+  flex-shrink: 0;
+}
+
+.mem-title {
+  font-family: 'Lora', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.mem-subtitle {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+}
+
+/* ── stats row ── */
+.mem-stats {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--imm-bdr);
+}
+
+.mem-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mem-stat-value {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  line-height: 1;
+}
+
+.mem-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  font-weight: 400;
+}
+
+.mem-stat-divider {
+  width: 1px;
+  background: var(--imm-bdr);
+  align-self: stretch;
+}
+
+/* ── toolbar — tabs + search ── */
+.mem-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--imm-bdr);
+}
+
+/* ── tabs ── */
+.mem-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.mem-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--imm-txt3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+  font-family: 'Oxanium', sans-serif;
+}
+
+.mem-tab:hover {
+  background: var(--imm-sand3);
+  color: var(--imm-txt);
+}
+
+.mem-tab.active {
+  background: var(--imm-gold-light);
+  color: var(--imm-brown);
+  font-weight: 500;
+}
+
+.mem-tab-count {
+  font-size: 10px;
+  background: rgba(34, 197, 94, 0.10);
+  border-radius: 99px;
+  padding: 1px 6px;
+  color: var(--imm-txt3);
+}
+
+.mem-tab.active .mem-tab-count {
+  background: rgba(34, 197, 94, 0.18);
+  color: var(--imm-brown);
+}
+
+/* ── search ── */
+.mem-search-wrap {
+  flex: 1;
+  position: relative;
+}
+
+.mem-search-icon {
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  color: var(--imm-txt3);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mem-search {
+  width: 100%;
+  padding: 8px 12px 8px 32px;
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--imm-txt);
+  font-family: 'Oxanium', sans-serif;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mem-search:focus {
+  outline: none;
+  border-color: rgba(34, 197, 94, 0.35);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.12);
+}
+
+.mem-search::placeholder {
+  color: var(--imm-txt3);
+  opacity: 0.4;
+}
+
+/* ── section filter pills ── */
+.mem-sections {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.mem-section-btn {
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: 'Oxanium', sans-serif;
+}
+
+.mem-section-btn:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+  color: var(--imm-txt);
+}
+
+.mem-section-btn.active {
+  background: var(--imm-gold-light);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: var(--imm-brown);
+}
+
+/* ── list area ── */
+.mem-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── memory card ── */
+.mem-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 10px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--imm-matrix-glow), transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.mem-card:hover {
+  border-color: rgba(34, 197, 94, 0.22);
+  background: var(--imm-sand3);
+}
+
+.mem-card:hover::before {
+  opacity: 1;
+}
+
+/* never_forget card — glows slightly */
+.mem-card.pinned {
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.mem-card.pinned::before {
+  opacity: 0.6;
+}
+
+/* ── card header row ── */
+.mem-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.mem-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.mem-card-section {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  background: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.12);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+
+.mem-card-mode {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 2px 7px;
+  border: 1px solid transparent;
+}
+
+.mem-card-mode.manual {
+  color: var(--imm-txt3);
+  background: rgba(34, 197, 94, 0.04);
+  border-color: rgba(34, 197, 94, 0.08);
+}
+
+.mem-card-mode.conversation {
+  color: #60A5FA;
+  background: rgba(96, 165, 250, 0.06);
+  border-color: rgba(96, 165, 250, 0.15);
+}
+
+.mem-card-mode.correction {
+  color: #F97316;
+  background: rgba(249, 115, 22, 0.06);
+  border-color: rgba(249, 115, 22, 0.15);
+}
+
+.mem-pin-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--imm-green);
+  box-shadow: 0 0 4px var(--imm-green);
+  flex-shrink: 0;
+}
+
+/* ── card weight ── */
+.mem-card-weight {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.mem-weight-bar {
+  width: 48px;
+  height: 3px;
+  background: var(--imm-sand3);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.mem-weight-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--imm-brown), var(--imm-gold));
+  box-shadow: 0 0 4px rgba(34, 197, 94, 0.3);
+}
+
+.mem-weight-num {
+  font-size: 10px;
+  color: var(--imm-txt3);
+  font-weight: 500;
+  min-width: 20px;
+  text-align: right;
+}
+
+/* ── card body ── */
+.mem-card-body {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  color: var(--imm-txt);
+  line-height: 1.6;
+  margin-bottom: 10px;
+
+  /* clamp to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── card footer ── */
+.mem-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mem-card-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.mem-tag {
+  font-size: 10px;
+  color: var(--imm-txt3);
+  background: var(--imm-sand3);
+  border-radius: 4px;
+  padding: 2px 7px;
+  opacity: 0.7;
+}
+
+.mem-card-date {
+  font-size: 10px;
+  color: var(--imm-txt3);
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+/* ── card actions — show on hover ── */
+.mem-card-actions {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.mem-card:hover .mem-card-actions {
+  opacity: 1;
+}
+
+.mem-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: none;
+  border: 1px solid var(--imm-bdr);
+  color: var(--imm-txt3);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mem-action-btn:hover {
+  background: var(--imm-sand4);
+  color: var(--imm-txt);
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.mem-action-btn.danger:hover {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #F87171;
+}
+
+.mem-action-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ── empty state ── */
+.mem-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--imm-txt3);
+  opacity: 0.5;
+  padding: 60px 32px;
+}
+
+.mem-empty-icon {
+  width: 36px;
+  height: 36px;
+  opacity: 0.4;
+}
+
+.mem-empty-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--imm-txt);
+}
+
+.mem-empty-hint {
+  font-size: 12px;
+  color: var(--imm-txt3);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── loading skeletons ── */
+.mem-skeleton-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mem-skel-line {
+  border-radius: 4px;
+  background: var(--imm-sand3);
+  position: relative;
+  overflow: hidden;
+}
+
+.mem-skel-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 197, 94, 0.05) 50%,
+    transparent 100%
+  );
+  animation: imm-shimmer 1.8s ease-in-out infinite;
+}
+
+/* ── delete confirm ── */
+.mem-delete-confirm {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 4, 8, 0.92);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
+
+.mem-delete-msg {
+  font-size: 12px;
+  color: var(--imm-txt3);
+}
+
+.mem-delete-yes {
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #F87171;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: background 0.15s ease;
+}
+
+.mem-delete-yes:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.mem-delete-no {
+  padding: 5px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  background: var(--imm-sand3);
+  border: 1px solid var(--imm-bdr);
+  color: var(--imm-txt3);
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: background 0.15s ease;
+}
+
+.mem-delete-no:hover {
+  background: var(--imm-sand4);
+  color: var(--imm-txt);
+}
+
+/* ── load more ── */
+.mem-load-more {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 4px;
+}
+
+.mem-load-btn {
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--imm-txt3);
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: all 0.15s ease;
+}
+
+.mem-load-btn:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+  color: var(--imm-txt);
+  background: var(--imm-sand3);
+}
+
+/* ─────────────────────────────────────────────
+   REVIEW BANNER + DIALOG
+   ───────────────────────────────────────────── */
+
+/* ── Banner — sits between subtitle and stats ── */
+.mem-review-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 16px;
+  margin-top: 14px;
+  background: rgba(251, 146, 60, 0.05);
+  border: 1px solid rgba(249, 115, 22, 0.22);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--imm-txt3);
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.mem-review-banner:hover {
+  background: rgba(251, 146, 60, 0.09);
+  border-color: rgba(249, 115, 22, 0.38);
+}
+
+.mem-review-banner-icon {
+  width: 15px;
+  height: 15px;
+  color: #F97316;
+  flex-shrink: 0;
+}
+
+.mem-review-banner strong {
+  color: #FB923C;
+  font-weight: 500;
+}
+
+.mem-review-banner-cta {
+  margin-left: auto;
+  font-size: 12px;
+  color: #F97316;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* ── Dialog overrides — Matrix theme ── */
+.mem-review-dialog {
+  background: var(--imm-sand2) !important;
+  border: 1px solid var(--imm-terminal-bdr) !important;
+  border-radius: 12px !important;
+  max-width: 560px !important;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mem-review-dialog-title {
+  font-family: 'Lora', serif !important;
+  font-size: 18px !important;
+  color: var(--imm-txt) !important;
+  font-weight: 500 !important;
+}
+
+.mem-review-dialog-desc {
+  font-size: 12px !important;
+  color: var(--imm-txt3) !important;
+  font-weight: 300 !important;
+  line-height: 1.5 !important;
+}
+
+/* ── Review list — scrollable ── */
+.mem-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  max-height: 55vh;
+  padding-right: 4px;
+  margin-top: 4px;
+}
+
+.mem-review-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Individual review card ── */
+.mem-review-card {
+  background: var(--imm-sand3);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mem-review-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mem-review-age {
+  font-size: 10px;
+  color: #F97316;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.mem-review-body {
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  color: var(--imm-txt);
+  line-height: 1.6;
+}
+
+.mem-review-instinct {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-weight: 300;
+  line-height: 1.5;
+  font-style: italic;
+  border-left: 2px solid var(--imm-bdr);
+  padding-left: 10px;
+}
+
+/* ── Three action buttons ── */
+.mem-review-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.mem-review-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Oxanium', sans-serif;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  flex: 1;
+  justify-content: center;
+}
+
+.mem-review-btn svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.mem-review-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mem-review-btn.keep {
+  background: rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.18);
+  color: var(--imm-txt2);
+}
+.mem-review-btn.keep:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.14);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: var(--imm-txt);
+}
+
+.mem-review-btn.archive {
+  background: rgba(96, 165, 250, 0.06);
+  border-color: rgba(96, 165, 250, 0.18);
+  color: #93C5FD;
+}
+.mem-review-btn.archive:hover:not(:disabled) {
+  background: rgba(96, 165, 250, 0.14);
+  border-color: rgba(96, 165, 250, 0.3);
+  color: #BFDBFE;
+}
+
+.mem-review-btn.delete {
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.15);
+  color: #FCA5A5;
+}
+.mem-review-btn.delete:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.28);
+  color: #F87171;
+}
+
+/* ── Done state ── */
+.mem-review-done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 16px;
+  color: var(--imm-txt3);
+  font-size: 13px;
+}
+
+.mem-review-done-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--imm-green);
+  opacity: 0.7;
+}

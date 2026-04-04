@@ -76,3 +76,81 @@ export interface SlangEntry {
   usage_context?: string
   language: string
 }
+
+export interface AddressForm { form: string; context: string }
+
+export interface Person {
+  id:                    string
+  person_name:           string
+  person_aliases:        string[]
+  person_role:           string
+  address_forms:         AddressForm[]
+  self_address_forms:    AddressForm[]
+  voice_summary:         string
+  relationship_language: string
+  gender?:               string | null
+  age?:                  number | null
+  tone_description?:     string | null
+  forbidden_particles?:  string[]
+  required_particles?:   string[]
+  allowed_endings?:      string[]
+  has_key?:              boolean
+  key_enabled?:          boolean
+  key_preview?:          string | null
+  key_plain?:            string | null
+}
+
+export interface Role {
+  id:                  string
+  name:                string
+  name_local:          string
+  is_system_default:   boolean
+  address_forms:       AddressForm[]
+  self_address_forms:  AddressForm[]
+  forbidden_particles: string[]
+  required_particles:  string[]
+  allowed_endings:     string[]
+  tone_description:    string
+  formality_level:     number
+  affection_level:     number
+  openness_level:      number
+  people:              Person[]
+}
+
+export interface RelType {
+  id:                string
+  name:              string
+  name_local:        string
+  is_system_default: boolean
+  sort_order:        number
+  access_mode:       string
+  roles:             Role[]
+}
+
+export interface KeyStatus {
+  profile_id:  string
+  has_key:     boolean
+  key_enabled: boolean
+  key_preview: string | null
+  key_plain:   string | null
+}
+
+// ── Context helpers ────────────────────────────────────────────────────────
+
+export const CONTEXT_PRESETS = [
+  { value: "always",    label: "Always" },
+  { value: "sometimes", label: "Sometimes" },
+  { value: "custom",    label: "Custom…" },
+]
+
+export function parseContext(context: string) {
+  if (!context || context === "always") return { preset: "always",    custom: "" }
+  if (context === "sometimes")          return { preset: "sometimes", custom: "" }
+  return { preset: "custom", custom: context }
+}
+
+export function buildContext(preset: string, custom: string): string {
+  if (preset === "always")    return "always"
+  if (preset === "sometimes") return "sometimes"
+  return custom.trim() || "__custom__"
+}

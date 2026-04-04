@@ -1,0 +1,256 @@
+/* app/styles/agent-profile.css — variables aligned with settings-root.css */
+
+.pp-root {
+  margin: 0 auto;
+  padding: 36px 32px 80px;
+}
+
+/* ── Header ── */
+.pp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--imm-txt3);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+  transition: color 0.15s;
+}
+.pp-back:hover { color: var(--imm-txt); }
+
+.pp-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin: 0 0 6px;
+  letter-spacing: -0.4px;
+}
+.pp-subtitle {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  margin: 0 0 32px;
+}
+
+/* ── Two-column grid ── */
+.pp-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+  align-items: start;
+}
+
+.pp-card-image { grid-column: 1; grid-row: 1 / 3; }
+.pp-card-name  { grid-column: 2; grid-row: 1; }
+.pp-card-email { grid-column: 2; grid-row: 2; }
+
+/* ── Card base — matches st-card ── */
+.pp-card {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.pp-card-head { margin-bottom: 20px; }
+
+.pp-card-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--imm-txt);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.pp-card-hint {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  line-height: 1.6;
+}
+
+/* ── Image section ── */
+.pp-image-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 0 8px;
+}
+
+.pp-avatar {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--imm-sand);
+  border: 2px solid var(--imm-bdr);
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.pp-avatar:hover { border-color: var(--imm-gold); }
+.pp-avatar:hover .pp-avatar-overlay { opacity: 1; }
+
+.pp-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pp-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--imm-txt3);
+}
+.pp-avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.42);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 50%;
+}
+
+.pp-image-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.pp-hint-small {
+  font-size: 11.5px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  opacity: 0.8;
+  text-align: center;
+}
+
+/* ── Field group ── */
+.pp-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input — matches st-delete-input style */
+.pp-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--imm-bdr);
+  border-radius: 10px;
+  background: var(--imm-sand);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--imm-txt);
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.pp-input:focus         { border-color: rgba(201, 146, 74, 0.45); }
+.pp-input-err           { border-color: rgba(220, 53, 69, 0.5) !important; }
+.pp-input::placeholder  { color: var(--imm-txt3); opacity: 0.5; }
+
+.pp-field-error {
+  font-size: 12px;
+  font-weight: 300;
+  color: #c04444;
+  margin-top: -4px;
+}
+
+/* ── Buttons — mirrors st-btn-* ── */
+.pp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+.pp-btn:disabled              { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+.pp-btn:not(:disabled):active { transform: translateY(1px); }
+
+/* Primary — gold, matches st-btn-primary */
+.pp-btn-primary {
+  background: var(--imm-gold);
+  color: #fff;
+  border-color: transparent;
+  align-self: flex-start;
+}
+.pp-btn-primary:not(:disabled):hover { opacity: 0.88; }
+
+/* Secondary — matches st-btn-ghost */
+.pp-btn-secondary {
+  background: none;
+  border-color: var(--imm-bdr);
+  color: var(--imm-txt3);
+  width: 100%;
+}
+.pp-btn-secondary:not(:disabled):hover {
+  background: var(--imm-sand3);
+  color: var(--imm-txt);
+}
+
+/* Ghost */
+.pp-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--imm-txt3);
+  width: 100%;
+}
+.pp-btn-ghost:not(:disabled):hover { background: var(--imm-sand3); }
+
+/* Danger — matches st-btn-danger */
+.pp-btn-danger { color: #c04444 !important; }
+.pp-btn-danger:not(:disabled):hover {
+  background: rgba(220, 53, 69, 0.06) !important;
+  border-color: rgba(220, 53, 69, 0.3) !important;
+}
+
+/* ── Spinner ── */
+.pp-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: pp-spin 0.7s linear infinite;
+}
+@keyframes pp-spin { to { transform: rotate(360deg); } }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .pp-root { padding: 24px 16px 60px; }
+  .pp-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .pp-card-image { grid-column: 1; grid-row: 1; }
+  .pp-card-name  { grid-column: 1; grid-row: 2; }
+  .pp-card-email { grid-column: 1; grid-row: 3; }
+  .pp-image-centered { padding: 8px 0; }
+  .pp-avatar { width: 90px; height: 90px; }
+}

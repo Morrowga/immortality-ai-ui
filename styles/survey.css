@@ -1,35 +1,32 @@
 /* ─────────────────────────────────────────────
-   survey.css
-   Styles for app/survey/page.tsx
-   Chat-style conversational survey
+   survey.css — desktop layout
+   Full viewport, internal scroll, input pinned
    ───────────────────────────────────────────── */
 
-/* ── shell ── */
+/* ── shell — fixed full viewport, no page scroll ── */
 .sv-shell {
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--imm-sand);
   font-family: 'DM Sans', sans-serif;
+  overflow: hidden;
 }
 
-/* ────────────────────────────────
-   HEADER
-   ──────────────────────────────── */
+/* ── header ── */
 .sv-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 32px;
+  padding: 14px 48px;
   background: var(--imm-sand2);
   border-bottom: 1px solid var(--imm-bdr);
   flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
-.sv-header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.sv-header-left { display: flex; align-items: center; gap: 10px; }
 .sv-brand {
   font-family: 'Lora', serif;
   font-size: 15px;
@@ -37,25 +34,10 @@
   color: var(--imm-txt);
   letter-spacing: -0.01em;
 }
-.sv-brand span {
-  color: var(--imm-gold);
-  font-style: italic;
-}
-.sv-header-sep {
-  width: 1px;
-  height: 14px;
-  background: var(--imm-bdr);
-}
-.sv-header-label {
-  font-size: 11px;
-  color: var(--imm-txt3);
-  font-weight: 300;
-}
-.sv-header-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.sv-brand span { color: var(--imm-gold); font-style: italic; }
+.sv-header-sep { width: 1px; height: 14px; background: var(--imm-bdr); }
+.sv-header-label { font-size: 11px; color: var(--imm-txt3); font-weight: 300; }
+.sv-header-right { display: flex; align-items: center; gap: 10px; }
 .sv-counter {
   font-size: 11px;
   color: var(--imm-txt3);
@@ -63,7 +45,6 @@
   font-weight: 400;
 }
 
-/* test fill button */
 .sv-prefill-btn {
   display: inline-flex;
   align-items: center;
@@ -81,7 +62,6 @@
 .sv-prefill-btn:hover { color: var(--imm-txt); border-color: var(--imm-brown); }
 .sv-prefill-btn svg { width: 11px; height: 11px; }
 
-/* language toggle */
 .sv-lang-toggle {
   display: flex;
   align-items: center;
@@ -102,18 +82,14 @@
   background: none;
   transition: background 0.18s, color 0.18s;
 }
-.sv-lang-btn.active {
-  background: var(--imm-gold);
-  color: #fff;
-}
+.sv-lang-btn.active { background: var(--imm-gold); color: #fff; }
 
-/* ────────────────────────────────
-   PROGRESS BAR
-   ──────────────────────────────── */
+/* ── progress bar ── */
 .sv-progress-track {
   height: 3px;
   background: var(--imm-sand3);
   flex-shrink: 0;
+  width: 100%;
 }
 .sv-progress-fill {
   height: 100%;
@@ -121,39 +97,36 @@
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ────────────────────────────────
-   MESSAGES AREA
-   ──────────────────────────────── */
+/* ── messages — the only scrollable area ── */
 .sv-messages {
   flex: 1;
   overflow-y: auto;
-  padding: 32px 0;
+  overflow-x: hidden;
+  padding: 24px 0 16px;
   scroll-behavior: smooth;
+  width: 100%;
+  box-sizing: border-box;
 }
-.sv-messages::-webkit-scrollbar { width: 4px; }
+.sv-messages::-webkit-scrollbar { width: 5px; }
 .sv-messages::-webkit-scrollbar-track { background: transparent; }
-.sv-messages::-webkit-scrollbar-thumb {
-  background: var(--imm-bdr);
-  border-radius: 99px;
-}
+.sv-messages::-webkit-scrollbar-thumb { background: var(--imm-bdr); border-radius: 99px; }
+
 .sv-messages-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 24px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 48px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  box-sizing: border-box;
 }
 
 /* ── agent row ── */
-.sv-agent-row {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
+.sv-agent-row { display: flex; gap: 14px; align-items: flex-start; width: 100%; }
 .sv-agent-avatar {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--imm-gold-light);
   border: 1px solid rgba(201,146,74,0.25);
@@ -173,6 +146,7 @@
   gap: 8px;
   flex: 1;
   min-width: 0;
+  max-width: 800px;
 }
 .sv-section-label {
   font-size: 10px;
@@ -186,31 +160,33 @@
 .sv-agent-bubble {
   background: var(--imm-sand2);
   border: 1px solid var(--imm-bdr);
-  border-radius: 16px;
+  border-radius: 18px;
   border-top-left-radius: 4px;
-  padding: 13px 18px;
-  font-size: 14px;
+  padding: 14px 20px;
+  font-size: 15px;
   color: var(--imm-txt);
-  line-height: 1.65;
+  line-height: 1.7;
   font-weight: 300;
   display: inline-block;
   max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* ── choice options ── */
+/* ── options ── */
 .sv-options {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 8px;
   margin-left: 2px;
+  max-width: 560px;
 }
 .sv-option-btn {
   text-align: left;
-  padding: 10px 16px;
-  border-radius: 11px;
+  padding: 11px 18px;
+  border-radius: 12px;
   border: 1px solid var(--imm-bdr);
   background: var(--imm-sand2);
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   color: var(--imm-txt2);
   cursor: pointer;
@@ -221,45 +197,40 @@
   border-color: rgba(201,146,74,0.45);
   color: var(--imm-txt);
   background: var(--imm-gold-light);
-  transform: translateX(2px);
+  transform: translateX(3px);
 }
 
-/* ── user answer row ── */
-.sv-user-row {
-  display: flex;
-  justify-content: flex-end;
-}
+/* ── user bubble ── */
+.sv-user-row { display: flex; justify-content: flex-end; width: 100%; }
 .sv-user-bubble {
   background: var(--imm-gold);
   color: #fff;
-  border-radius: 16px;
+  border-radius: 18px;
   border-top-right-radius: 4px;
-  padding: 13px 18px;
-  font-size: 14px;
+  padding: 14px 20px;
+  font-size: 15px;
   line-height: 1.65;
   font-weight: 300;
-  max-width: 75%;
+  max-width: 58%;
 }
 
-/* ────────────────────────────────
-   INPUT BAR
-   ──────────────────────────────── */
+/* ── input bar — pinned to bottom, never moves ── */
 .sv-input-bar {
   flex-shrink: 0;
   background: var(--imm-sand2);
   border-top: 1px solid var(--imm-bdr);
-  padding: 14px 0 16px;
+  padding: 12px 0 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .sv-input-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 24px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 48px;
+  box-sizing: border-box;
 }
-.sv-skip-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 8px;
-}
+.sv-skip-row { display: flex; justify-content: flex-end; margin-bottom: 8px; }
 .sv-skip-btn {
   display: inline-flex;
   align-items: center;
@@ -274,18 +245,15 @@
 }
 .sv-skip-btn:hover { color: var(--imm-txt); }
 .sv-skip-btn svg { width: 12px; height: 12px; }
-.sv-input-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-}
+
+.sv-input-row { display: flex; align-items: flex-end; gap: 10px; width: 100%; }
 .sv-textarea {
   flex: 1;
   background: var(--imm-sand);
   border: 1px solid var(--imm-bdr);
-  border-radius: 13px;
-  padding: 12px 16px;
-  font-size: 14px;
+  border-radius: 14px;
+  padding: 13px 18px;
+  font-size: 15px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   color: var(--imm-txt);
@@ -293,15 +261,17 @@
   resize: none;
   overflow: hidden;
   line-height: 1.55;
-  height: 44px;
+  height: 48px;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 .sv-textarea:focus { border-color: rgba(201,146,74,0.45); }
 .sv-textarea::placeholder { color: var(--imm-txt3); opacity: 0.65; }
+
 .sv-send-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
   background: var(--imm-gold);
   border: none;
   display: flex;
@@ -314,7 +284,8 @@
 .sv-send-btn:hover   { opacity: 0.88; transform: translateY(-1px); }
 .sv-send-btn:active  { transform: scale(0.96); }
 .sv-send-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-.sv-send-btn svg { width: 17px; height: 17px; color: #fff; }
+.sv-send-btn svg { width: 18px; height: 18px; color: #fff; }
+
 .sv-input-hint {
   text-align: center;
   font-size: 11px;
@@ -323,12 +294,9 @@
   font-weight: 300;
 }
 
-/* ────────────────────────────────
-   FULL-PAGE STATES
-   (loading / submitting / done)
-   ──────────────────────────────── */
+/* ── full-page states ── */
 .sv-fullpage {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -337,6 +305,7 @@
   background: var(--imm-sand);
   padding: 24px;
   text-align: center;
+  overflow: hidden;
 }
 .sv-fullpage-icon {
   width: 56px;
@@ -346,12 +315,8 @@
   align-items: center;
   justify-content: center;
 }
-.sv-fullpage-icon.loading {
-  background: var(--imm-sand3);
-}
-.sv-fullpage-icon.success {
-  background: rgba(107, 191, 138, 0.15);
-}
+.sv-fullpage-icon.loading { background: var(--imm-sand3); }
+.sv-fullpage-icon.success { background: rgba(107, 191, 138, 0.15); }
 .sv-fullpage-icon svg { width: 24px; height: 24px; }
 .sv-fullpage-icon.loading svg { color: var(--imm-txt3); }
 .sv-fullpage-icon.success svg { color: var(--imm-green); }
@@ -362,19 +327,295 @@
   color: var(--imm-txt);
   margin-bottom: 6px;
 }
-.sv-fullpage-sub {
-  font-size: 13px;
-  color: var(--imm-txt3);
-  font-weight: 300;
-  line-height: 1.6;
+.sv-fullpage-sub { font-size: 13px; color: var(--imm-txt3); font-weight: 300; line-height: 1.6; }
+.sv-bounce-dots { display: flex; gap: 6px; }
+.sv-bounce-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--imm-gold); }
+
+/* ── mobile ── */
+@media (max-width: 768px) {
+  .sv-header { padding: 12px 20px; }
+  .sv-messages-inner { padding: 0 16px; max-width: 100%; }
+  .sv-input-inner { padding: 0 16px; max-width: 100%; }
+  .sv-agent-body { max-width: 100%; }
+  .sv-options { max-width: 100%; }
+  .sv-user-bubble { max-width: 82%; font-size: 14px; }
+  .sv-agent-bubble { font-size: 14px; }
+  .sv-textarea { font-size: 14px; }
 }
-.sv-bounce-dots {
+
+/* ─────────────────────────────────────────────────────────────
+   survey_wizard.css
+   Append to the bottom of survey.css
+   ───────────────────────────────────────────────────────────── */
+ 
+/* ── Wizard stage — centred, takes all available space ── */
+.sv-wizard-stage {
+  flex: 1;
   display: flex;
-  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 48px;
+  overflow: hidden;
+  position: relative;
 }
-.sv-bounce-dot {
-  width: 6px;
-  height: 6px;
+ 
+/* ── Step card ── */
+.sv-wizard-step {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+/* ── Dot progress ── */
+.sv-step-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.sv-step-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--imm-bdr);
+  transition: background 0.25s;
+  flex-shrink: 0;
+}
+.sv-step-dot.active { background: var(--imm-gold); }
+.sv-step-dot.done   { background: var(--imm-green); }
+ 
+/* ── Question text ── */
+.sv-wiz-question {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+.sv-wiz-optional {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  letter-spacing: 0;
+}
+.sv-wiz-subtext {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--imm-txt3);
+  line-height: 1.6;
+  margin: -8px 0 0;
+}
+ 
+/* ── Input wrapper ── */
+.sv-wiz-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+ 
+/* ── Single text / number input ── */
+.sv-wiz-input {
+  width: 100%;
+  background: var(--imm-sand2);
+  border: 1.5px solid var(--imm-bdr);
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-size: 17px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--imm-txt);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  caret-color: var(--imm-gold);
+}
+.sv-wiz-input:focus {
+  border-color: rgba(201,146,74,0.6);
+  box-shadow: 0 0 0 3px rgba(201,146,74,0.08);
+}
+.sv-wiz-input::placeholder {
+  color: var(--imm-txt3);
+  opacity: 0.55;
+}
+/* Remove number spinners */
+.sv-wiz-input[type="number"]::-webkit-inner-spin-button,
+.sv-wiz-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+ 
+/* ── Select options (button-style) ── */
+.sv-wiz-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+.sv-wiz-select-wrap::-webkit-scrollbar { width: 4px; }
+.sv-wiz-select-wrap::-webkit-scrollbar-thumb {
+  background: var(--imm-bdr);
+  border-radius: 99px;
+}
+ 
+.sv-wiz-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 18px;
+  border-radius: 12px;
+  border: 1.5px solid var(--imm-bdr);
+  background: var(--imm-sand2);
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--imm-txt2);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.sv-wiz-option:hover {
+  border-color: rgba(201,146,74,0.4);
+  background: var(--imm-gold-light);
+  color: var(--imm-txt);
+}
+.sv-wiz-option:active {
+  opacity: 0.8;
+}
+.sv-wiz-option.selected {
+  border-color: var(--imm-gold);
+  background: var(--imm-gold-light);
+  color: var(--imm-txt);
+  font-weight: 400;
+}
+.sv-wiz-option-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--imm-gold);
+  color: #fff;
+  flex-shrink: 0;
+}
+ 
+/* ── Multi-text ── */
+.sv-wiz-multitext {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sv-wiz-multitext-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sv-wiz-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--imm-bdr);
+  background: none;
+  color: var(--imm-txt3);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+.sv-wiz-remove:hover {
+  background: rgba(220,53,69,0.08);
+  color: #dc3545;
+  border-color: rgba(220,53,69,0.2);
+}
+.sv-wiz-add-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--imm-gold);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: opacity 0.15s;
+  margin-top: 2px;
+}
+.sv-wiz-add-row:hover { opacity: 0.72; }
+ 
+/* ── Nav bar ── */
+.sv-wiz-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 48px;
+  padding-bottom: 2px;
+}
+ 
+.sv-wiz-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  color: var(--imm-txt3);
+  background: none;
+  border: 1px solid var(--imm-bdr);
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+.sv-wiz-back:hover:not(:disabled) {
+  color: var(--imm-txt);
+  background: var(--imm-sand3);
+}
+.sv-wiz-back:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+ 
+.sv-wiz-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  color: #fff;
+  background: var(--imm-brown);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: opacity 0.18s;
+  min-width: 140px;
+  justify-content: center;
+}
+.sv-wiz-next:hover:not(:disabled) { opacity: 0.88; }
+.sv-wiz-next:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.sv-wiz-next.finish {
+  background: var(--imm-gold);
+  padding: 12px 32px;
+}
+ 
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .sv-wizard-stage   { padding: 24px 20px; align-items: flex-start; padding-top: 40px; }
+  .sv-wiz-question   { font-size: 22px; }
+  .sv-wiz-nav        { padding: 0 20px; }
+  .sv-wiz-next       { min-width: 120px; font-size: 14px; }
+  .sv-wiz-select-wrap { max-height: 260px; }
 }
