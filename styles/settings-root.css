@@ -462,6 +462,110 @@
   transform: translateY(0);
 }
 
+.st-nav-btn--disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.st-coming-soon {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--imm-sand2, #e8e0d0);
+  color: var(--imm-txt3, #888);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Neo-style buttons (used in danger zone dialog) ── */
+.neo-btn-ghost {
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--imm-bdr);
+  background: none;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--imm-txt3);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.neo-btn-ghost:hover    { background: var(--imm-sand3); }
+.neo-btn-ghost:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.neo-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  background: rgba(220, 53, 69, 0.06);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  color: #dc3545;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.neo-btn-danger:hover    { background: rgba(220, 53, 69, 0.12); }
+.neo-btn-danger:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Modal overlay + panel (used in danger zone dialog) ── */
+.neo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+
+.neo-modal {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 28px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.neo-modal-title {
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin: 0;
+}
+
+.neo-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.neo-label {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--imm-txt3);
+  margin-bottom: 6px;
+}
+
 /* ── Responsive: stack on narrow screens ── */
 @media (max-width: 900px) {
   .st-body {

@@ -12,6 +12,7 @@ import "@/styles/layout.css"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router   = useRouter()
+  // const [langInitialized, setLangInitialized] = useState(false)
   const pathname = usePathname()
   const {
     user, isLoading, logout,
@@ -45,7 +46,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   })
 
   useEffect(() => {
-    if (user?.language) setDisplayLanguage(user.language)
+    if (!user?.language) return
+    const saved = localStorage.getItem("imm_display_lang")
+    if (saved) {
+      setDisplayLanguage(saved)
+    } else {
+      setDisplayLanguage(user.language)
+    }
   }, [user?.language])
 
   useEffect(() => {
@@ -96,13 +103,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="sidebar-sep" />
               <p className="sidebar-lang-label" suppressHydrationWarning>{t("nav.language")}</p>
               <button
-                onClick={() => setDisplayLanguage("en")}
+                onClick={() => {
+                  setDisplayLanguage("en")
+                  localStorage.setItem("imm_display_lang", "en")
+                }}
                 className={`lang-btn ${displayLanguage === "en" ? "active" : ""}`}
               >
                 English
               </button>
               <button
-                onClick={() => setDisplayLanguage(user.language)}
+                onClick={() => {
+                  setDisplayLanguage(user.language)
+                  localStorage.setItem("imm_display_lang", user.language)
+                }}
                 className={`lang-btn ${displayLanguage === user.language ? "active" : ""}`}
               >
                 {user.language === "my" ? "မြန်မာ" :

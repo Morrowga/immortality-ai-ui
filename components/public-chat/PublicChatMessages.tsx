@@ -47,14 +47,14 @@ export function PublicChatMessages({
             transition={{ duration: 0.18 }}
             className={`pc-msg-row ${msg.role}`}
           >
+            {/* Agent side */}
             {msg.role === "agent" && (
               <AgentAvatar slug={agentInfo.slug} name={agentName} size={28} />
             )}
 
-            <div style={{ minWidth: 0 }}>
-              <div className={`pc-bubble ${msg.role}`}>{msg.content}</div>
-
-              {msg.role === "agent" && (
+            {msg.role === "agent" ? (
+              <div style={{ minWidth: 0 }}>
+                <div className="pc-bubble agent">{msg.content}</div>
                 <div className="pc-meta">
                   {msg.memories_used !== undefined && (
                     <p className="pc-memories-used">{msg.memories_used} memories used</p>
@@ -101,8 +101,16 @@ export function PublicChatMessages({
                     </motion.div>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            ) : (
+              /* User side — bubble + avatar together */
+              <>
+                <div className="pc-bubble user">{msg.content}</div>
+                <div className="pc-speaker-avatar">
+                  {(msg.speaker_name || "?").charAt(0)}
+                </div>
+              </>
+            )}
           </motion.div>
         ))}
       </AnimatePresence>

@@ -800,3 +800,29 @@
   color: var(--imm-green);
   opacity: 0.7;
 }
+
+.mem-reveal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--imm-bdr);
+  background: none;
+  color: var(--imm-txt3);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.mem-reveal-btn:hover {
+  background: var(--imm-sand3);
+  color: var(--imm-txt);
+}
+
+.mem-reveal-btn.active {
+  background: var(--imm-gold-light);
+  border-color: rgba(201, 146, 74, 0.4);
+  color: var(--imm-brown);
+}

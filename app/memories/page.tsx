@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { useState, useEffect }    from "react"
-import { Brain, Search, Trash2, Clock, Archive, Check } from "lucide-react"
+import { Brain, Search, Trash2, Clock, Archive, Check, Eye, EyeOff } from "lucide-react"
 import { useMemories, type Memory, type TrainingMode, type Section } from "@/hooks/useMemories"
 import DashboardLayout            from "@/components/layout/DashboardLayout"
 import { useAuthStore }           from "@/store/auth"
@@ -180,6 +180,7 @@ function ReviewCard({
 
 function MemoryCard({
   memory,
+  revealed,
   isDeleting,
   deleteLoading,
   onConfirmDelete,
@@ -188,6 +189,7 @@ function MemoryCard({
   t,
 }: {
   memory:          Memory
+  revealed:        boolean
   isDeleting:      boolean
   deleteLoading:   boolean
   onConfirmDelete: (id: string) => void
@@ -253,7 +255,14 @@ function MemoryCard({
         </div>
       </div>
 
-      <p className="mem-card-body">
+      <p
+        className="mem-card-body"
+        style={{
+          filter:         revealed ? "none" : "blur(6px)",
+          userSelect:     revealed ? "auto" : "none",
+          transition:     "filter 0.2s ease",
+        }}
+      >
         {memory.what_happened || memory.how_i_felt || "—"}
       </p>
 
@@ -299,6 +308,8 @@ export default function MemoriesPage() {
   } = useMemories()
 
   const byMode = stats?.by_training_mode ?? {}
+  const [revealed, setRevealed] = useState(false)
+
 
   function tabCount(key: TrainingMode): number {
     if (key === "all") return stats?.total ?? 0
@@ -409,6 +420,13 @@ export default function MemoriesPage() {
               </button>
             ))}
           </div>
+          <button
+            className={`mem-reveal-btn ${revealed ? "active" : ""}`}
+            onClick={() => setRevealed(r => !r)}
+            title={revealed ? t("memories.hideContent") : t("memories.showContent")}
+          >
+            {revealed ? <Eye style={{ width: 14, height: 14 }} /> : <EyeOff style={{ width: 14, height: 14 }} />}
+          </button>
         </div>
 
         {/* ── List ── */}
@@ -435,6 +453,7 @@ export default function MemoriesPage() {
             <MemoryCard
               key={memory.id}
               memory={memory}
+              revealed={revealed} 
               isDeleting={deletingId === memory.id}
               deleteLoading={deleteLoading}
               onConfirmDelete={confirmDelete}

@@ -26,7 +26,7 @@ export default function TrainPage() {
         {/* Header */}
         <div className="t-header t-fu">
           <div className="t-eyebrow">{t("train.eyebrow")}</div>
-          <h1 className="t-title py-2">{t("train.pageTitle").replace("memory", "")}</h1>
+          <h1 className="t-title py-2">{t("train.pageTitle")}</h1>
           <p className="t-subtitle py-2">{t("train.pageSubtitle")}</p>
         </div>
 

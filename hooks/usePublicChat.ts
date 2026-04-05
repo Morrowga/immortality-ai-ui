@@ -36,6 +36,7 @@ export interface PublicChatMessage {
   content:        string
   memories_used?: number
   response_id?:   string
+  speaker_name?:  string
   timestamp:      Date
 }
 
@@ -76,6 +77,7 @@ function mapHistoryToMessages(
     role:        m.role === "assistant" ? "agent" : "user",
     content:     m.content,
     response_id: m.response_id,
+    speaker_name: m.speaker_name,
     timestamp:   m.created_at ? new Date(m.created_at) : new Date(),
   }))
 }
@@ -251,7 +253,11 @@ export function usePublicChat(slug: string) {
   const handleSend = () => {
     if (!input.trim() || chatMutation.isPending || !convSessionKey) return
     setMessages(m => [...m, {
-      id: crypto.randomUUID(), role: "user", content: input, timestamp: new Date(),
+      id:           crypto.randomUUID(),
+      role:         "user",
+      content:      input,
+      speaker_name: identity?.name, 
+      timestamp:    new Date(),
     }])
     chatMutation.mutate(input)
     setInput("")
