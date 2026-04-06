@@ -30,7 +30,53 @@
     "pronounSkipSaving": "Сохранение…",
     "pronounHint": "Правила обращений можно изменить в любое время в разделе Настройки → Отношения",
     "pronounDoneTitle": "Вы готовы",
-    "pronounDoneSub": "Переходим к вашему агенту…"
+    "pronounDoneSub": "Переходим к вашему агенту…",
+    "skip":     "Пропустить",
+    "saveError": "Не удалось сохранить. Пожалуйста, попробуйте ещё раз.",
+    "addAnotherPlace": "Добавить ещё одно место",
+
+    "q_full_name":          "Как вас зовут?",
+    "q_full_name_sub":      "Так ваш ассистент будет вас узнавать.",
+    "q_full_name_ph":       "напр. Иван Иванович Петров",
+
+    "q_age":                "Сколько вам лет?",
+    "q_age_sub":            "Используется для понимания разницы в возрасте с людьми в вашей жизни.",
+    "q_age_ph":             "напр. 28",
+
+    "q_birthdate":          "Когда вы родились?",
+    "q_birthdate_sub":      "День, месяц, год — в любом удобном формате.",
+    "q_birthdate_ph":       "напр. 15 марта 1995",
+
+    "q_blood_type":         "Какая у вас группа крови?",
+    "q_blood_type_sub":     "Необязательно — ваш ассистент может ответить на вопросы об этом.",
+    "q_blood_type_opt_a":   "I (A)",
+    "q_blood_type_opt_b":   "II (B)",
+    "q_blood_type_opt_ab":  "III (AB)",
+    "q_blood_type_opt_o":   "IV (O)",
+    "q_blood_type_opt_dk":  "Не знаю",
+
+    "q_zodiac":             "Какой у вас знак зодиака?",
+    "q_zodiac_sub":         "Необязательно.",
+    "q_zodiac_aries":       "Овен",
+    "q_zodiac_taurus":      "Телец",
+    "q_zodiac_gemini":      "Близнецы",
+    "q_zodiac_cancer":      "Рак",
+    "q_zodiac_leo":         "Лев",
+    "q_zodiac_virgo":       "Дева",
+    "q_zodiac_libra":       "Весы",
+    "q_zodiac_scorpio":     "Скорпион",
+    "q_zodiac_sagittarius": "Стрелец",
+    "q_zodiac_capricorn":   "Козерог",
+    "q_zodiac_aquarius":    "Водолей",
+    "q_zodiac_pisces":      "Рыбы",
+
+    "q_location":           "Где вы живёте сейчас?",
+    "q_location_sub":       "Достаточно указать город и страну.",
+    "q_location_ph":        "напр. Москва, Россия",
+
+    "q_past_locations":     "Где вы жили раньше?",
+    "q_past_locations_sub": "Добавьте столько мест, сколько хотите. По одному на строку.",
+    "q_past_locations_ph":  "напр. Санкт-Петербург 2000–2015"
   },
   "interview": {
     "title": "Голосовое интервью",

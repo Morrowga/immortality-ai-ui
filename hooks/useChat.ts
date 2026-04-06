@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { chatAPI, feedbackAPI, relationshipsAPI, agentAPI } from "@/lib/api"

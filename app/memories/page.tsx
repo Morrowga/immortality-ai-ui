@@ -339,6 +339,7 @@ export default function MemoriesPage() {
 
         {/* ── Header ── */}
         <div className="mem-header">
+          <div className="mem-eyebrow">{t("settings.eyebrow")}</div>
           <h1 className="mem-title">{t("memories.title")}</h1>
           <p className="mem-subtitle">{t("memories.subtitle")}</p>
 

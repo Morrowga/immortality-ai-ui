@@ -67,7 +67,7 @@ export default function RegisterPage() {
         { id: user_id, name: resName, email, language, agent_id },
         access_token
       )
-      router.push("/survey")
+      router.push("/setup/survey")
     },
     onError: (err: any) => {
       toast.error(err.response?.data?.detail || "Registration failed")

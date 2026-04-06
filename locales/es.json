@@ -30,7 +30,53 @@
     "pronounSkipSaving": "Guardando…",
     "pronounHint": "Siempre puedes editar las reglas de pronombres más tarde en Ajustes → Relaciones",
     "pronounDoneTitle": "Estás listo",
-    "pronounDoneSub": "Llevándote a tu agente…"
+    "pronounDoneSub": "Llevándote a tu agente…",
+    "skip":     "Omitir",
+    "saveError": "Error al guardar. Por favor, inténtalo de nuevo.",
+    "addAnotherPlace": "Agregar otro lugar",
+
+    "q_full_name":          "¿Cuál es tu nombre completo?",
+    "q_full_name_sub":      "Así es como tu agente te reconocerá.",
+    "q_full_name_ph":       "ej. María García López",
+
+    "q_age":                "¿Cuántos años tienes?",
+    "q_age_sub":            "Se usa para entender las diferencias de edad con las personas en tu vida.",
+    "q_age_ph":             "ej. 28",
+
+    "q_birthdate":          "¿Cuándo naciste?",
+    "q_birthdate_sub":      "Día, mes, año — como prefieras escribirlo.",
+    "q_birthdate_ph":       "ej. 15 de marzo de 1995",
+
+    "q_blood_type":         "¿Cuál es tu tipo de sangre?",
+    "q_blood_type_sub":     "Opcional — tu agente puede responder preguntas sobre esto.",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "O",
+    "q_blood_type_opt_dk":  "No lo sé",
+
+    "q_zodiac":             "¿Cuál es tu signo del zodiaco?",
+    "q_zodiac_sub":         "Opcional.",
+    "q_zodiac_aries":       "Aries",
+    "q_zodiac_taurus":      "Tauro",
+    "q_zodiac_gemini":      "Géminis",
+    "q_zodiac_cancer":      "Cáncer",
+    "q_zodiac_leo":         "Leo",
+    "q_zodiac_virgo":       "Virgo",
+    "q_zodiac_libra":       "Libra",
+    "q_zodiac_scorpio":     "Escorpio",
+    "q_zodiac_sagittarius": "Sagitario",
+    "q_zodiac_capricorn":   "Capricornio",
+    "q_zodiac_aquarius":    "Acuario",
+    "q_zodiac_pisces":      "Piscis",
+
+    "q_location":           "¿Dónde vives actualmente?",
+    "q_location_sub":       "Con ciudad y país es suficiente.",
+    "q_location_ph":        "ej. Madrid, España",
+
+    "q_past_locations":     "¿Dónde has vivido antes?",
+    "q_past_locations_sub": "Agrega todos los lugares que quieras. Uno por línea.",
+    "q_past_locations_ph":  "ej. Barcelona 2000–2015"
   },
   "interview": {
     "title": "Entrevista de voz",

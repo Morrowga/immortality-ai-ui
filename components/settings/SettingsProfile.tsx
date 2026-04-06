@@ -31,7 +31,7 @@ export function SettingsProfile({ user, agent, t }: Props) {
       </div>
 
       {/* Agent Profile Settings button — replaces total memories row */}
-      <div className="st-field-row" style={{ borderTop: "1px solid var(--imm-bdr)", paddingTop: 16 }}>
+      <div className="st-field-row" style={{ paddingTop: 16, justifyContent: "flex-end" }}>
         <button
           className="sp-btn"
           onClick={() => router.push("/settings/agent-profile")}

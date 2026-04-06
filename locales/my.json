@@ -36,7 +36,53 @@
     "pronounHint":           "You can always edit pronoun rules later in Settings → Relationships",
 
     "pronounDoneTitle":      "You're ready",
-    "pronounDoneSub":        "Taking you to your agent…"
+    "pronounDoneSub":        "Taking you to your agent…",
+    "skip":     "ကျော်သွားမည်",
+    "saveError": "သိမ်းဆည်းမှု မအောင်မြင်ပါ။ ထပ်မံကြိုးစားပါ။",
+    "addAnotherPlace": "နောက်ထပ်နေရာတစ်ခု ထည့်မည်",
+
+    "q_full_name":          "သင်၏ အမည်အပြည့်အစုံကား အဘယ်နည်း?",
+    "q_full_name_sub":      "သင်၏ agent က သင့်ကို ဤနာမည်ဖြင့် သိကျွမ်းမည်ဖြစ်သည်။",
+    "q_full_name_ph":       "ဥပမာ - ကိုအောင်ကြည်",
+
+    "q_age":                "သင်အသက်မည်မျှ ရှိပြီလဲ?",
+    "q_age_sub":            "သင့်ဘဝတွင် ပတ်သက်သောသူများနှင့် အသက်ကွာဟမှုကို နားလည်ရန် အသုံးပြုသည်။",
+    "q_age_ph":             "ဥပမာ - ၂၈",
+
+    "q_birthdate":          "သင် မည်သည့်နေ့တွင် မွေးဖွားခဲ့သနည်း?",
+    "q_birthdate_sub":      "ရက်၊ လ၊ နှစ် — သင်နှစ်သက်သောပုံစံဖြင့် ရေးနိုင်သည်။",
+    "q_birthdate_ph":       "ဥပမာ - ၁၅ မတ် ၁၉၉၅",
+
+    "q_blood_type":         "သင်၏ သွေးအုပ်စုကား အဘယ်နည်း?",
+    "q_blood_type_sub":     "မဖြစ်မနေ မဖြည့်ရ — သင်၏ agent က ဤအကြောင်း မေးခွန်းများကို ဖြေဆိုနိုင်သည်။",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "O",
+    "q_blood_type_opt_dk":  "မသိပါ",
+
+    "q_zodiac":             "သင်၏ ဇာတာကြယ်တာကား အဘယ်နည်း?",
+    "q_zodiac_sub":         "မဖြစ်မနေမဟုတ်ပါ။",
+    "q_zodiac_aries":       "မိန်",
+    "q_zodiac_taurus":      "ပြိဿ",
+    "q_zodiac_gemini":      "မိထုန်",
+    "q_zodiac_cancer":      "ကရကဋ်",
+    "q_zodiac_leo":         "သိဟ်",
+    "q_zodiac_virgo":       "ကန်",
+    "q_zodiac_libra":       "တူ",
+    "q_zodiac_scorpio":     "ဗြိစ္ဆာ",
+    "q_zodiac_sagittarius": "ဓနု",
+    "q_zodiac_capricorn":   "မကာရ",
+    "q_zodiac_aquarius":    "ကုမ်",
+    "q_zodiac_pisces":      "မိန်",
+
+    "q_location":           "ယခု သင်ဘယ်မှာ နေထိုင်သနည်း?",
+    "q_location_sub":       "မြို့နှင့် နိုင်ငံသာ ဖောက်ဆိုရလျှင် လုံလောက်သည်။",
+    "q_location_ph":        "ဥပမာ - ရန်ကုန်၊ မြန်မာနိုင်ငံ",
+
+    "q_past_locations":     "သင် ယခင်က ဘယ်နေရာများတွင် နေထိုင်ဖူးသနည်း?",
+    "q_past_locations_sub": "နေရာများကို စိတ်ကြိုက် ထည့်နိုင်သည်။ တစ်ကြောင်းလျှင် တစ်နေရာ။",
+    "q_past_locations_ph":  "ဥပမာ - မန္တလေး ၂၀၀၀–၂၀၁၅"
   },
   "interview": {
     "title": "အသံဖြင့် မေးမြန်းမှု",

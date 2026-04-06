@@ -25,21 +25,20 @@
   align-items: center;
   justify-content: space-between;
 }
-.c-header-left {}
 .c-eyebrow {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--imm-txt3);
+  color: var(--imm-gold);
   margin-bottom: 3px;
 }
 .c-title {
   font-family: 'Lora', serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 500;
   color: var(--imm-txt);
-  line-height: 1.2;
+  line-height: 1.5;
   margin-bottom: 2px;
 }
 .c-title em {
@@ -47,9 +46,10 @@
   color: var(--imm-gold);
 }
 .c-subtitle {
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 13px;
   color: var(--imm-txt3);
+  font-weight: 300;
+  margin: 0;
 }
 .c-agent-pill {
   display: flex;

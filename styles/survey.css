@@ -610,6 +610,36 @@
   background: var(--imm-gold);
   padding: 12px 32px;
 }
+
+.sv-corner-actions {
+  position:    fixed;
+  top:         14px;
+  right:       16px;
+  display:     flex;
+  align-items: center;
+  gap:         4px;
+  z-index:     100;
+}
+
+.sv-corner-btn {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           30px;
+  height:          30px;
+  border:          none;
+  border-radius:   7px;
+  background:      transparent;
+  color:           var(--imm-txt3);
+  cursor:          pointer;
+  opacity:         0.55;
+  transition:      opacity 0.15s, background 0.15s;
+}
+
+.sv-corner-btn:hover {
+  opacity:    1;
+  background: var(--imm-sand3);
+}
  
 /* ── Mobile ── */
 @media (max-width: 768px) {

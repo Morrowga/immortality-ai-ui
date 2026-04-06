@@ -95,7 +95,7 @@ export default function ChatPage() {
     <div className="c-header">
       <div className="c-header-left">
         <div className="c-eyebrow">{eyebrow}</div>
-        <h1 className="c-title"><em>{t("chat.eyebrow")}</em></h1>
+        <h1 className="c-title">{t("chat.eyebrow")}</h1>
         <p className="c-subtitle">{subtitle}</p>
       </div>
     </div>
@@ -159,7 +159,7 @@ export default function ChatPage() {
         <div className="c-header">
           <div className="c-header-left">
             <div className="c-eyebrow">{t("chat.eyebrow")}</div>
-            <h1 className="c-title"><em>{t("chat.eyebrow")}</em></h1>
+            <h1 className="c-title">{t("chat.eyebrow")}</h1>
             <p className="c-subtitle">{t("chat.startTalking")}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

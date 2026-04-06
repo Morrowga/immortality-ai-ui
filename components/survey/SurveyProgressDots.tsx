@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { STEPS } from "@/hooks/useSurveyWizard"
+import { STEP_COUNT } from "@/hooks/useSurveyWizard"
 
 interface Props {
   stepIndex: number
@@ -8,7 +8,7 @@ interface Props {
 export function SurveyProgressDots({ stepIndex }: Props) {
   return (
     <div className="sv-step-dots">
-      {STEPS.map((_, i) => (
+      {Array.from({ length: STEP_COUNT }).map((_, i) => (
         <motion.div
           key={i}
           className={`sv-step-dot ${i === stepIndex ? "active" : i < stepIndex ? "done" : ""}`}

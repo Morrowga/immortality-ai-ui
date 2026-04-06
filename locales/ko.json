@@ -30,7 +30,53 @@
     "pronounSkipSaving": "저장 중…",
     "pronounHint": "호칭 규칙은 나중에 설정 → 관계에서 언제든지 수정할 수 있습니다",
     "pronounDoneTitle": "준비가 됐습니다",
-    "pronounDoneSub": "에이전트로 이동합니다…"
+    "pronounDoneSub": "에이전트로 이동합니다…",
+    "skip":     "건너뛰기",
+    "saveError": "저장에 실패했습니다. 다시 시도해 주세요.",
+    "addAnotherPlace": "다른 장소 추가",
+
+    "q_full_name":          "이름이 어떻게 되세요?",
+    "q_full_name_sub":      "에이전트가 이 이름으로 당신을 인식합니다.",
+    "q_full_name_ph":       "예: 홍길동",
+
+    "q_age":                "나이가 어떻게 되세요?",
+    "q_age_sub":            "주변 사람들과의 나이 차이를 파악하는 데 사용됩니다.",
+    "q_age_ph":             "예: 28",
+
+    "q_birthdate":          "생년월일이 어떻게 되세요?",
+    "q_birthdate_sub":      "일, 월, 연도 — 원하는 형식으로 작성해 주세요.",
+    "q_birthdate_ph":       "예: 1995년 3월 15일",
+
+    "q_blood_type":         "혈액형이 어떻게 되세요?",
+    "q_blood_type_sub":     "선택사항 — 에이전트가 이에 관한 질문에 답변할 수 있습니다.",
+    "q_blood_type_opt_a":   "A형",
+    "q_blood_type_opt_b":   "B형",
+    "q_blood_type_opt_ab":  "AB형",
+    "q_blood_type_opt_o":   "O형",
+    "q_blood_type_opt_dk":  "모릅니다",
+
+    "q_zodiac":             "별자리가 어떻게 되세요?",
+    "q_zodiac_sub":         "선택사항.",
+    "q_zodiac_aries":       "양자리",
+    "q_zodiac_taurus":      "황소자리",
+    "q_zodiac_gemini":      "쌍둥이자리",
+    "q_zodiac_cancer":      "게자리",
+    "q_zodiac_leo":         "사자자리",
+    "q_zodiac_virgo":       "처녀자리",
+    "q_zodiac_libra":       "천칭자리",
+    "q_zodiac_scorpio":     "전갈자리",
+    "q_zodiac_sagittarius": "사수자리",
+    "q_zodiac_capricorn":   "염소자리",
+    "q_zodiac_aquarius":    "물병자리",
+    "q_zodiac_pisces":      "물고기자리",
+
+    "q_location":           "현재 어디에 살고 계세요?",
+    "q_location_sub":       "도시와 국가면 충분합니다.",
+    "q_location_ph":        "예: 서울, 대한민국",
+
+    "q_past_locations":     "이전에 어디서 살았나요?",
+    "q_past_locations_sub": "원하는 만큼 추가할 수 있습니다. 한 줄에 하나씩.",
+    "q_past_locations_ph":  "예: 부산 2000–2015"
   },
   "interview": {
     "title": "음성 인터뷰",

@@ -36,7 +36,54 @@
     "pronounHint":           "You can always edit pronoun rules later in Settings → Relationships",
 
     "pronounDoneTitle":      "You're ready",
-    "pronounDoneSub":        "Taking you to your agent…"
+    "pronounDoneSub":        "Taking you to your agent…",
+    
+    "skip":     "Skip",
+    "saveError": "Failed to save. Please try again.",
+    "addAnotherPlace": "Add another place",
+    
+    "q_full_name":          "What is your full name?",
+    "q_full_name_sub":      "This is how your agent will know you.",
+    "q_full_name_ph":       "e.g. Ko Aung Kyaw",
+    
+    "q_age":                "How old are you?",
+    "q_age_sub":            "Used to understand age gaps with the people in your life.",
+    "q_age_ph":             "e.g. 28",
+    
+    "q_birthdate":          "When were you born?",
+    "q_birthdate_sub":      "Day, month, year — however you prefer to write it.",
+    "q_birthdate_ph":       "e.g. 15 March 1995",
+    
+    "q_blood_type":         "What is your blood type?",
+    "q_blood_type_sub":     "Optional — your agent can answer questions about this.",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "O",
+    "q_blood_type_opt_dk":  "I don't know",
+    
+    "q_zodiac":             "What is your zodiac sign?",
+    "q_zodiac_sub":         "Optional.",
+    "q_zodiac_aries":       "Aries",
+    "q_zodiac_taurus":      "Taurus",
+    "q_zodiac_gemini":      "Gemini",
+    "q_zodiac_cancer":      "Cancer",
+    "q_zodiac_leo":         "Leo",
+    "q_zodiac_virgo":       "Virgo",
+    "q_zodiac_libra":       "Libra",
+    "q_zodiac_scorpio":     "Scorpio",
+    "q_zodiac_sagittarius": "Sagittarius",
+    "q_zodiac_capricorn":   "Capricorn",
+    "q_zodiac_aquarius":    "Aquarius",
+    "q_zodiac_pisces":      "Pisces",
+    
+    "q_location":           "Where do you live now?",
+    "q_location_sub":       "City and country is enough.",
+    "q_location_ph":        "e.g. Yangon, Myanmar",
+    
+    "q_past_locations":     "Where have you lived before?",
+    "q_past_locations_sub": "Add as many places as you want. One per line.",
+    "q_past_locations_ph":  "e.g. Mandalay 2000–2015"
   },
   "interview": {
     "title": "Voice Interview",

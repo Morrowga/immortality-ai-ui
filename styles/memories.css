@@ -19,19 +19,30 @@
   flex-shrink: 0;
 }
 
+.mem-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--imm-gold);
+  margin-bottom: 6px;
+}
+
 .mem-title {
   font-family: 'Lora', serif;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 500;
   color: var(--imm-txt);
   letter-spacing: -0.01em;
+  line-height: 1.5;
   margin-bottom: 4px;
 }
 
 .mem-subtitle {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--imm-txt3);
   font-weight: 300;
+  margin: 0;
 }
 
 /* ── stats row ── */
@@ -225,7 +236,6 @@
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .mem-card::before {
@@ -359,12 +369,9 @@
   color: var(--imm-txt);
   line-height: 1.6;
   margin-bottom: 10px;
-
-  /* clamp to 2 lines */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 /* ── card footer ── */

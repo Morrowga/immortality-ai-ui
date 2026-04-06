@@ -30,7 +30,53 @@
     "pronounSkipSaving": "Đang lưu…",
     "pronounHint": "Bạn luôn có thể chỉnh sửa quy tắc xưng hô sau trong Cài đặt → Quan hệ",
     "pronounDoneTitle": "Bạn đã sẵn sàng",
-    "pronounDoneSub": "Đang đưa bạn đến agent…"
+    "pronounDoneSub": "Đang đưa bạn đến agent…",
+    "skip":     "Bỏ qua",
+    "saveError": "Lưu thất bại. Vui lòng thử lại.",
+    "addAnotherPlace": "Thêm địa điểm khác",
+
+    "q_full_name":          "Họ và tên đầy đủ của bạn là gì?",
+    "q_full_name_sub":      "Đây là cách trợ lý của bạn nhận ra bạn.",
+    "q_full_name_ph":       "VD: Nguyễn Văn An",
+
+    "q_age":                "Bạn bao nhiêu tuổi?",
+    "q_age_sub":            "Dùng để hiểu khoảng cách tuổi tác với những người trong cuộc sống của bạn.",
+    "q_age_ph":             "VD: 28",
+
+    "q_birthdate":          "Bạn sinh ngày nào?",
+    "q_birthdate_sub":      "Ngày, tháng, năm — theo cách bạn muốn viết.",
+    "q_birthdate_ph":       "VD: 15 tháng 3 năm 1995",
+
+    "q_blood_type":         "Nhóm máu của bạn là gì?",
+    "q_blood_type_sub":     "Không bắt buộc — trợ lý của bạn có thể trả lời các câu hỏi về điều này.",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "O",
+    "q_blood_type_opt_dk":  "Tôi không biết",
+
+    "q_zodiac":             "Cung hoàng đạo của bạn là gì?",
+    "q_zodiac_sub":         "Không bắt buộc.",
+    "q_zodiac_aries":       "Bạch Dương",
+    "q_zodiac_taurus":      "Kim Ngưu",
+    "q_zodiac_gemini":      "Song Tử",
+    "q_zodiac_cancer":      "Cự Giải",
+    "q_zodiac_leo":         "Sư Tử",
+    "q_zodiac_virgo":       "Xử Nữ",
+    "q_zodiac_libra":       "Thiên Bình",
+    "q_zodiac_scorpio":     "Bọ Cạp",
+    "q_zodiac_sagittarius": "Nhân Mã",
+    "q_zodiac_capricorn":   "Ma Kết",
+    "q_zodiac_aquarius":    "Bảo Bình",
+    "q_zodiac_pisces":      "Song Ngư",
+
+    "q_location":           "Hiện tại bạn đang sống ở đâu?",
+    "q_location_sub":       "Thành phố và quốc gia là đủ.",
+    "q_location_ph":        "VD: Hà Nội, Việt Nam",
+
+    "q_past_locations":     "Trước đây bạn đã từng sống ở đâu?",
+    "q_past_locations_sub": "Thêm bao nhiêu nơi tùy ý. Mỗi dòng một nơi.",
+    "q_past_locations_ph":  "VD: TP. Hồ Chí Minh 2000–2015"
   },
   "interview": {
     "title": "Phỏng vấn bằng giọng nói",

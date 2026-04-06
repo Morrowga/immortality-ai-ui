@@ -57,8 +57,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   useEffect(() => {
     if (!agentData) return
-    if (!agentData.survey_completed && pathname !== "/survey") {
-      const timer = setTimeout(() => router.push("/survey"), 300)
+    if (!agentData.survey_completed && pathname !== "/setup/survey") {
+      const timer = setTimeout(() => router.push("/setup/survey"), 300)
       return () => clearTimeout(timer)
     }
   }, [agentData, pathname])

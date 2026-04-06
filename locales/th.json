@@ -30,7 +30,53 @@
     "pronounSkipSaving": "กำลังบันทึก…",
     "pronounHint": "คุณสามารถแก้ไขกฎสรรพนามได้ในภายหลังที่ การตั้งค่า → ความสัมพันธ์",
     "pronounDoneTitle": "คุณพร้อมแล้ว",
-    "pronounDoneSub": "กำลังพาคุณไปยังเอเจนต์…"
+    "pronounDoneSub": "กำลังพาคุณไปยังเอเจนต์…",
+    "skip":     "ข้าม",
+    "saveError": "บันทึกไม่สำเร็จ กรุณาลองอีกครั้ง",
+    "addAnotherPlace": "เพิ่มสถานที่อื่น",
+
+    "q_full_name":          "ชื่อ-นามสกุลของคุณคืออะไร?",
+    "q_full_name_sub":      "ผู้ช่วยของคุณจะใช้ชื่อนี้ในการเรียกคุณ",
+    "q_full_name_ph":       "เช่น สมชาย ใจดี",
+
+    "q_age":                "คุณอายุเท่าไหร่?",
+    "q_age_sub":            "ใช้เพื่อทำความเข้าใจช่วงอายุกับคนรอบข้างของคุณ",
+    "q_age_ph":             "เช่น 28",
+
+    "q_birthdate":          "คุณเกิดวันที่เท่าไหร่?",
+    "q_birthdate_sub":      "วัน เดือน ปี — แบบไหนก็ได้ที่คุณถนัด",
+    "q_birthdate_ph":       "เช่น 15 มีนาคม 2538",
+
+    "q_blood_type":         "หมู่เลือดของคุณคืออะไร?",
+    "q_blood_type_sub":     "ไม่บังคับ — ผู้ช่วยของคุณสามารถตอบคำถามเกี่ยวกับเรื่องนี้ได้",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "O",
+    "q_blood_type_opt_dk":  "ไม่ทราบ",
+
+    "q_zodiac":             "ราศีของคุณคืออะไร?",
+    "q_zodiac_sub":         "ไม่บังคับ",
+    "q_zodiac_aries":       "ราศีเมษ",
+    "q_zodiac_taurus":      "ราศีพฤษภ",
+    "q_zodiac_gemini":      "ราศีเมถุน",
+    "q_zodiac_cancer":      "ราศีกรกฎ",
+    "q_zodiac_leo":         "ราศีสิงห์",
+    "q_zodiac_virgo":       "ราศีกันย์",
+    "q_zodiac_libra":       "ราศีตุลย์",
+    "q_zodiac_scorpio":     "ราศีพิจิก",
+    "q_zodiac_sagittarius": "ราศีธนู",
+    "q_zodiac_capricorn":   "ราศีมังกร",
+    "q_zodiac_aquarius":    "ราศีกุมภ์",
+    "q_zodiac_pisces":      "ราศีมีน",
+
+    "q_location":           "ตอนนี้คุณอยู่ที่ไหน?",
+    "q_location_sub":       "แค่ชื่อเมืองและประเทศก็เพียงพอ",
+    "q_location_ph":        "เช่น เชียงใหม่ ประเทศไทย",
+
+    "q_past_locations":     "คุณเคยอยู่ที่ไหนมาก่อนบ้าง?",
+    "q_past_locations_sub": "เพิ่มได้มากเท่าที่ต้องการ หนึ่งสถานที่ต่อบรรทัด",
+    "q_past_locations_ph":  "เช่น กรุงเทพฯ 2543–2558"
   },
   "interview": {
     "title": "สัมภาษณ์ด้วยเสียง",

@@ -44,7 +44,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--imm-txt3);
+  color: var(--imm-gold);
   margin-bottom: 4px;
 }
 
@@ -531,4 +531,16 @@
   color: var(--imm-txt3);
   margin-bottom: 14px;
   flex-shrink: 0;
+}
+
+.onboarding-loader {
+  position:        fixed;
+  inset:           0;
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  gap:             16px;
+  background:      var(--imm-sand);
+  z-index:         9999;
 }

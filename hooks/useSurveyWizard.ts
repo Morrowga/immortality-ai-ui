@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { surveyAPI } from "@/lib/api"
 import { useAuthStore } from "@/store/auth"
+import { useTranslation } from "@/locales"
 import { toast } from "sonner"
 
-// ── Constants ──────────────────────────────────────────────────────────────
+// ── Constants (non-translatable) ───────────────────────────────────────────
 
+export const STEP_COUNT   = 7   // used by SurveyProgressDots
 export const BLOOD_TYPES  = ["A", "B", "AB", "O", "I don't know"]
 export const ZODIAC_SIGNS = [
   "Aries","Taurus","Gemini","Cancer",
@@ -24,58 +27,79 @@ export interface Step {
   required?:    boolean
 }
 
-export const STEPS: Step[] = [
-  {
-    id:          "full_name",
-    question:    "What is your full name?",
-    subtext:     "This is how your agent will know you.",
-    type:        "text",
-    placeholder: "e.g. Ko Aung Kyaw",
-    required:    true,
-  },
-  {
-    id:          "age",
-    question:    "How old are you?",
-    subtext:     "Used to understand age gaps with the people in your life.",
-    type:        "number",
-    placeholder: "e.g. 28",
-  },
-  {
-    id:          "birthdate",
-    question:    "When were you born?",
-    subtext:     "Day, month, year — however you prefer to write it.",
-    type:        "text",
-    placeholder: "e.g. 15 March 1995",
-  },
-  {
-    id:          "blood_type",
-    question:    "What is your blood type?",
-    subtext:     "Optional — your agent can answer questions about this.",
-    type:        "select",
-    options:     BLOOD_TYPES,
-  },
-  {
-    id:          "zodiac_sign",
-    question:    "What is your zodiac sign?",
-    subtext:     "Optional.",
-    type:        "select",
-    options:     ZODIAC_SIGNS,
-  },
-  {
-    id:          "current_location",
-    question:    "Where do you live now?",
-    subtext:     "City and country is enough.",
-    type:        "text",
-    placeholder: "e.g. Yangon, Myanmar",
-  },
-  {
-    id:          "past_locations",
-    question:    "Where have you lived before?",
-    subtext:     "Add as many places as you want. One per line.",
-    type:        "multi_text",
-    placeholder: "e.g. Mandalay 2000–2015",
-  },
-]
+export function buildSteps(t: (k: string) => string): Step[] {
+  return [
+    {
+      id:          "full_name",
+      type:        "text",
+      question:    t("survey.q_full_name"),
+      subtext:     t("survey.q_full_name_sub"),
+      placeholder: t("survey.q_full_name_ph"),
+      required:    true,
+    },
+    {
+      id:          "age",
+      type:        "number",
+      question:    t("survey.q_age"),
+      subtext:     t("survey.q_age_sub"),
+      placeholder: t("survey.q_age_ph"),
+    },
+    {
+      id:          "birthdate",
+      type:        "text",
+      question:    t("survey.q_birthdate"),
+      subtext:     t("survey.q_birthdate_sub"),
+      placeholder: t("survey.q_birthdate_ph"),
+    },
+    {
+      id:       "blood_type",
+      type:     "select",
+      question: t("survey.q_blood_type"),
+      subtext:  t("survey.q_blood_type_sub"),
+      options:  [
+        t("survey.q_blood_type_opt_a"),
+        t("survey.q_blood_type_opt_b"),
+        t("survey.q_blood_type_opt_ab"),
+        t("survey.q_blood_type_opt_o"),
+        t("survey.q_blood_type_opt_dk"),
+      ],
+    },
+    {
+      id:       "zodiac_sign",
+      type:     "select",
+      question: t("survey.q_zodiac"),
+      subtext:  t("survey.q_zodiac_sub"),
+      options:  [
+        t("survey.q_zodiac_aries"),
+        t("survey.q_zodiac_taurus"),
+        t("survey.q_zodiac_gemini"),
+        t("survey.q_zodiac_cancer"),
+        t("survey.q_zodiac_leo"),
+        t("survey.q_zodiac_virgo"),
+        t("survey.q_zodiac_libra"),
+        t("survey.q_zodiac_scorpio"),
+        t("survey.q_zodiac_sagittarius"),
+        t("survey.q_zodiac_capricorn"),
+        t("survey.q_zodiac_aquarius"),
+        t("survey.q_zodiac_pisces"),
+      ],
+    },
+    {
+      id:          "current_location",
+      type:        "text",
+      question:    t("survey.q_location"),
+      subtext:     t("survey.q_location_sub"),
+      placeholder: t("survey.q_location_ph"),
+    },
+    {
+      id:          "past_locations",
+      type:        "multi_text",
+      question:    t("survey.q_past_locations"),
+      subtext:     t("survey.q_past_locations_sub"),
+      placeholder: t("survey.q_past_locations_ph"),
+    },
+  ]
+}
 
 export type PageState = "wizard" | "submitting" | "done"
 
@@ -83,8 +107,17 @@ export type PageState = "wizard" | "submitting" | "done"
 
 export function useSurveyWizard() {
   const router      = useRouter()
-  const { user, loadFromStorage } = useAuthStore()
   const queryClient = useQueryClient()
+
+  const user            = useAuthStore(s => s.user)
+  const displayLanguage = useAuthStore(s => s.displayLanguage)
+  const loadFromStorage = useAuthStore(s => s.loadFromStorage)
+
+  const lang = (displayLanguage !== "en" ? displayLanguage : null)
+            ?? user?.language
+            ?? "en"
+
+  const { t } = useTranslation(lang)
 
   const [mounted,   setMounted]   = useState(false)
   const [pageState, setPageState] = useState<PageState>("wizard")
@@ -99,8 +132,8 @@ export function useSurveyWizard() {
   useEffect(() => { loadFromStorage(); setMounted(true) }, [])
 
   useEffect(() => {
-    const t = setTimeout(() => inputRef.current?.focus(), 320)
-    return () => clearTimeout(t)
+    const timer = setTimeout(() => inputRef.current?.focus(), 320)
+    return () => clearTimeout(timer)
   }, [stepIndex])
 
   const { data: status, isLoading: statusLoading } = useQuery({
@@ -125,16 +158,17 @@ export function useSurveyWizard() {
     },
     onError: (err: any) => {
       setPageState("wizard")
-      toast.error(err.response?.data?.detail || "Failed to save. Please try again.")
+      toast.error(err.response?.data?.detail || t("survey.saveError"))
     },
   })
 
   // ── Derived ──────────────────────────────────────────────────────────────
 
-  const current    = STEPS[stepIndex]
+  const steps      = buildSteps(t)
+  const current    = steps[stepIndex]
   const isRequired = current?.required === true
-  const isLast     = stepIndex === STEPS.length - 1
-  const progress   = (stepIndex / STEPS.length) * 100
+  const isLast     = stepIndex === steps.length - 1
+  const progress   = (stepIndex / steps.length) * 100
 
   const getValue = (id: string) => answers[id] ?? ""
   const setValue = (id: string, val: any) =>
@@ -150,7 +184,7 @@ export function useSurveyWizard() {
   }
 
   const goNext = () => {
-    if (!canAdvance()) { toast.error("This field is required."); return }
+    if (!canAdvance()) { toast.error(t("survey.required")); return }
     if (isLast) { handleSubmit(); return }
     setDirection(1)
     setStepIndex(i => i + 1)
@@ -208,7 +242,7 @@ export function useSurveyWizard() {
     mounted, pageState, stepIndex, direction, answers,
     inputRef, statusLoading, user,
     // derived
-    current, isRequired, isLast, progress,
+    steps, current, isRequired, isLast, progress,
     // value helpers
     getValue, setValue,
     canAdvance, goNext, goBack, handleKeyDown,

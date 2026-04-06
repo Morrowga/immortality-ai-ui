@@ -7,17 +7,22 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { surveyAPI } from "@/lib/api"
 import { useAuthStore } from "@/store/auth"
 import { motion } from "framer-motion"
-import { ArrowRight, Loader2, Check, Users, Languages, ShieldCheck } from "lucide-react"
+import { ArrowRight, Loader2, Check, Users, Languages, ShieldCheck, LogOut, Moon, Sun } from "lucide-react"
 import { useTranslation } from "@/locales"
 import "@/styles/survey.css"
+import "@/styles/layout.css"
 
 export default function PronounSetupPage() {
   const router      = useRouter()
   const { user, loadFromStorage, displayLanguage } = useAuthStore()
+  const logout     = useAuthStore(s => s.logout)
+  const darkMode   = useAuthStore(s => s.darkMode)
+  const toggleDark = useAuthStore(s => s.toggleDarkMode)
   const { t } = useTranslation(displayLanguage ?? "en")
   const queryClient = useQueryClient()
   const [mounted, setMounted] = useState(false)
   const [done, setDone]       = useState(false)
+
 
   const CARDS = [
     { icon: Users,       title: t("survey.pronounCard1Title"), body: t("survey.pronounCard1Body") },
@@ -35,7 +40,7 @@ export default function PronounSetupPage() {
 
   useEffect(() => {
     if (!status) return
-    if (!status.is_completed) router.push("/survey")
+    if (!status.is_completed) router.push("/setup/survey")
     if (status.onboarding_step === "ready") router.push("/dashboard")
   }, [status])
 
@@ -50,7 +55,7 @@ export default function PronounSetupPage() {
 
   if (!mounted || !user || isLoading) {
     return (
-      <div className="sv-fullpage">
+      <div className={`sv-fullpage dashboard${darkMode ? " dark-panel" : ""}`}>
         <div className="sv-fullpage-icon loading"><Loader2 className="animate-spin" /></div>
       </div>
     )
@@ -58,7 +63,7 @@ export default function PronounSetupPage() {
 
   if (done) {
     return (
-      <div className="sv-fullpage">
+      <div className={`sv-fullpage dashboard${darkMode ? " dark-panel" : ""}`}>
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -75,7 +80,7 @@ export default function PronounSetupPage() {
   }
 
   return (
-    <main style={s.page}>
+    <main className={`dashboard${mounted && darkMode ? " dark-panel" : ""}`} style={s.page}>
 
       {/* Header */}
       <div className="sv-header">
@@ -86,6 +91,29 @@ export default function PronounSetupPage() {
         </div>
         <div className="sv-header-right">
           <span className="sv-counter">{t("survey.pronounStepCounter")}</span>
+          <div className="sv-header-sep" />
+            {/* Dark / light toggle */}
+            <motion.button
+              className="sv-corner-btn"
+              onClick={toggleDark}
+              whileTap={{ scale: 0.92 }}
+              title={darkMode ? "Light mode" : "Dark mode"}
+            >
+              {darkMode
+                ? <Sun  style={{ width: 15, height: 15 }} />
+                : <Moon style={{ width: 15, height: 15 }} />
+              }
+            </motion.button>
+        
+            {/* Logout */}
+            <motion.button
+              className="sv-corner-btn"
+              onClick={logout}
+              whileTap={{ scale: 0.92 }}
+              title={t("nav.signout")}
+            >
+              <LogOut style={{ width: 15, height: 15 }} />
+            </motion.button>
         </div>
       </div>
 

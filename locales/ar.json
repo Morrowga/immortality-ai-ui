@@ -30,7 +30,53 @@
     "pronounSkipSaving": "جارٍ الحفظ…",
     "pronounHint": "يمكنك دائمًا تعديل قواعد الضمائر لاحقًا في الإعدادات ← العلاقات",
     "pronounDoneTitle": "أنت جاهز",
-    "pronounDoneSub": "جارٍ نقلك إلى وكيلك…"
+    "pronounDoneSub": "جارٍ نقلك إلى وكيلك…",
+    "skip":     "تخطّي",
+    "saveError": "فشل الحفظ. يُرجى المحاولة مجدداً.",
+    "addAnotherPlace": "إضافة مكان آخر",
+
+    "q_full_name":          "ما اسمك الكامل؟",
+    "q_full_name_sub":      "هذه هي الطريقة التي سيتعرّف بها المساعد عليك.",
+    "q_full_name_ph":       "مثال: محمد عبدالله الأحمد",
+
+    "q_age":                "كم عمرك؟",
+    "q_age_sub":            "يُستخدم لفهم فوارق السنّ مع الأشخاص في حياتك.",
+    "q_age_ph":             "مثال: 28",
+
+    "q_birthdate":          "متى وُلدت؟",
+    "q_birthdate_sub":      "اليوم والشهر والسنة — بأي تنسيق تفضّله.",
+    "q_birthdate_ph":       "مثال: 15 مارس 1995",
+
+    "q_blood_type":         "ما فصيلة دمك؟",
+    "q_blood_type_sub":     "اختياري — يمكن للمساعد الإجابة عن أسئلة بشأن ذلك.",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "O",
+    "q_blood_type_opt_dk":  "لا أعلم",
+
+    "q_zodiac":             "ما برجك؟",
+    "q_zodiac_sub":         "اختياري.",
+    "q_zodiac_aries":       "الحمل",
+    "q_zodiac_taurus":      "الثور",
+    "q_zodiac_gemini":      "الجوزاء",
+    "q_zodiac_cancer":      "السرطان",
+    "q_zodiac_leo":         "الأسد",
+    "q_zodiac_virgo":       "العذراء",
+    "q_zodiac_libra":       "الميزان",
+    "q_zodiac_scorpio":     "العقرب",
+    "q_zodiac_sagittarius": "القوس",
+    "q_zodiac_capricorn":   "الجدي",
+    "q_zodiac_aquarius":    "الدلو",
+    "q_zodiac_pisces":      "الحوت",
+
+    "q_location":           "أين تسكن الآن؟",
+    "q_location_sub":       "المدينة والبلد يكفيان.",
+    "q_location_ph":        "مثال: الرياض، المملكة العربية السعودية",
+
+    "q_past_locations":     "أين سكنت من قبل؟",
+    "q_past_locations_sub": "أضف ما تشاء من الأماكن. مكان واحد في كل سطر.",
+    "q_past_locations_ph":  "مثال: القاهرة 2000–2015"
   },
   "interview": {
     "title": "مقابلة صوتية",

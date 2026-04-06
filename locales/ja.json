@@ -30,7 +30,53 @@
     "pronounSkipSaving": "保存中…",
     "pronounHint": "呼称ルールは後から「設定 → 人間関係」でいつでも編集できます",
     "pronounDoneTitle": "準備完了です",
-    "pronounDoneSub": "エージェントに移動します…"
+    "pronounDoneSub": "エージェントに移動します…",
+    "skip":     "スキップ",
+    "saveError": "保存に失敗しました。もう一度お試しください。",
+    "addAnotherPlace": "別の場所を追加",
+
+    "q_full_name":          "フルネームを教えてください。",
+    "q_full_name_sub":      "エージェントがあなたを識別するために使用します。",
+    "q_full_name_ph":       "例：山田 太郎",
+
+    "q_age":                "年齢を教えてください。",
+    "q_age_sub":            "あなたの周りの人との年齢差を把握するために使用します。",
+    "q_age_ph":             "例：28",
+
+    "q_birthdate":          "生年月日を教えてください。",
+    "q_birthdate_sub":      "日・月・年、ご希望の形式でお書きください。",
+    "q_birthdate_ph":       "例：1995年3月15日",
+
+    "q_blood_type":         "血液型を教えてください。",
+    "q_blood_type_sub":     "任意 — エージェントがご質問にお答えできます。",
+    "q_blood_type_opt_a":   "A型",
+    "q_blood_type_opt_b":   "B型",
+    "q_blood_type_opt_ab":  "AB型",
+    "q_blood_type_opt_o":   "O型",
+    "q_blood_type_opt_dk":  "わからない",
+
+    "q_zodiac":             "星座を教えてください。",
+    "q_zodiac_sub":         "任意。",
+    "q_zodiac_aries":       "牡羊座",
+    "q_zodiac_taurus":      "牡牛座",
+    "q_zodiac_gemini":      "双子座",
+    "q_zodiac_cancer":      "蟹座",
+    "q_zodiac_leo":         "獅子座",
+    "q_zodiac_virgo":       "乙女座",
+    "q_zodiac_libra":       "天秤座",
+    "q_zodiac_scorpio":     "蠍座",
+    "q_zodiac_sagittarius": "射手座",
+    "q_zodiac_capricorn":   "山羊座",
+    "q_zodiac_aquarius":    "水瓶座",
+    "q_zodiac_pisces":      "魚座",
+
+    "q_location":           "現在どこに住んでいますか？",
+    "q_location_sub":       "市区町村と国名で十分です。",
+    "q_location_ph":        "例：東京、日本",
+
+    "q_past_locations":     "以前に住んでいた場所はどこですか？",
+    "q_past_locations_sub": "好きなだけ追加できます。1行に1か所。",
+    "q_past_locations_ph":  "例：大阪 2000〜2015"
   },
   "interview": {
     "title": "音声インタビュー",

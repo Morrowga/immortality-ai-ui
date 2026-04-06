@@ -2,14 +2,14 @@
 import { useState } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { trainingAPI } from "@/lib/api"
-import { useAuthStore } from "@/store/auth"
+// import { useAuthStore } from "@/store/auth"
 import { toast } from "sonner"
 import { TrainingSubmitResponse } from "@/types"
 
 export type TrainingStep = "input" | "review" | "done"
 
 export function useTraining() {
-  const { user } = useAuthStore()
+  // const { user } = useAuthStore()
 
   const [step,         setStep]         = useState<TrainingStep>("input")
   const [text,         setText]         = useState("")

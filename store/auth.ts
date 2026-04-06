@@ -64,5 +64,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     window.location.href = "/login"
   },
 
-  loadFromStorage: () => {},
+  loadFromStorage: () => {
+  const { user, token, darkMode } = readStorage()
+  set({ user, token, darkMode, isLoading: false })
+},
 }))

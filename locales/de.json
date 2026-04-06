@@ -30,7 +30,53 @@
     "pronounSkipSaving": "Wird gespeichert…",
     "pronounHint": "Du kannst Pronomenregeln jederzeit später unter Einstellungen → Beziehungen bearbeiten",
     "pronounDoneTitle": "Du bist bereit",
-    "pronounDoneSub": "Du wirst zu deinem Agenten weitergeleitet…"
+    "pronounDoneSub": "Du wirst zu deinem Agenten weitergeleitet…",
+    "skip":     "Überspringen",
+    "saveError": "Speichern fehlgeschlagen. Bitte versuche es erneut.",
+    "addAnotherPlace": "Weiteren Ort hinzufügen",
+
+    "q_full_name":          "Wie lautet dein vollständiger Name?",
+    "q_full_name_sub":      "So wird dein Agent dich erkennen.",
+    "q_full_name_ph":       "z. B. Max Mustermann",
+
+    "q_age":                "Wie alt bist du?",
+    "q_age_sub":            "Wird verwendet, um Altersunterschiede zu den Menschen in deinem Leben zu verstehen.",
+    "q_age_ph":             "z. B. 28",
+
+    "q_birthdate":          "Wann wurdest du geboren?",
+    "q_birthdate_sub":      "Tag, Monat, Jahr — so wie du es bevorzugst.",
+    "q_birthdate_ph":       "z. B. 15. März 1995",
+
+    "q_blood_type":         "Was ist deine Blutgruppe?",
+    "q_blood_type_sub":     "Optional — dein Agent kann Fragen dazu beantworten.",
+    "q_blood_type_opt_a":   "A",
+    "q_blood_type_opt_b":   "B",
+    "q_blood_type_opt_ab":  "AB",
+    "q_blood_type_opt_o":   "0",
+    "q_blood_type_opt_dk":  "Ich weiß es nicht",
+
+    "q_zodiac":             "Was ist dein Sternzeichen?",
+    "q_zodiac_sub":         "Optional.",
+    "q_zodiac_aries":       "Widder",
+    "q_zodiac_taurus":      "Stier",
+    "q_zodiac_gemini":      "Zwillinge",
+    "q_zodiac_cancer":      "Krebs",
+    "q_zodiac_leo":         "Löwe",
+    "q_zodiac_virgo":       "Jungfrau",
+    "q_zodiac_libra":       "Waage",
+    "q_zodiac_scorpio":     "Skorpion",
+    "q_zodiac_sagittarius": "Schütze",
+    "q_zodiac_capricorn":   "Steinbock",
+    "q_zodiac_aquarius":    "Wassermann",
+    "q_zodiac_pisces":      "Fische",
+
+    "q_location":           "Wo lebst du zurzeit?",
+    "q_location_sub":       "Stadt und Land reichen aus.",
+    "q_location_ph":        "z. B. Berlin, Deutschland",
+
+    "q_past_locations":     "Wo hast du früher gelebt?",
+    "q_past_locations_sub": "Füge so viele Orte hinzu, wie du möchtest. Einer pro Zeile.",
+    "q_past_locations_ph":  "z. B. München 2000–2015"
   },
   "interview": {
     "title": "Sprachinterview",

@@ -9,6 +9,8 @@ import { DashboardStats }         from "@/components/dashboard/DashboardStats"
 import { DashboardProgress }      from "@/components/dashboard/DashboardProgress"
 import { DashboardAgentMeta } from "@/components/dashboard/DashboardActions"
 import "@/styles/dashboard.css"
+import { useOnboardingGuard } from "@/hooks/onBoardingLoader"
+import { OnboardingLoader } from "@/components/dashboard/OnBoardingLoader"
 
 function daysSince(dateStr: string | null | undefined): number | null {
   if (!dateStr) return null
@@ -257,6 +259,10 @@ function DashboardContent() {
 }
 
 export default function DashboardPage() {
+  const { checking } = useOnboardingGuard()
+
+  if (checking) return <OnboardingLoader />
+
   return (
     <DashboardLayout>
       <DashboardContent />

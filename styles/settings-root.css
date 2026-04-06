@@ -4,6 +4,7 @@
    ───────────────────────────────────────────── */
 
 .st-root {
+  padding: 28px 32px 24px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -21,8 +22,7 @@
 
 /* ── Header ── */
 .st-header {
-  padding: 32px 40px 24px;
-  border-bottom: 1px solid var(--imm-bdr);
+  /* border-bottom: 1px solid var(--imm-bdr); */
   flex-shrink: 0;
 }
 .st-eyebrow {
@@ -30,7 +30,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--imm-txt3);
+  color: var(--imm-gold);
   margin-bottom: 6px;
 }
 .st-title {
@@ -39,6 +39,7 @@
   font-weight: 500;
   color: var(--imm-txt);
   margin: 0 0 6px;
+  line-height: 1.5;
 }
 .st-subtitle {
   font-size: 13px;
@@ -348,7 +349,7 @@
 .st-body {
   flex: 1;
   overflow-y: auto;
-  padding: 32px 40px;
+  padding-top: 20px;
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 20px;
