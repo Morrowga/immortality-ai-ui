@@ -26,14 +26,14 @@ export function MemoryStack() {
       const isCommand  = text.startsWith('>')
       const isJapanese = /^[ァ-ン死]/.test(text)
 
-      const color = isCommand  ? '#00FF41'
-        : isBinary   ? 'rgba(0,255,65,0.45)'
-        : isJapanese ? 'rgba(34,197,94,0.65)'
+      const color = isCommand  ? '#3B82F6'                      // was #00FF41
+        : isBinary   ? 'rgba(59,130,246,0.45)'                  // was rgba(0,255,65,0.45)
+        : isJapanese ? 'rgba(37,99,235,0.65)'                   // was rgba(34,197,94,0.65)
         : `rgba(${[
-            '110,231,183',
-            '209,250,229',
-            '167,243,208',
-            '52,211,153',
+            '147,197,253',   // was 110,231,183  (#6EE7B7 → #93C5FD)
+            '219,234,254',   // was 209,250,229  (#D1FAE5 → #DBEAFE)
+            '191,219,254',   // was 167,243,208  (#A7F3D0 → #BFDBFE)
+            '96,165,250',    // was  52,211,153  (#34D399 → #60A5FA)
           ][Math.floor(Math.random() * 4)]}, 0.8)`
 
       const id: number = idRef.current++

@@ -33,106 +33,111 @@
 } */
 
 /* ─────────────────────────────────────────────
-   DESIGN TOKENS  — Matrix theme (default / "light")
-   In this project "light" IS the Matrix dark theme.
-   There is no true light mode — both :root and .dark
-   use the same void palette; .dark just deepens it.
+   DESIGN TOKENS  — Blue Silk theme (default)
    ───────────────────────────────────────────── */
 @layer base {
   :root {
     /* ── Tailwind / shadcn slots ── */
-    --background:           oklch(0.07  0.015 160);  /* #020408 deep void */
-    --foreground:           oklch(0.90  0.12  145);  /* near #22C55E soft */
-    --card:                 oklch(0.10  0.018 160);  /* #080F0A panel surface */
-    --card-foreground:      oklch(0.90  0.12  145);
-    --popover:              oklch(0.10  0.018 160);
-    --popover-foreground:   oklch(0.90  0.12  145);
-    --primary:              oklch(0.72  0.18  145);  /* #22C55E UI green */
-    --primary-foreground:   oklch(0.07  0.015 160);  /* void bg on green btn */
-    --secondary:            oklch(0.13  0.022 160);  /* #0D1610 card hover */
-    --secondary-foreground: oklch(0.75  0.14  145);
-    --muted:                oklch(0.13  0.022 160);
-    --muted-foreground:     oklch(0.55  0.08  145);  /* dim green */
-    --accent:               oklch(0.16  0.028 160);  /* subtle surface */
-    --accent-foreground:    oklch(0.85  0.16  145);
+    --background:           oklch(0.07  0.015 250);  /* #020408 deep void */
+    --foreground:           oklch(0.90  0.10  250);  /* soft blue */
+    --card:                 oklch(0.10  0.018 250);  /* panel surface */
+    --card-foreground:      oklch(0.90  0.10  250);
+    --popover:              oklch(0.10  0.018 250);
+    --popover-foreground:   oklch(0.90  0.10  250);
+    --primary:              oklch(0.60  0.20  250);  /* #2563EB UI blue */
+    --primary-foreground:   oklch(0.07  0.015 250);  /* void bg on blue btn */
+    --secondary:            oklch(0.13  0.022 250);  /* card hover */
+    --secondary-foreground: oklch(0.75  0.12  250);
+    --muted:                oklch(0.13  0.022 250);
+    --muted-foreground:     oklch(0.55  0.08  250);  /* dim blue */
+    --accent:               oklch(0.16  0.028 250);  /* subtle surface */
+    --accent-foreground:    oklch(0.85  0.14  250);
     --destructive:          oklch(0.577 0.245 27.325);
-    --border:               oklch(0.72  0.18  145 / 15%); /* green tint border */
-    --input:                oklch(0.72  0.18  145 / 12%);
-    --ring:                 oklch(0.72  0.18  145);
+    --border:               oklch(0.60  0.20  250 / 15%); /* blue tint border */
+    --input:                oklch(0.60  0.20  250 / 12%);
+    --ring:                 oklch(0.60  0.20  250);
     --radius:               0.5rem;
 
-    /* ── Immortality raw tokens — Matrix palette ── */
+    /* ── Raw tokens — Blue Silk palette ── */
 
-    /* Greens */
-    --imm-gold:             #22C55E;   /* renamed role: primary UI green */
-    --imm-gold-light:       #052010;   /* renamed role: green tint bg */
-    --imm-brown:            #16A34A;   /* renamed role: secondary/pressed green */
-    --imm-brown-dark:       #86EFAC;   /* renamed role: bright text on dark */
+    /* Blues — mapped from silk image */
+    --imm-gold:             #2563EB;   /* primary UI blue  (was #22C55E) */
+    --imm-gold-light:       #050F20;   /* blue tint bg     (was #052010) */
+    --imm-brown:            #1A4FBF;   /* secondary/pressed blue (was #16A34A) */
+    --imm-brown-dark:       #93C5FD;   /* bright text on dark    (was #86EFAC) */
 
     /* Text */
-    --imm-txt:              #D1FAE5;   /* primary text — bright mint */
-    --imm-txt2:             #6EE7B7;   /* secondary text — mid green */
-    --imm-txt3:             #34D399;   /* muted/hint — softer emerald */
+    --imm-txt:              #DBEAFE;   /* primary text — bright blue-white (was #D1FAE5) */
+    --imm-txt2:             #93C5FD;   /* secondary text — sky blue        (was #6EE7B7) */
+    --imm-txt3:             #60A5FA;   /* muted/hint — softer blue         (was #34D399) */
 
     /* Surfaces */
-    --imm-sand:             #020408;   /* page background — void */
-    --imm-sand2:            #060D0A;   /* card background */
-    --imm-sand3:            #0A1610;   /* subtle hover / tag bg */
-    --imm-sand4:            #0F1F14;   /* deeper panel / input bg */
+    --imm-sand:             #020408;   /* page background — void (unchanged) */
+    --imm-sand2:            #060A0D;   /* card background */
+    --imm-sand3:            #0A1016;   /* subtle hover / tag bg */
+    --imm-sand4:            #0F1F2F;   /* deeper panel / input bg */
 
     /* Borders */
-    --imm-bdr:              rgba(34, 197, 94, 0.12);
+    --imm-bdr:              rgba(37, 99, 235, 0.12);
 
     /* Status */
-    --imm-green:            #22C55E;   /* active dot / success */
+    --imm-green:            #2563EB;   /* active dot / success (was #22C55E) */
 
-    /* Matrix-specific extras */
-    --imm-matrix:           #00FF41;   /* landing / rain / logo — classic Matrix */
-    --imm-matrix-dim:       #00C032;   /* dimmed rain characters */
-    --imm-matrix-glow:      rgba(0, 255, 65, 0.15); /* glow halo */
-    --imm-terminal-bdr:     rgba(0, 255, 65, 0.20); /* terminal window border */
+    /* Blue-specific extras */
+    --imm-matrix:           #3B82F6;   /* brand / logo — electric blue    (was #00FF41) */
+    --imm-matrix-dim:       #1D4ED8;   /* dimmed variant                  (was #00C032) */
+    --imm-matrix-glow:      rgba(59, 130, 246, 0.15);  /* glow halo       (was rgba green) */
+    --imm-terminal-bdr:     rgba(59, 130, 246, 0.20);  /* terminal border  (was rgba green) */
+
+    /* Silk image exact tones — use for hero/texture overlays */
+    --imm-silk-shadow:      #07122A;   /* deepest fold */
+    --imm-silk-mid:         #1A4FBF;   /* main fabric tone */
+    --imm-silk-hi:          #5B8FE8;   /* specular highlight */
   }
 
   /* ─────────────────────────────────────────────
      DARK MODE — deepens the void slightly
      ───────────────────────────────────────────── */
   .dark {
-    --background:           oklch(0.05  0.012 160);  /* even deeper */
-    --foreground:           oklch(0.88  0.14  145);
-    --card:                 oklch(0.08  0.016 160);
-    --card-foreground:      oklch(0.88  0.14  145);
-    --popover:              oklch(0.08  0.016 160);
-    --popover-foreground:   oklch(0.88  0.14  145);
-    --primary:              oklch(0.72  0.18  145);
-    --primary-foreground:   oklch(0.05  0.012 160);
-    --secondary:            oklch(0.11  0.020 160);
-    --secondary-foreground: oklch(0.75  0.14  145);
-    --muted:                oklch(0.11  0.020 160);
-    --muted-foreground:     oklch(0.50  0.07  145);
-    --accent:               oklch(0.14  0.025 160);
-    --accent-foreground:    oklch(0.85  0.16  145);
+    --background:           oklch(0.05  0.012 250);
+    --foreground:           oklch(0.88  0.12  250);
+    --card:                 oklch(0.08  0.016 250);
+    --card-foreground:      oklch(0.88  0.12  250);
+    --popover:              oklch(0.08  0.016 250);
+    --popover-foreground:   oklch(0.88  0.12  250);
+    --primary:              oklch(0.60  0.20  250);
+    --primary-foreground:   oklch(0.05  0.012 250);
+    --secondary:            oklch(0.11  0.020 250);
+    --secondary-foreground: oklch(0.75  0.12  250);
+    --muted:                oklch(0.11  0.020 250);
+    --muted-foreground:     oklch(0.50  0.07  250);
+    --accent:               oklch(0.14  0.025 250);
+    --accent-foreground:    oklch(0.85  0.14  250);
     --destructive:          oklch(0.704 0.191 22.216);
-    --border:               oklch(0.72  0.18  145 / 12%);
-    --input:                oklch(0.72  0.18  145 / 10%);
-    --ring:                 oklch(0.72  0.18  145);
+    --border:               oklch(0.60  0.20  250 / 12%);
+    --input:                oklch(0.60  0.20  250 / 10%);
+    --ring:                 oklch(0.60  0.20  250);
 
-    --imm-gold:             #22C55E;
-    --imm-gold-light:       #031A0C;
-    --imm-brown:            #15803D;
-    --imm-brown-dark:       #A7F3D0;
-    --imm-txt:              #ECFDF5;
-    --imm-txt2:             #6EE7B7;
-    --imm-txt3:             #34D399;
+    --imm-gold:             #2563EB;
+    --imm-gold-light:       #03091A;
+    --imm-brown:            #1E40AF;
+    --imm-brown-dark:       #BFDBFE;
+    --imm-txt:              #EFF6FF;
+    --imm-txt2:             #93C5FD;
+    --imm-txt3:             #60A5FA;
     --imm-sand:             #010306;
-    --imm-sand2:            #040A07;
-    --imm-sand3:            #081209;
-    --imm-sand4:            #0C1A0E;
-    --imm-bdr:              rgba(34, 197, 94, 0.10);
-    --imm-green:            #22C55E;
-    --imm-matrix:           #00FF41;
-    --imm-matrix-dim:       #00A832;
-    --imm-matrix-glow:      rgba(0, 255, 65, 0.12);
-    --imm-terminal-bdr:     rgba(0, 255, 65, 0.18);
+    --imm-sand2:            #04070A;
+    --imm-sand3:            #080F18;
+    --imm-sand4:            #0C1A2E;
+    --imm-bdr:              rgba(37, 99, 235, 0.10);
+    --imm-green:            #2563EB;
+    --imm-matrix:           #3B82F6;
+    --imm-matrix-dim:       #1D4ED8;
+    --imm-matrix-glow:      rgba(59, 130, 246, 0.12);
+    --imm-terminal-bdr:     rgba(59, 130, 246, 0.18);
+    --imm-silk-shadow:      #040D1F;
+    --imm-silk-mid:         #1A4FBF;
+    --imm-silk-hi:          #4A7FD4;
   }
 
   /* ─────────────────────────────────────────────
@@ -153,7 +158,7 @@
   }
 
   /* ─────────────────────────────────────────────
-     SCROLLBAR — Matrix style
+     SCROLLBAR — Blue Silk style
      ───────────────────────────────────────────── */
   ::-webkit-scrollbar {
     width: 4px;
@@ -167,7 +172,7 @@
     border-radius: 99px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(34, 197, 94, 0.35);
+    background: rgba(59, 130, 246, 0.35);
   }
 
   /* ─────────────────────────────────────────────
@@ -192,12 +197,12 @@
     color: var(--imm-txt);
   }
 
-  /* focus ring — Matrix green glow */
+  /* focus ring — blue glow */
   input:focus,
   textarea:focus,
   select:focus {
     outline: none;
-    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.4);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4);
   }
 }
 
@@ -214,7 +219,6 @@
   position: relative;
 }
 
-/* optional top-bar chrome on cards */
 .imm-card::before {
   content: '';
   position: absolute;
@@ -230,7 +234,7 @@
   border-radius: 8px 8px 0 0;
 }
 
-/* ── Section label — terminal prompt style ── */
+/* ── Section label ── */
 .imm-label {
   font-size: 10px;
   font-weight: 500;
@@ -253,8 +257,8 @@
 /* ── Pill badge ── */
 .imm-badge {
   display: inline-block;
-  background: rgba(34, 197, 94, 0.08);
-  border: 1px solid rgba(34, 197, 94, 0.18);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.18);
   border-radius: 99px;
   padding: 2px 10px;
   font-size: 10px;
@@ -277,7 +281,7 @@
   border-radius: 99px;
   background: linear-gradient(90deg, var(--imm-brown), var(--imm-gold));
   transition: width 1.1s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
 }
 
 /* ── Status dot ── */
@@ -301,7 +305,7 @@
   font-family: 'Lora', serif;
 }
 
-/* ── Brand / Matrix font ── */
+/* ── Brand font ── */
 .imm-brand {
   font-family: 'Matrix Code NFI', 'Oxanium', sans-serif;
   color: var(--imm-matrix);
@@ -310,10 +314,6 @@
 
 /* ─────────────────────────────────────────────
    DIGITAL RAIN BACKGROUND
-   Usage: add <canvas id="matrix-rain"> as first
-   child of your layout root, then call
-   initMatrixRain('matrix-rain') from your JS.
-   The helper below lives in /lib/matrix-rain.ts
    ───────────────────────────────────────────── */
 .imm-rain-canvas {
   position: fixed;
@@ -323,10 +323,9 @@
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.18;   /* subtle — content readable above it */
+  opacity: 0.18;
 }
 
-/* everything above the rain */
 .imm-rain-canvas ~ * {
   position: relative;
   z-index: 1;
@@ -334,7 +333,6 @@
 
 /* ─────────────────────────────────────────────
    TERMINAL CURSOR BLINK
-   Add class .imm-cursor to any element
    ───────────────────────────────────────────── */
 .imm-cursor::after {
   content: '_';
@@ -350,8 +348,6 @@
 
 /* ─────────────────────────────────────────────
    SCAN LINE EFFECT
-   Overlay on cards / panels for CRT feel
-   Usage: add .imm-scanlines class to any panel
    ───────────────────────────────────────────── */
 .imm-scanlines {
   position: relative;
@@ -397,7 +393,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(34, 197, 94, 0.06) 50%,
+    rgba(59, 130, 246, 0.06) 50%,
     transparent 100%
   );
   animation: imm-shimmer 1.8s ease-in-out infinite;

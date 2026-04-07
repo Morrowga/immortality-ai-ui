@@ -1,7 +1,5 @@
 /* ─────────────────────────────────────────────
-   memories.css
-   Styles for /memories page:
-   header, tabs, search, memory cards, empty state
+   memories.css  —  Blue Silk / Sci-fi theme
    ───────────────────────────────────────────── */
 
 /* ── page shell ── */
@@ -19,14 +17,29 @@
   flex-shrink: 0;
 }
 
+
 .mem-eyebrow {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: var(--imm-gold);
-  margin-bottom: 6px;
+  color: var(--imm-txt3);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
+
+.mem-eyebrow::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--imm-matrix);
+  box-shadow: 0 0 6px var(--imm-matrix);
+  flex-shrink: 0;
+  animation: imm-pulse 2.4s ease-in-out infinite;
+}
+
 
 .mem-title {
   font-family: 'Lora', serif;
@@ -81,7 +94,7 @@
   align-self: stretch;
 }
 
-/* ── toolbar — tabs + search ── */
+/* ── toolbar ── */
 .mem-toolbar {
   display: flex;
   align-items: center;
@@ -132,14 +145,14 @@
 
 .mem-tab-count {
   font-size: 10px;
-  background: rgba(34, 197, 94, 0.10);
+  background: rgba(37, 99, 235, 0.10);           /* was rgba(34,197,94,0.10) */
   border-radius: 99px;
   padding: 1px 6px;
   color: var(--imm-txt3);
 }
 
 .mem-tab.active .mem-tab-count {
-  background: rgba(34, 197, 94, 0.18);
+  background: rgba(37, 99, 235, 0.18);           /* was rgba(34,197,94,0.18) */
   color: var(--imm-brown);
 }
 
@@ -175,8 +188,8 @@
 
 .mem-search:focus {
   outline: none;
-  border-color: rgba(34, 197, 94, 0.35);
-  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.12);
+  border-color: rgba(37, 99, 235, 0.35);         /* was rgba(34,197,94,0.35) */
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.12); /* was rgba(34,197,94,0.12) */
 }
 
 .mem-search::placeholder {
@@ -207,13 +220,13 @@
 }
 
 .mem-section-btn:hover {
-  border-color: rgba(34, 197, 94, 0.3);
+  border-color: rgba(37, 99, 235, 0.30);         /* was rgba(34,197,94,0.30) */
   color: var(--imm-txt);
 }
 
 .mem-section-btn.active {
   background: var(--imm-gold-light);
-  border-color: rgba(34, 197, 94, 0.3);
+  border-color: rgba(37, 99, 235, 0.30);         /* was rgba(34,197,94,0.30) */
   color: var(--imm-brown);
 }
 
@@ -249,24 +262,19 @@
 }
 
 .mem-card:hover {
-  border-color: rgba(34, 197, 94, 0.22);
+  border-color: rgba(37, 99, 235, 0.22);         /* was rgba(34,197,94,0.22) */
   background: var(--imm-sand3);
 }
 
-.mem-card:hover::before {
-  opacity: 1;
-}
+.mem-card:hover::before { opacity: 1; }
 
-/* never_forget card — glows slightly */
 .mem-card.pinned {
-  border-color: rgba(34, 197, 94, 0.25);
+  border-color: rgba(37, 99, 235, 0.25);         /* was rgba(34,197,94,0.25) */
 }
 
-.mem-card.pinned::before {
-  opacity: 0.6;
-}
+.mem-card.pinned::before { opacity: 0.6; }
 
-/* ── card header row ── */
+/* ── card header ── */
 .mem-card-header {
   display: flex;
   align-items: flex-start;
@@ -288,8 +296,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--imm-txt3);
-  background: rgba(34, 197, 94, 0.06);
-  border: 1px solid rgba(34, 197, 94, 0.12);
+  background: rgba(37, 99, 235, 0.06);           /* was rgba(34,197,94,0.06) */
+  border: 1px solid rgba(37, 99, 235, 0.12);     /* was rgba(34,197,94,0.12) */
   border-radius: 4px;
   padding: 2px 7px;
 }
@@ -306,8 +314,8 @@
 
 .mem-card-mode.manual {
   color: var(--imm-txt3);
-  background: rgba(34, 197, 94, 0.04);
-  border-color: rgba(34, 197, 94, 0.08);
+  background: rgba(37, 99, 235, 0.04);           /* was rgba(34,197,94,0.04) */
+  border-color: rgba(37, 99, 235, 0.08);         /* was rgba(34,197,94,0.08) */
 }
 
 .mem-card-mode.conversation {
@@ -351,7 +359,7 @@
   height: 100%;
   border-radius: 99px;
   background: linear-gradient(90deg, var(--imm-brown), var(--imm-gold));
-  box-shadow: 0 0 4px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.30);  /* was rgba(34,197,94,0.30) */
 }
 
 .mem-weight-num {
@@ -406,7 +414,7 @@
   flex-shrink: 0;
 }
 
-/* ── card actions — show on hover ── */
+/* ── card actions ── */
 .mem-card-actions {
   display: flex;
   gap: 6px;
@@ -414,9 +422,7 @@
   transition: opacity 0.15s ease;
 }
 
-.mem-card:hover .mem-card-actions {
-  opacity: 1;
-}
+.mem-card:hover .mem-card-actions { opacity: 1; }
 
 .mem-action-btn {
   display: flex;
@@ -435,7 +441,7 @@
 .mem-action-btn:hover {
   background: var(--imm-sand4);
   color: var(--imm-txt);
-  border-color: rgba(34, 197, 94, 0.25);
+  border-color: rgba(37, 99, 235, 0.25);         /* was rgba(34,197,94,0.25) */
 }
 
 .mem-action-btn.danger:hover {
@@ -444,10 +450,7 @@
   color: #F87171;
 }
 
-.mem-action-btn svg {
-  width: 13px;
-  height: 13px;
-}
+.mem-action-btn svg { width: 13px; height: 13px; }
 
 /* ── empty state ── */
 .mem-empty {
@@ -462,24 +465,9 @@
   padding: 60px 32px;
 }
 
-.mem-empty-icon {
-  width: 36px;
-  height: 36px;
-  opacity: 0.4;
-}
-
-.mem-empty-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--imm-txt);
-}
-
-.mem-empty-hint {
-  font-size: 12px;
-  color: var(--imm-txt3);
-  text-align: center;
-  line-height: 1.6;
-}
+.mem-empty-icon  { width: 36px; height: 36px; opacity: 0.4; }
+.mem-empty-title { font-size: 14px; font-weight: 500; color: var(--imm-txt); }
+.mem-empty-hint  { font-size: 12px; color: var(--imm-txt3); text-align: center; line-height: 1.6; }
 
 /* ── loading skeletons ── */
 .mem-skeleton-card {
@@ -506,7 +494,7 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(34, 197, 94, 0.05) 50%,
+    rgba(59, 130, 246, 0.06) 50%,               /* was rgba(34,197,94,0.05) */
     transparent 100%
   );
   animation: imm-shimmer 1.8s ease-in-out infinite;
@@ -516,20 +504,23 @@
 .mem-delete-confirm {
   position: absolute;
   inset: 0;
-  background: rgba(2, 4, 8, 0.92);
+  background: var(--imm-sand2);          /* uses theme surface — dark or light */
+  border: 1px solid rgba(239, 68, 68, 0.20);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   z-index: 10;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
 }
 
-.mem-delete-msg {
-  font-size: 12px;
-  color: var(--imm-txt3);
+/* light mode override — sand2 is white there, needs slight tint */
+.dashboard .mem-delete-confirm {
+  background: color-mix(in srgb, var(--imm-sand2) 92%, rgba(239,68,68,0.08) 8%);
 }
+
+.mem-delete-msg { font-size: 12px; color: var(--imm-txt3); }
 
 .mem-delete-yes {
   padding: 5px 14px;
@@ -543,10 +534,7 @@
   font-family: 'Oxanium', sans-serif;
   transition: background 0.15s ease;
 }
-
-.mem-delete-yes:hover {
-  background: rgba(239, 68, 68, 0.2);
-}
+.mem-delete-yes:hover { background: rgba(239, 68, 68, 0.2); }
 
 .mem-delete-no {
   padding: 5px 14px;
@@ -559,11 +547,7 @@
   font-family: 'Oxanium', sans-serif;
   transition: background 0.15s ease;
 }
-
-.mem-delete-no:hover {
-  background: var(--imm-sand4);
-  color: var(--imm-txt);
-}
+.mem-delete-no:hover { background: var(--imm-sand4); color: var(--imm-txt); }
 
 /* ── load more ── */
 .mem-load-more {
@@ -586,7 +570,7 @@
 }
 
 .mem-load-btn:hover {
-  border-color: rgba(34, 197, 94, 0.3);
+  border-color: rgba(37, 99, 235, 0.30);         /* was rgba(34,197,94,0.30) */
   color: var(--imm-txt);
   background: var(--imm-sand3);
 }
@@ -595,7 +579,6 @@
    REVIEW BANNER + DIALOG
    ───────────────────────────────────────────── */
 
-/* ── Banner — sits between subtitle and stats ── */
 .mem-review-banner {
   display: flex;
   align-items: center;
@@ -619,27 +602,11 @@
   border-color: rgba(249, 115, 22, 0.38);
 }
 
-.mem-review-banner-icon {
-  width: 15px;
-  height: 15px;
-  color: #F97316;
-  flex-shrink: 0;
-}
+.mem-review-banner-icon { width: 15px; height: 15px; color: #F97316; flex-shrink: 0; }
+.mem-review-banner strong { color: #FB923C; font-weight: 500; }
+.mem-review-banner-cta { margin-left: auto; font-size: 12px; color: #F97316; font-weight: 500; flex-shrink: 0; }
 
-.mem-review-banner strong {
-  color: #FB923C;
-  font-weight: 500;
-}
-
-.mem-review-banner-cta {
-  margin-left: auto;
-  font-size: 12px;
-  color: #F97316;
-  font-weight: 500;
-  flex-shrink: 0;
-}
-
-/* ── Dialog overrides — Matrix theme ── */
+/* ── Review dialog ── */
 .mem-review-dialog {
   background: var(--imm-sand2) !important;
   border: 1px solid var(--imm-terminal-bdr) !important;
@@ -664,7 +631,7 @@
   line-height: 1.5 !important;
 }
 
-/* ── Review list — scrollable ── */
+/* ── Review list ── */
 .mem-review-list {
   display: flex;
   flex-direction: column;
@@ -675,13 +642,9 @@
   margin-top: 4px;
 }
 
-.mem-review-loading {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.mem-review-loading { display: flex; flex-direction: column; gap: 10px; }
 
-/* ── Individual review card ── */
+/* ── Review card ── */
 .mem-review-card {
   background: var(--imm-sand3);
   border: 1px solid var(--imm-bdr);
@@ -699,19 +662,8 @@
   gap: 8px;
 }
 
-.mem-review-age {
-  font-size: 10px;
-  color: #F97316;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-}
-
-.mem-review-body {
-  font-family: 'Lora', serif;
-  font-size: 13px;
-  color: var(--imm-txt);
-  line-height: 1.6;
-}
+.mem-review-age  { font-size: 10px; color: #F97316; font-weight: 500; letter-spacing: 0.06em; }
+.mem-review-body { font-family: 'Lora', serif; font-size: 13px; color: var(--imm-txt); line-height: 1.6; }
 
 .mem-review-instinct {
   font-size: 11px;
@@ -723,12 +675,8 @@
   padding-left: 10px;
 }
 
-/* ── Three action buttons ── */
-.mem-review-actions {
-  display: flex;
-  gap: 6px;
-  margin-top: 4px;
-}
+/* ── Review action buttons ── */
+.mem-review-actions { display: flex; gap: 6px; margin-top: 4px; }
 
 .mem-review-btn {
   display: flex;
@@ -746,25 +694,17 @@
   justify-content: center;
 }
 
-.mem-review-btn svg {
-  width: 12px;
-  height: 12px;
-  flex-shrink: 0;
-}
-
-.mem-review-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+.mem-review-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
+.mem-review-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .mem-review-btn.keep {
-  background: rgba(34, 197, 94, 0.06);
-  border-color: rgba(34, 197, 94, 0.18);
+  background: rgba(37, 99, 235, 0.06);           /* was rgba(34,197,94,0.06) */
+  border-color: rgba(37, 99, 235, 0.18);         /* was rgba(34,197,94,0.18) */
   color: var(--imm-txt2);
 }
 .mem-review-btn.keep:hover:not(:disabled) {
-  background: rgba(34, 197, 94, 0.14);
-  border-color: rgba(34, 197, 94, 0.3);
+  background: rgba(37, 99, 235, 0.14);           /* was rgba(34,197,94,0.14) */
+  border-color: rgba(37, 99, 235, 0.30);         /* was rgba(34,197,94,0.30) */
   color: var(--imm-txt);
 }
 
@@ -775,7 +715,7 @@
 }
 .mem-review-btn.archive:hover:not(:disabled) {
   background: rgba(96, 165, 250, 0.14);
-  border-color: rgba(96, 165, 250, 0.3);
+  border-color: rgba(96, 165, 250, 0.30);
   color: #BFDBFE;
 }
 
@@ -801,13 +741,9 @@
   font-size: 13px;
 }
 
-.mem-review-done-icon {
-  width: 28px;
-  height: 28px;
-  color: var(--imm-green);
-  opacity: 0.7;
-}
+.mem-review-done-icon { width: 28px; height: 28px; color: var(--imm-green); opacity: 0.7; }
 
+/* ── Reveal btn ── */
 .mem-reveal-btn {
   display: flex;
   align-items: center;
@@ -830,6 +766,6 @@
 
 .mem-reveal-btn.active {
   background: var(--imm-gold-light);
-  border-color: rgba(201, 146, 74, 0.4);
+  border-color: rgba(37, 99, 235, 0.40);         /* was rgba(201,146,74,0.40) — warm gold → blue */
   color: var(--imm-brown);
 }

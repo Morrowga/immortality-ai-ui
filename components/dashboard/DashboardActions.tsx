@@ -1,8 +1,6 @@
 import Link from "next/link"
 import { GraduationCap, MessageSquareText, ArrowRight } from "lucide-react"
 
-// ── Helpers ────────────────────────────────────────────────────────────────
-
 function daysSince(dateStr: string | null | undefined): number | null {
   if (!dateStr) return null
   return Math.floor((Date.now() - new Date(dateStr).getTime()) / (1000 * 60 * 60 * 24))
@@ -16,7 +14,7 @@ function formatLastTrained(dateStr: string | null | undefined, t: (key: string) 
   return t("dashboard.metaDaysAgo").replace("{days}", String(days))
 }
 
-// ── Agent meta ─────────────────────────────────────────────────────────────
+// ── Agent Meta ─────────────────────────────────────────────────────────────
 
 interface AgentMetaProps {
   lastTrainedAt:    string | null | undefined
@@ -45,19 +43,19 @@ export function DashboardAgentMeta({
           <span className="d-meta-key">{t("dashboard.metaName")}</span>
           <span className="d-meta-val">{agentName}</span>
         </div>
-        <div className="d-meta-sep" />
+
         <div className="d-meta-row">
           <span className="d-meta-key">{t("dashboard.metaLastTrained")}</span>
           <span className={`d-meta-val ${needsAttention ? "warn" : ""}`}>
             {formatLastTrained(lastTrainedAt, t)}
           </span>
         </div>
-        <div className="d-meta-sep" />
+
         <div className="d-meta-row">
           <span className="d-meta-key">{t("dashboard.metaCoreMemories")}</span>
           <span className="d-meta-val">{neverForgetCount}</span>
         </div>
-        <div className="d-meta-sep" />
+
         <div className="d-meta-row">
           <span className="d-meta-key">{t("dashboard.metaConversations")}</span>
           <span className="d-meta-val">{interactions}</span>
@@ -67,7 +65,7 @@ export function DashboardAgentMeta({
   )
 }
 
-// ── Pattern tags ───────────────────────────────────────────────────────────
+// ── Pattern Tags ───────────────────────────────────────────────────────────
 
 interface PatternsProps {
   tags: string[]
@@ -92,7 +90,7 @@ export function DashboardPatterns({ tags, t }: PatternsProps) {
   )
 }
 
-// ── Quick actions ──────────────────────────────────────────────────────────
+// ── Quick Actions ──────────────────────────────────────────────────────────
 
 interface ActionsProps {
   trainLabel:    string
@@ -107,29 +105,28 @@ export function DashboardActions({
   trainSubtitle,
   talkLabel,
   talkSubtitle,
-  t,
 }: ActionsProps) {
   return (
     <div className="d-info-card">
-      <div className="d-info-card-label">{t("dashboard.quickActions")}</div>
+      <div className="d-info-card-label">Quick actions</div>
       <div className="d-actions">
 
         <Link href="/train" className="d-action-btn primary">
-          <div className="d-action-icon"><GraduationCap /></div>
+          <div className="d-action-icon"><GraduationCap size={17} /></div>
           <div className="d-action-text">
             <div className="d-action-title">{trainLabel}</div>
             <div className="d-action-sub">{trainSubtitle}</div>
           </div>
-          <div className="d-action-arrow"><ArrowRight /></div>
+          <div className="d-action-arrow"><ArrowRight size={12} /></div>
         </Link>
 
         <Link href="/chat" className="d-action-btn">
-          <div className="d-action-icon"><MessageSquareText /></div>
+          <div className="d-action-icon"><MessageSquareText size={17} /></div>
           <div className="d-action-text">
             <div className="d-action-title">{talkLabel}</div>
             <div className="d-action-sub">{talkSubtitle}</div>
           </div>
-          <div className="d-action-arrow"><ArrowRight /></div>
+          <div className="d-action-arrow"><ArrowRight size={12} /></div>
         </Link>
 
       </div>

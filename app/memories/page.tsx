@@ -206,8 +206,12 @@ function MemoryCard({
   }
 
   return (
-    <div className={`mem-card ${memory.never_forget ? "pinned" : ""}`}>
+    <div
+      className={`mem-card${memory.never_forget ? " pinned" : ""}`}
+      // position:relative is in CSS — delete overlay uses absolute inset:0
+    >
 
+      {/* ── Delete confirm overlay ── */}
       {isDeleting && (
         <div className="mem-delete-confirm">
           <span className="mem-delete-msg">{t("memories.deleteConfirm")}</span>
@@ -218,12 +222,16 @@ function MemoryCard({
           >
             {deleteLoading ? t("memories.deleteRemoving") : t("memories.deleteRemove")}
           </button>
-          <button className="mem-delete-no" onClick={onCancelDelete}>
+          <button
+            className="mem-delete-no"
+            onClick={onCancelDelete}
+          >
             {t("memories.deleteCancel")}
           </button>
         </div>
       )}
 
+      {/* ── Header ── */}
       <div className="mem-card-header">
         <div className="mem-card-meta">
           {memory.never_forget && (
@@ -255,17 +263,19 @@ function MemoryCard({
         </div>
       </div>
 
+      {/* ── Body ── */}
       <p
         className="mem-card-body"
         style={{
-          filter:         revealed ? "none" : "blur(6px)",
-          userSelect:     revealed ? "auto" : "none",
-          transition:     "filter 0.2s ease",
+          filter:     revealed ? "none" : "blur(6px)",
+          userSelect: revealed ? "auto" : "none",
+          transition: "filter 0.2s ease",
         }}
       >
         {memory.what_happened || memory.how_i_felt || "—"}
       </p>
 
+      {/* ── Footer ── */}
       <div className="mem-card-footer">
         <div className="mem-card-tags">
           {(memory.pattern_tags || []).slice(0, 4).map(tag => (
@@ -274,6 +284,7 @@ function MemoryCard({
         </div>
         <span className="mem-card-date">{formatDate(memory.created_at)}</span>
       </div>
+
     </div>
   )
 }

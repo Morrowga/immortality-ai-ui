@@ -25,14 +25,29 @@
   /* border-bottom: 1px solid var(--imm-bdr); */
   flex-shrink: 0;
 }
+
 .st-eyebrow {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: var(--imm-gold);
-  margin-bottom: 6px;
+  color: var(--imm-txt3);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
+
+.st-eyebrow::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--imm-matrix);
+  box-shadow: 0 0 6px var(--imm-matrix);
+  flex-shrink: 0;
+  animation: imm-pulse 2.4s ease-in-out infinite;
+}
+
 .st-title {
   font-family: 'Lora', serif;
   font-size: 26px;

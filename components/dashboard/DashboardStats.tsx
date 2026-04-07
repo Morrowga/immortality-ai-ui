@@ -10,7 +10,6 @@ export function DashboardStats({
   totalMemories,
   accuracy,
   wisdomScore,
-  // interactions,
   t,
 }: StatsProps) {
   return (

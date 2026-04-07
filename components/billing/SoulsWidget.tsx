@@ -18,7 +18,7 @@ export default function SoulsWidget() {
       <span className="souls-icon">✦</span>
       <span className="souls-count">{balance.souls_balance.toLocaleString()}</span>
       <span className="souls-label">Souls</span>
-      <span className="souls-label">...See More</span>
+      <span className="souls-label"> / Billing</span>
 
       {!isPaid && (
         <span className="souls-bar-wrap">

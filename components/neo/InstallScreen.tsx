@@ -40,9 +40,9 @@ export function InstallScreen({
   return (
     <div className="neo-full-body" style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0 }}>
 
-      {/* Search — fixed, never scrolls */}
-      <div style={{ position: "relative", marginBottom: 12, flexShrink: 0 }}>
-        <Search size={13} style={{
+      {/* Search */}
+      <div style={{ position: "relative", marginBottom: 4, flexShrink: 0 }}>
+        <Search size={12} style={{
           position: "absolute", left: 12, top: "50%",
           transform: "translateY(-50%)",
           color: "var(--imm-txt3)", pointerEvents: "none",
@@ -57,16 +57,12 @@ export function InstallScreen({
         />
       </div>
 
-      {/* Scrollable package list */}
+      {/* Package list */}
       <div style={{
-        flex: 1,
-        overflowY: "auto",
-        minHeight: 0,
-        display: "flex",
-        flexDirection: "column",
-        gap: 8,
-        paddingRight: 2, // prevents scrollbar from clipping border
-        marginBottom: 16,
+        flex: 1, overflowY: "auto", overflowX: "hidden", minHeight: 0,
+        display: "flex", flexDirection: "column", gap: 6,
+        paddingRight: 2, marginBottom: 16,
+        boxSizing: "border-box", width: "100%",
       }}>
         {filtered.length === 0 ? (
           <div className="neo-empty" style={{ padding: "24px 0" }}>
@@ -75,74 +71,49 @@ export function InstallScreen({
         ) : (
           filtered.map(pkg => {
             const alreadyInstalled = installedKeys.includes(pkg.package_key)
-            const isSelected = selectedPkg?.package_key === pkg.package_key
+            const isSelected       = selectedPkg?.package_key === pkg.package_key
 
             return (
               <button
                 key={pkg.package_key}
+                className={`neo-pkg-row${isSelected ? " selected" : ""}`}
                 onClick={() => !alreadyInstalled && setSelectedPkg(isSelected ? null : pkg)}
                 disabled={alreadyInstalled}
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 12,
-                  padding: "12px 14px",
-                  borderRadius: 10,
-                  border: isSelected
-                    ? "1px solid var(--imm-gold)"
-                    : "1px solid var(--imm-bdr)",
-                  background: isSelected
-                    ? "var(--imm-gold-light)"
-                    : alreadyInstalled ? "transparent" : "var(--imm-sand2)",
-                  cursor: alreadyInstalled ? "not-allowed" : "pointer",
-                  opacity: alreadyInstalled ? 0.4 : 1,
-                  textAlign: "left",
-                  transition: "all 0.15s",
-                  width: "100%",
-                  flexShrink: 0,
-                  fontFamily: "'Oxanium', sans-serif",
-                }}
               >
                 <div className="neo-slot-pkg-icon" style={{ flexShrink: 0, marginTop: 1 }}>
-                  <PkgIcon packageKey={pkg.package_key} size={14} />
+                  <PkgIcon packageKey={pkg.package_key} size={13} />
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 3 }}>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: "var(--imm-txt)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 3 }}>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: "var(--imm-txt)" }}>
                       {pkg.title}
                     </span>
                     {alreadyInstalled && (
                       <span style={{
-                        fontSize: 9, fontWeight: 600, letterSpacing: "0.1em",
-                        textTransform: "uppercase", color: "var(--imm-brown)",
-                        background: "var(--imm-gold-light)",
-                        border: "1px solid rgba(34,197,94,0.2)",
+                        fontSize: 8, fontWeight: 600, letterSpacing: "0.10em",
+                        textTransform: "uppercase", color: "var(--imm-txt2)",
+                        background: "rgba(59,130,246,0.10)",
+                        border: "1px solid rgba(59,130,246,0.20)",
                         borderRadius: 4, padding: "1px 6px",
                       }}>{t("neo.installedBadge")}</span>
                     )}
                     {pkg.sensitive && !alreadyInstalled && (
                       <span className="neo-sensitive-tag">
-                        <AlertTriangle size={9} /> {t("neo.sensitiveBadge")}
+                        <AlertTriangle size={8} /> {t("neo.sensitiveBadge")}
                       </span>
                     )}
                   </div>
-                  <p style={{
-                    fontSize: 11, color: "var(--imm-txt3)", fontWeight: 300,
-                    margin: 0, lineHeight: 1.6,
-                  }}>
+                  <p style={{ fontSize: 10, color: "var(--imm-txt3)", fontWeight: 300, margin: 0, lineHeight: 1.6 }}>
                     {pkg.description}
                   </p>
                   {pkg.example_topics && pkg.example_topics.length > 0 && (
-                    <p style={{
-                      fontSize: 10, color: "var(--imm-txt3)", margin: "5px 0 0",
-                      opacity: 0.6, fontWeight: 300,
-                    }}>
+                    <p style={{ fontSize: 9, color: "var(--imm-txt3)", margin: "4px 0 0", opacity: 0.55, fontWeight: 300 }}>
                       e.g. {pkg.example_topics.slice(0, 3).join(", ")}
                     </p>
                   )}
                 </div>
                 {isSelected && (
-                  <Check size={14} style={{ color: "var(--imm-gold)", flexShrink: 0, marginTop: 2 }} />
+                  <Check size={13} style={{ color: "var(--imm-matrix)", flexShrink: 0, marginTop: 2 }} />
                 )}
               </button>
             )
@@ -150,13 +121,13 @@ export function InstallScreen({
         )}
       </div>
 
-      {/* Bottom panel — shown after package selected, never scrolls */}
+      {/* Bottom panel */}
       {selectedPkg && (
         <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
 
           {selectedPkg.sensitive && (
             <div className="neo-warn-block">
-              <AlertTriangle size={14} />
+              <AlertTriangle size={13} />
               {t("neo.sensitiveWarning")}
             </div>
           )}
@@ -167,10 +138,10 @@ export function InstallScreen({
               {slotsList.map(({ slot, pkg: existing }) => (
                 <button
                   key={slot}
-                  className={`neo-slot-pick-btn ${selectedSlot === slot ? "selected" : ""}`}
+                  className={`neo-slot-pick-btn${selectedSlot === slot ? " selected" : ""}`}
                   onClick={() => setSelectedSlot(slot)}
                 >
-                  <span className="neo-slot-pick-num">{slot}</span>
+                  <span className="neo-slot-pick-num">{String(slot).padStart(2,"0")}</span>
                   <span className="neo-slot-pick-status">
                     {existing ? existing.title.slice(0, 7) + "…" : t("neo.slotEmpty")}
                   </span>
@@ -179,7 +150,7 @@ export function InstallScreen({
             </div>
             {occupying && (
               <div className="neo-warn-block" style={{ marginTop: 8 }}>
-                <AlertTriangle size={14} />
+                <AlertTriangle size={13} />
                 {t("neo.slotWillReplace")
                   .replace("{n}", String(selectedSlot))
                   .replace("{title}", occupying.title)}
@@ -190,7 +161,7 @@ export function InstallScreen({
           <div>
             <label className="neo-label">
               {t("neo.customInstructions")}{" "}
-              <span style={{ opacity: 0.5, fontWeight: 300, textTransform: "none" }}>
+              <span style={{ opacity: 0.45, fontWeight: 300, textTransform: "none", letterSpacing: 0 }}>
                 {t("neo.customInstrOptional")}
               </span>
             </label>
@@ -201,29 +172,29 @@ export function InstallScreen({
               onChange={e => setCustomInstructions(e.target.value)}
               rows={2}
             />
-            <p className={`neo-char-count ${countClass}`} style={{ paddingTop: 4 }}>
+            <p className={`neo-char-count${countClass ? " " + countClass : ""}`} style={{ paddingTop: 4 }}>
               {count} / {MAX}
             </p>
           </div>
 
           <div className="neo-info-block">
-            <Info size={14} />
+            <Info size={13} />
             {t("neo.customInstrInfo").replace("{title}", selectedPkg.title)}
           </div>
 
-          <div className="neo-modal-actions" style={{ justifyContent: "flex-end" }}>
+          <div className="neo-modal-actions">
             <button
               className="neo-btn-primary"
               onClick={() => onInstall({
-                package_key: selectedPkg!.package_key,
-                slot_number: selectedSlot,
+                package_key:         selectedPkg!.package_key,
+                slot_number:         selectedSlot,
                 custom_instructions: customInstructions || undefined,
               })}
               disabled={isPending || count > MAX}
             >
               {isPending
-                ? <><Loader2 size={13} className="animate-spin" /> {t("neo.installing")}</>
-                : <><Zap size={13} /> {t("neo.installPackage")}</>
+                ? <><Loader2 size={12} className="animate-spin" /> {t("neo.installing")}</>
+                : <><Zap size={12} /> {t("neo.installPackage")}</>
               }
             </button>
           </div>

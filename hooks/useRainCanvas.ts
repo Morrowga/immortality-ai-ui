@@ -13,7 +13,6 @@ export function useRainCanvas() {
     if (!ctx) return
     const gfx = ctx
 
-    // Capture as non-null locals so closures don't lose narrowing
     const cvs = canvas
     let running = true, animId = 0, W = 0, H = 0
 
@@ -46,10 +45,12 @@ export function useRainCanvas() {
           const y = col.y + j * FS
           if (y < 0 || y > H) continue
           if (j === 0) {
-            gfx.fillStyle = col.bright ? '#ffffff' : '#a8ffbe'
+            gfx.fillStyle = col.bright ? '#ffffff' : '#93C5FD'           // was #a8ffbe
           } else {
             const a = Math.max(0.04, 1 - j * 0.055)
-            gfx.fillStyle = col.bright ? `rgba(0,255,65,${a})` : `rgba(34,197,94,${a * 0.65})`
+            gfx.fillStyle = col.bright
+              ? `rgba(59,130,246,${a})`                                   // was rgba(0,255,65,...)
+              : `rgba(37,99,235,${a * 0.65})`                            // was rgba(34,197,94,...)
           }
           if (Math.random() < 0.007) col.chars[j] = rndChar()
           gfx.fillText(col.chars[j], col.x, y)

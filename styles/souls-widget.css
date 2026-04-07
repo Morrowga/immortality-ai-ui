@@ -16,7 +16,7 @@
 
 .souls-widget:hover {
   background: var(--imm-sand3);
-  border-color: rgba(22, 163, 74, 0.35);
+  border-color: rgba(37, 99, 235, 0.35);        /* was rgba(22,163,74,0.35) */
 }
 
 .souls-icon {
@@ -56,12 +56,12 @@
   transition: width 0.4s ease;
 }
 
-.souls-low .souls-icon { color: #CA8A04; }
+.souls-low .souls-icon     { color: #CA8A04; }
 .souls-low .souls-bar-fill { background: #CA8A04; }
 
-.souls-critical { border-color: rgba(239, 68, 68, 0.4); }
-.souls-critical .souls-icon  { color: #EF4444; }
-.souls-critical .souls-count { color: #EF4444; }
+.souls-critical            { border-color: rgba(239, 68, 68, 0.4); }
+.souls-critical .souls-icon    { color: #EF4444; }
+.souls-critical .souls-count   { color: #EF4444; }
 .souls-critical .souls-bar-fill { background: #EF4444; }
 
 .souls-warn {
@@ -74,14 +74,14 @@
 }
 
 .souls-paid .souls-icon { color: var(--imm-gold); }
-.souls-paid { border-color: rgba(22, 163, 74, 0.3); }
+.souls-paid             { border-color: rgba(37, 99, 235, 0.30); }  /* was rgba(22,163,74,0.30) */
 
 /* ── SoulsDepletedDialog ── */
 
 .souls-dialog-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -92,7 +92,7 @@
 .souls-dialog {
   background: var(--imm-sand2);
   border: 1px solid var(--imm-bdr);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 2rem;
   max-width: 360px;
   width: 100%;
@@ -101,11 +101,36 @@
   align-items: center;
   gap: 12px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* HUD corner accents on dialog */
+.souls-dialog::before {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px;
+  width: 14px; height: 14px;
+  border-top: 1px solid rgba(59, 130, 246, 0.35);
+  border-left: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 1px 0 0 0;
+  pointer-events: none;
+}
+
+.souls-dialog::after {
+  content: '';
+  position: absolute;
+  bottom: 12px; right: 12px;
+  width: 14px; height: 14px;
+  border-bottom: 1px solid rgba(59, 130, 246, 0.35);
+  border-right: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 0 0 1px 0;
+  pointer-events: none;
 }
 
 .souls-dialog-icon {
   font-size: 32px;
-  color: var(--imm-brown);
+  color: var(--imm-matrix);                      /* was var(--imm-brown) */
   line-height: 1;
   margin-bottom: 4px;
 }
@@ -163,7 +188,7 @@
 .souls-dialog-primary {
   width: 100%;
   padding: 11px;
-  background: var(--imm-gold);
+  background: var(--imm-gold);                   /* stays as token — now maps to blue */
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -187,7 +212,10 @@
   color: var(--imm-txt3);
   cursor: pointer;
   font-family: 'Oxanium', sans-serif;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
 }
 
-.souls-dialog-secondary:hover { background: var(--imm-sand3); }
+.souls-dialog-secondary:hover {
+  background: var(--imm-sand3);
+  border-color: rgba(59, 130, 246, 0.20);
+}
