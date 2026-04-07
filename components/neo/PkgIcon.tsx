@@ -1,5 +1,5 @@
 // components/neo/PkgIcon.tsx
-import { Brain, Zap, Package } from "lucide-react"
+import { Package } from "lucide-react"
 
 interface PkgIconProps {
   packageKey: string | null
@@ -7,9 +7,6 @@ interface PkgIconProps {
 }
 
 export function PkgIcon({ packageKey, size = 16 }: PkgIconProps) {
-  const icons: Record<string, React.ReactNode> = {
-    life_coach: <Brain size={size} />,
-    politician: <Zap size={size} />,
-  }
+  const icons: Record<string, React.ReactNode> = {}
   return <>{icons[packageKey || ""] || <Package size={size} />}</>
 }

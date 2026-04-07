@@ -5,6 +5,7 @@ import { chatAPI, feedbackAPI, relationshipsAPI, agentAPI } from "@/lib/api"
 import { useAuthStore } from "@/store/auth"
 import { toast } from "sonner"
 import { ChatMessage } from "@/types"
+import { useBilling } from "@/hooks/useBilling"
 
 export type GateStep = "type" | "role" | "name" | "stranger_info" | "ready"
 export type Gender   = "male" | "female" | "other" | "prefer_not"
@@ -48,6 +49,7 @@ export function zoneFromAccessMode(mode: string): number {
 
 export function useChat() {
   const { user } = useAuthStore()
+  const { invalidateBalance, setSoulsDialogOpen } = useBilling()
 
   // ── Gate state ────────────────────────────────────────────────────────
   const [gateStep,        setGateStep]        = useState<GateStep>("type")
@@ -175,8 +177,28 @@ export function useChat() {
         response_id:   res.data.response_id,
         timestamp:     new Date(),
       }])
+
+      // Show souls deducted toast
+      const souls = res.data.souls_deducted
+      if (souls != null) {
+        toast(`-${souls} Souls`, {
+          description: "Deducted for chat",
+        })
+      }
+
+      // Refresh sidebar balance
+      invalidateBalance()
     },
-    onError: (err: any) => toast.error(err.response?.data?.detail || "Failed"),
+    onError: (err: any) => {
+      if (err.response?.status === 402) {
+        const detail = err.response?.data?.detail
+        const msg = typeof detail === "object" ? detail?.message : detail
+        toast.error(msg || "Not enough Souls to chat")
+        setSoulsDialogOpen(true)
+        return
+      }
+      toast.error(err.response?.data?.detail || "Failed")
+    },
   })
 
   const feedbackMutation = useMutation({
@@ -211,27 +233,27 @@ export function useChat() {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend() }
   }
 
-    return {
-        user,
-        // gate
-        gateStep, selectedType, selectedRole,
-        setSelectedType,   
-        setSelectedRole,   
-        setGateStep,     
-        nameInput, setNameInput,
-        gender, setGender,
-        speakerAgeInput, setSpeakerAgeInput,
-        fieldErr, setFieldErr,
-        speaker, typesData, typesLoading, agentData,
-        identifyMutation,
-        handleTypeSelect, handleRoleSelect,
-        handleNameContinue, handleStrangerContinue, handleReset,
-        // chat
-        messages, input, setInput,
-        correcting, setCorrecting,
-        correctionText, setCorrectionText,
-        bottomRef, sessionKey,
-        chatMutation, feedbackMutation,
-        handleSend, handleKeyDown,
-    }
+  return {
+    user,
+    // gate
+    gateStep, selectedType, selectedRole,
+    setSelectedType,
+    setSelectedRole,
+    setGateStep,
+    nameInput, setNameInput,
+    gender, setGender,
+    speakerAgeInput, setSpeakerAgeInput,
+    fieldErr, setFieldErr,
+    speaker, typesData, typesLoading, agentData,
+    identifyMutation,
+    handleTypeSelect, handleRoleSelect,
+    handleNameContinue, handleStrangerContinue, handleReset,
+    // chat
+    messages, input, setInput,
+    correcting, setCorrecting,
+    correctionText, setCorrectionText,
+    bottomRef, sessionKey,
+    chatMutation, feedbackMutation,
+    handleSend, handleKeyDown,
+  }
 }

@@ -116,33 +116,40 @@ export default function PublicChatPage({ params }: { params: { slug: string } })
         </div>
       </div>
 
-      <PublicChatMessages
-        agentName={p.agentInfo.agent_name}
-        agentInfo={p.agentInfo}
-        messages={p.messages}
-        correcting={p.correcting}
-        correctionTxt={p.correctionTxt}
-        isPending={p.chatMutation.isPending}
-        feedbackPending={p.feedbackMutation.isPending}
-        bottomRef={p.bottomRef}
-        setCorrecting={p.setCorrecting}
-        setCorrectionTxt={p.setCorrectionTxt}
-        onLike={id => p.feedbackMutation.mutate({ response_id: id, feedback: "like" })}
-        onCorrect={(id, text) => p.feedbackMutation.mutate({
-          response_id: id, feedback: "corrected", correction_text: text,
-        })}
-      />
+    {p.session && !p.session.can_chat ? (
+      <div className="pc-blocked">
+        <p>This agent is currently unavailable. Please try again later.</p>
+      </div>
+    ) : (
+      <>
+        <PublicChatMessages
+          agentName={p.agentInfo.agent_name}
+          agentInfo={p.agentInfo}
+          messages={p.messages}
+          correcting={p.correcting}
+          correctionTxt={p.correctionTxt}
+          isPending={p.chatMutation.isPending}
+          feedbackPending={p.feedbackMutation.isPending}
+          bottomRef={p.bottomRef}
+          setCorrecting={p.setCorrecting}
+          setCorrectionTxt={p.setCorrectionTxt}
+          onLike={id => p.feedbackMutation.mutate({ response_id: id, feedback: "like" })}
+          onCorrect={(id, text) => p.feedbackMutation.mutate({
+            response_id: id, feedback: "corrected", correction_text: text,
+          })}
+        />
 
-      <PublicChatInputBar
-        input={p.input}
-        setInput={p.setInput}
-        isPending={p.chatMutation.isPending}
-        onSend={p.handleSend}
-        onKeyDown={p.handleKeyDown}
-        neoMode={p.neoMode}
-        setNeoMode={p.setNeoMode}
-      />
-
+        <PublicChatInputBar
+          input={p.input}
+          setInput={p.setInput}
+          isPending={p.chatMutation.isPending}
+          onSend={p.handleSend}
+          onKeyDown={p.handleKeyDown}
+          neoMode={p.neoMode}
+          setNeoMode={p.setNeoMode}
+        />
+      </>
+    )}
     </div>
   )
 }

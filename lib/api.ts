@@ -398,6 +398,14 @@ export const neoAPI = {
   }) => api.post<{ message: string; package: NeoPackage }>(`/api/neo/packages/${packageId}/replace`, data),
 }
 
+export const billingAPI = {
+  balance:  () => api.get("/api/billing/balance"),
+  history:  () => api.get("/api/billing/history"),
+  spentHistory: () => api.get("/api/billing/spent-history"),
+  upgrade:  () => api.post("/api/billing/upgrade"),
+  refill:   () => api.post("/api/billing/refill"),
+}
+
 // ── Public (no auth) ───────────────────────────────────────────────────────
 export const publicAPI = {
   agent: (slug: string) =>

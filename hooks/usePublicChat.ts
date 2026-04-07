@@ -22,6 +22,7 @@ export interface SessionData {
   zone:            number
   person_gender:   string | null
   person_age:      number | null
+  can_chat:        boolean
 }
 
 export interface IdentityData {
@@ -180,11 +181,21 @@ export function usePublicChat(slug: string) {
       publicAPI.verify(slug, passphrase.trim()).then(res => res.data),
     onSuccess: (data: SessionData) => {
       setSession(data)
-      if (data.person_name)   setNameInput(data.person_name)
-      if (data.person_gender) setGender(data.person_gender as Gender)
-      if (data.person_age)    setAgeInput(String(data.person_age))
+      // if (data.person_name)   setNameInput(data.person_name)
+      // if (data.person_gender) setGender(data.person_gender as Gender)
+      // if (data.person_age)    setAgeInput(String(data.person_age))
+      // setPassphraseErr(null)
+      // setStep("identity")
+      const id: IdentityData = {
+        name:   data.person_name  || "",
+        gender: (data.person_gender as Gender) || "other",
+        age:    data.person_age   || 0,
+      }
+      setIdentity(id)
+      Cookies.set(sessionCookieKey(slug), JSON.stringify(data), COOKIE_OPTS)
+      Cookies.set(identityCookieKey(slug), JSON.stringify(id),  COOKIE_OPTS)
       setPassphraseErr(null)
-      setStep("identity")
+      setStep("chat")
     },
     onError: (e: Error) => setPassphraseErr(e.message),
   })

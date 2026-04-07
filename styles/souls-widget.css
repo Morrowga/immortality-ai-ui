@@ -1,0 +1,193 @@
+/* styles/souls-widget.css */
+
+.souls-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.souls-widget:hover {
+  background: var(--imm-sand3);
+  border-color: rgba(22, 163, 74, 0.35);
+}
+
+.souls-icon {
+  font-size: 11px;
+  color: var(--imm-brown);
+  line-height: 1;
+}
+
+.souls-count {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--imm-txt);
+  letter-spacing: -0.01em;
+}
+
+.souls-label {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-weight: 400;
+}
+
+.souls-bar-wrap {
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--imm-sand3);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-left: 2px;
+}
+
+.souls-bar-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--imm-brown), var(--imm-gold));
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.souls-low .souls-icon { color: #CA8A04; }
+.souls-low .souls-bar-fill { background: #CA8A04; }
+
+.souls-critical { border-color: rgba(239, 68, 68, 0.4); }
+.souls-critical .souls-icon  { color: #EF4444; }
+.souls-critical .souls-count { color: #EF4444; }
+.souls-critical .souls-bar-fill { background: #EF4444; }
+
+.souls-warn {
+  font-size: 9px;
+  font-weight: 600;
+  color: #EF4444;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 2px;
+}
+
+.souls-paid .souls-icon { color: var(--imm-gold); }
+.souls-paid { border-color: rgba(22, 163, 74, 0.3); }
+
+/* ── SoulsDepletedDialog ── */
+
+.souls-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.souls-dialog {
+  background: var(--imm-sand2);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.souls-dialog-icon {
+  font-size: 32px;
+  color: var(--imm-brown);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.souls-dialog-title {
+  font-family: 'Lora', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--imm-txt);
+  margin: 0;
+}
+
+.souls-dialog-body {
+  font-size: 13px;
+  color: var(--imm-txt3);
+  line-height: 1.6;
+  margin: 0;
+  font-family: 'Oxanium', sans-serif;
+}
+
+.souls-dialog-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--imm-sand3);
+  border: 1px solid var(--imm-bdr);
+  border-radius: 10px;
+  padding: 10px 24px;
+  width: 100%;
+}
+
+.souls-dialog-balance-num {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--imm-txt);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.souls-dialog-balance-label {
+  font-size: 11px;
+  color: var(--imm-txt3);
+  font-family: 'Oxanium', sans-serif;
+}
+
+.souls-dialog-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.souls-dialog-primary {
+  width: 100%;
+  padding: 11px;
+  background: var(--imm-gold);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: opacity 0.15s;
+  letter-spacing: 0.02em;
+}
+
+.souls-dialog-primary:hover { opacity: 0.85; }
+
+.souls-dialog-secondary {
+  width: 100%;
+  padding: 9px;
+  background: transparent;
+  border: 1px solid var(--imm-bdr);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--imm-txt3);
+  cursor: pointer;
+  font-family: 'Oxanium', sans-serif;
+  transition: background 0.15s;
+}
+
+.souls-dialog-secondary:hover { background: var(--imm-sand3); }

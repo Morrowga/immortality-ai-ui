@@ -852,6 +852,21 @@
   animation: imm-pulse 2.4s ease-in-out infinite;
 }
 
+.pc-blocked {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 32px;
+}
+
+.pc-blocked p {
+  font-size: 13px;
+  color: var(--imm-txt3);
+  font-family: 'Oxanium', sans-serif;
+  text-align: center;
+}
+
 /* ── Mobile ── */
 @media (max-width: 600px) {
   .pc-card { padding: 24px 20px; border-radius: 16px; }

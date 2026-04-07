@@ -67,3 +67,13 @@
 .dashboard .imm-badge  { color: #374151; }
 .dashboard .imm-label  { color: #6B7280; }
 .dashboard .imm-muted  { color: #6B7280; }
+
+.sidebar-souls {
+  padding: 0 12px;
+}
+
+.sidebar-souls .souls-widget {
+  width: 100%;
+  justify-content: start;
+  border-radius: 10px;
+}

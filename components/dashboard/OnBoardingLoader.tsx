@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { motion } from "framer-motion"
 import { useAuthStore } from "@/store/auth"
 import { useEffect, useState }    from "react"

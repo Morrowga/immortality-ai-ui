@@ -90,9 +90,9 @@ export function SettingsDangerZone({
 
                   {/* Input */}
                   <div>
-                    <label className="neo-label">
+                    {/* <label className="neo-label">
                       {t("settings.deleteInputLabel") || "Type your name to confirm"}
-                    </label>
+                    </label> */}
                     <input
                       className="st-delete-input"
                       value={deleteInput}

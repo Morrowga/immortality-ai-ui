@@ -3,8 +3,6 @@ import { Loader2, Zap, AlertTriangle, Info, Check, Search } from "lucide-react"
 import { NeoPackage, SystemPackageDef } from "@/lib/api"
 import { PkgIcon } from "./PkgIcon"
 
-const PAGE_SIZE = 6
-
 interface Props {
   slotNum:        number
   slotsList:      { slot: number; pkg: NeoPackage | null }[]
@@ -23,7 +21,6 @@ export function InstallScreen({
   const [selectedSlot, setSelectedSlot]             = useState<number>(slotNum)
   const [customInstructions, setCustomInstructions] = useState("")
   const [search, setSearch]                         = useState("")
-  const [page, setPage]                             = useState(0)
 
   const MAX = 2000
   const count = customInstructions.length
@@ -40,14 +37,11 @@ export function InstallScreen({
     )
   }, [search, systemPackages])
 
-  const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
-  const paginated  = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
-
   return (
-    <div className="neo-full-body">
+    <div className="neo-full-body" style={{ display: "flex", flexDirection: "column", height: "100%", minHeight: 0 }}>
 
-      {/* Search */}
-      <div style={{ position: "relative", marginBottom: 16 }}>
+      {/* Search — fixed, never scrolls */}
+      <div style={{ position: "relative", marginBottom: 12, flexShrink: 0 }}>
         <Search size={13} style={{
           position: "absolute", left: 12, top: "50%",
           transform: "translateY(-50%)",
@@ -58,19 +52,28 @@ export function InstallScreen({
           style={{ paddingLeft: 34 }}
           placeholder={t("neo.searchPlaceholder")}
           value={search}
-          onChange={e => { setSearch(e.target.value); setPage(0) }}
+          onChange={e => setSearch(e.target.value)}
           autoFocus
         />
       </div>
 
-      {/* Package list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 24 }}>
-        {paginated.length === 0 ? (
+      {/* Scrollable package list */}
+      <div style={{
+        flex: 1,
+        overflowY: "auto",
+        minHeight: 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+        paddingRight: 2, // prevents scrollbar from clipping border
+        marginBottom: 16,
+      }}>
+        {filtered.length === 0 ? (
           <div className="neo-empty" style={{ padding: "24px 0" }}>
             {t("neo.noPackagesMatch").replace("{search}", search)}
           </div>
         ) : (
-          paginated.map(pkg => {
+          filtered.map(pkg => {
             const alreadyInstalled = installedKeys.includes(pkg.package_key)
             const isSelected = selectedPkg?.package_key === pkg.package_key
 
@@ -96,6 +99,7 @@ export function InstallScreen({
                   textAlign: "left",
                   transition: "all 0.15s",
                   width: "100%",
+                  flexShrink: 0,
                   fontFamily: "'Oxanium', sans-serif",
                 }}
               >
@@ -144,35 +148,11 @@ export function InstallScreen({
             )
           })
         )}
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            gap: 8, paddingTop: 4,
-          }}>
-            <button
-              onClick={() => setPage(p => Math.max(0, p - 1))}
-              disabled={page === 0}
-              className="neo-btn-ghost"
-              style={{ padding: "4px 12px", fontSize: 11, opacity: page === 0 ? 0.35 : 1 }}
-            >{t("neo.pagePrev")}</button>
-            <span style={{ fontSize: 11, color: "var(--imm-txt3)" }}>
-              {page + 1} / {totalPages}
-            </span>
-            <button
-              onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
-              disabled={page >= totalPages - 1}
-              className="neo-btn-ghost"
-              style={{ padding: "4px 12px", fontSize: 11, opacity: page >= totalPages - 1 ? 0.35 : 1 }}
-            >{t("neo.pageNext")}</button>
-          </div>
-        )}
       </div>
 
-      {/* Bottom — shown after package selected */}
+      {/* Bottom panel — shown after package selected, never scrolls */}
       {selectedPkg && (
-        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
 
           {selectedPkg.sensitive && (
             <div className="neo-warn-block">

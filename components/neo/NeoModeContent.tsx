@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 "use client"
 import { useState, useEffect } from "react"
 import DashboardLayout from "@/components/layout/DashboardLayout"
@@ -10,12 +12,14 @@ import { FilledSlot }     from "./FilledSlot"
 import { InstallScreen }  from "./InstallScreen"
 import { CustomScreen }   from "./CustomScreen"
 import { EditInstrModal } from "./EditInstrModal"
+import { useBilling }     from "@/hooks/useBilling"
 import "@/styles/neo.css"
 
 type View = "grid" | "install" | "custom"
 
 export default function NeoModeContent() {
   const n = useNeo()
+  const { balance, setSoulsDialogOpen } = useBilling()
   const [view, setView] = useState<View>("grid")
   const [mounted, setMounted] = useState(false)
   const { displayLanguage } = useAuthStore()
@@ -24,11 +28,19 @@ export default function NeoModeContent() {
 
   useEffect(() => { setMounted(true) }, [])
 
-  // Navigate to grid after auto-generate succeeds
   useEffect(() => {
     if (!n.autoGenerateMutation.isSuccess) return
     setView("grid")
   }, [n.autoGenerateMutation.isSuccess])
+
+  // Trigger dialog when insufficient balance
+  useEffect(() => {
+    if (balance && !balance.can_train) {
+      setSoulsDialogOpen(true)
+    }
+  }, [balance])
+
+  const canUse = balance?.can_train ?? true
 
   if (n.installedLoading) return (
     <DashboardLayout>
@@ -58,8 +70,15 @@ export default function NeoModeContent() {
           <p className="neo-subtitle">{t("neo.subtitle")}</p>
         </div>
 
+        {/* ── Blocked state ── */}
+        {!canUse && (
+          <div className="neo-blocked">
+            <p>{t("nav.insufficientSouls")}</p>
+          </div>
+        )}
+
         {/* ── Grid view ── */}
-        {view === "grid" && (
+        {canUse && view === "grid" && (
           <div className="neo-full-body">
             <div className="neo-section-header">
               <span className="neo-slots-label">
@@ -109,7 +128,7 @@ export default function NeoModeContent() {
         )}
 
         {/* ── Install view ── */}
-        {view === "install" && (
+        {canUse && view === "install" && (
           <InstallScreen
             slotNum={n.preSelectedSlot}
             slotsList={n.slotsList}
@@ -126,7 +145,7 @@ export default function NeoModeContent() {
         )}
 
         {/* ── Custom view ── */}
-        {view === "custom" && (
+        {canUse && view === "custom" && (
           <CustomScreen
             slotsList={n.slotsList}
             selectedSlot={n.customSlot}
@@ -154,8 +173,7 @@ export default function NeoModeContent() {
 
       </div>
 
-      {/* Edit modal — stays as dialog */}
-      {n.editInstrTarget && (
+      {canUse && n.editInstrTarget && (
         <EditInstrModal
           pkg={n.editInstrTarget}
           text={n.editInstrText}

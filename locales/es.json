@@ -114,7 +114,8 @@
     "relationships": "Relaciones",
     "voice": "Voz",
     "slang": "Argot",
-    "signout": "Cerrar sesión"
+    "signout": "Cerrar sesión",
+    "insufficientSouls": "Not enough souls to train. Please top up to continue."
   },
   "dashboard": {
     "greeting": "Qué bueno verte",
@@ -291,40 +292,28 @@
     "pageTitle":            "Comparte un recuerdo",
     "pageSubtitle":         "Cuéntale algo real a tu agente. Un sentimiento, una creencia, un momento que te marcó.",
 
-    "stepWrite":            "Escribir",
-    "stepReview":           "Revisar",
-    "stepSaved":            "Guardado",
-
-    "placeholder":          "Cuéntame algo sobre ti. Un recuerdo, una creencia, cómo te sientes respecto a algo. Habla con naturalidad, como si le hablaras a alguien que quiere entenderte.",
-    "characters":           "{n} caracteres",
-    "processing":           "Procesando…",
-    "processMemory":        "Procesar recuerdo",
-    "languageNote":         "Puedes escribir en cualquier idioma. El sistema gestiona la traducción automáticamente.",
-
-    "captured":             "Lo que el sistema ha captado",
-    "fieldWhatHappened":    "Qué ocurrió",
-    "fieldHowFelt":         "Cómo te sentiste",
-    "fieldWhyMattered":     "Por qué importó",
-    "fieldWhatLearned":     "Qué aprendiste",
-    "fieldInstinct":        "Instinto formado",
-    "originalVersion":      "Versión en el idioma original",
-
     "memoryWeight":         "Peso del recuerdo",
     "minor":                "Menor",
     "lifeDefining":         "Decisivo en la vida",
     "neverForget":          "Marcado como nunca olvidar",
-    "metaSection":          "Sección",
-    "metaType":             "Tipo",
-    "coreMemory":           "Recuerdo clave",
-
-    "startOver":            "Empezar de nuevo",
-    "saving":               "Guardando…",
-    "confirmSave":          "Confirmar y guardar",
-
-    "reinforced":           "Recuerdo reforzado",
-    "reinforcedMeta":       "Has compartido esto {count} vez/veces. El peso ha aumentado a {weight}.",
-    "savedSuccess":         "Guardado correctamente",
-    "trainAnother":         "Entrenar otro recuerdo"
+    
+    "chatInitialMessage":      "¿Qué recuerdo te gustaría compartir conmigo?",
+    "reviewFieldWhatHappened": "Qué pasó",
+    "reviewFieldHowIFelt":     "Cómo me sentí",
+    "reviewFieldWhyMattered":  "Por qué importó",
+    "reviewFieldWhatLearned":  "Qué aprendí",
+    "reviewFieldInstinct":     "Instinto formado",
+    "reviewQuestion":          "¿Debería instalar esto en mi memoria?",
+    "chatReinforced":          "Este recuerdo ha sido reforzado — fortalecido {count} veces ya. ¿Te gustaría contarme más?",
+    "chatSaved":               "Tu recuerdo se ha instalado correctamente en mi cerebro. ¿Te gustaría contarme más?",
+    "chatReenter":             "Por supuesto — dime qué te gustaría decir.",
+    "chatSavingHint":          "Guardando en memoria...",
+    "chatYesTellMore":         "Sí, contar más",
+    "chatNoDone":              "No, ya terminé",
+    "chatUserYesSave":         "Sí, guardarlo",
+    "chatUserNoReenter":       "No, volver a ingresar",
+    "chatUserYesMore":         "Sí, tengo más que compartir",
+    "chatSavedMessage":        "Your memory is saved successfully"
   },
   "chat": {
     "title":                "chat de prueba",
@@ -334,6 +323,9 @@
     "change":               "Cambiar",
     "startTalking":         "Empieza a hablar",
     "inputHint":            "Intro para enviar · Mayús+Intro para nueva línea",
+    "inputPlaceholder":     "Say something.",
+    "thumbsUp":             "Correct",
+    "thumbsDown":           "Incorrect",
 
     "gateWhoAreYou":        "¿Quién eres para esta persona?",
     "gateAboutYourself":    "Un poco sobre ti",

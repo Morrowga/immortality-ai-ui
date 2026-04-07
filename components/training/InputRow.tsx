@@ -1,6 +1,7 @@
 "use client"
 import { useRef } from "react"
 import { SendIcon } from "./SendIcon"
+import { useBilling } from "@/hooks/useBilling"
 
 interface Props {
   value:    string
@@ -10,6 +11,8 @@ interface Props {
 
 export function InputRow({ value, onChange, onSend }: Props) {
   const ref = useRef<HTMLTextAreaElement>(null)
+  const { balance } = useBilling()
+
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
     onChange(e.target.value)
@@ -37,13 +40,13 @@ export function InputRow({ value, onChange, onSend }: Props) {
         onKeyDown={handleKeyDown}
         placeholder="Share a memory..."
       />
-      <button
-        className="tc-send-btn"
-        onClick={onSend}
-        disabled={!value.trim()}
-      >
-        <SendIcon />
-      </button>
+        <button
+          className="tc-send-btn"
+          onClick={onSend}
+          disabled={!value.trim() || !balance?.can_train}
+        >
+          <SendIcon />
+        </button>
     </div>
   )
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { useState, useRef, useEffect }  from "react"
 import { useTraining }                  from "@/hooks/useTraining"
@@ -20,13 +22,16 @@ interface Props {
   t:        (k: string) => string
 }
 
-function buildReviewHtml(extracted: NonNullable<ReturnType<typeof useTraining>["extracted"]>) {
+function buildReviewHtml(
+  extracted: NonNullable<ReturnType<typeof useTraining>["extracted"]>,
+  t: (k: string) => string
+) {
   const rows = [
-    ["What happened",   extracted.what_happened  ],
-    ["How I felt",      extracted.how_i_felt     ],
-    ["Why it mattered", extracted.why_it_mattered],
-    ["What I learned",  extracted.what_i_learned ],
-    ["Instinct formed", extracted.instinct_formed],
+    [t("train.reviewFieldWhatHappened"),   extracted.what_happened  ],
+    [t("train.reviewFieldHowIFelt"),        extracted.how_i_felt     ],
+    [t("train.reviewFieldWhyItMattered"),   extracted.why_it_mattered],
+    [t("train.reviewFieldWhatILearned"),    extracted.what_i_learned ],
+    [t("train.reviewFieldInstinctFormed"),  extracted.instinct_formed],
   ]
 
   const fields = rows
@@ -45,20 +50,21 @@ function buildReviewHtml(extracted: NonNullable<ReturnType<typeof useTraining>["
   return `
     <div class="tc-review-fields">${fields}</div>
     ${tags ? `<div class="tc-tags">${tags}</div>` : ""}
-    <p class="tc-review-question">Should I install this into my memory?</p>
+    <p class="tc-review-question">${t("train.reviewQuestion")}</p>
   `
 }
 
-const INITIAL_MESSAGES: Message[] = [
-  { who: "agent", text: "What memory would you like to share with me?" },
-]
-
 export function TrainingChat({ training, t }: Props) {
   const [phase, setPhase]           = useState<Phase>("input")
-  const [messages, setMessages]     = useState<Message[]>(INITIAL_MESSAGES)
+  const [messages, setMessages]     = useState<Message[]>([])
   const [inputVal, setInputVal]     = useState("")
   const [agentImg, setAgentImg]     = useState<string | null>(null)
   const bottomRef                   = useRef<HTMLDivElement>(null)
+
+  // Init messages with translation
+  useEffect(() => {
+    setMessages([{ who: "agent", text: t("train.chatInitialMessage") }])
+  }, [t])
 
   // Fetch the agent image once on mount
   useEffect(() => {
@@ -73,7 +79,7 @@ export function TrainingChat({ training, t }: Props) {
   useEffect(() => {
     if (training.step === "review" && training.extracted) {
       setPhase("review")
-      pushAgent("", buildReviewHtml(training.extracted))
+      pushAgent("", buildReviewHtml(training.extracted, t))
     }
   }, [training.step, training.extracted])
 
@@ -83,10 +89,10 @@ export function TrainingChat({ training, t }: Props) {
       setPhase("done")
       if (training.doneResult.duplicate) {
         pushAgent(
-          `This memory has been reinforced — strengthened ${training.doneResult.reinforcement_count} times now. Would you like to tell me more?`
+          t("train.chatReinforcedMessage").replace("{count}", String(training.doneResult.reinforcement_count))
         )
       } else {
-        pushAgent("Your memory is successfully installed in my brain. Would you like to tell me more?")
+        pushAgent(t("train.chatSavedMessage"))
       }
     }
   }, [training.step, training.doneResult])
@@ -110,28 +116,28 @@ export function TrainingChat({ training, t }: Props) {
   }
 
   function handleYes() {
-    pushUser("Yes, save it")
+    pushUser(t("train.chatUserYesSave"))
     setPhase("saving")
     training.handleConfirm()
   }
 
   function handleNo() {
-    pushUser("No, let me re-enter")
-    pushAgent("Of course — please tell me what you'd like to say.")
+    pushUser(t("train.chatUserNoReenter"))
+    pushAgent(t("train.chatReenterMessage"))
     training.handleReset()
     setPhase("input")
   }
 
   function handleMore() {
-    pushUser("Yes, I have more to share")
-    pushAgent("What memory would you like to share with me?")
+    pushUser(t("train.chatUserYesMore"))
+    pushAgent(t("train.chatInitialMessage"))
     training.handleReset()
     setPhase("input")
   }
 
   function handleDone() {
     training.handleReset()
-    setMessages(INITIAL_MESSAGES)
+    setMessages([{ who: "agent", text: t("train.chatInitialMessage") }])
     setInputVal("")
     setPhase("input")
   }
@@ -191,14 +197,14 @@ export function TrainingChat({ training, t }: Props) {
 
         {phase === "saving" && (
           <div className="tc-saving-hint">
-            Saving to memory...
+            {t("train.chatSavingHint")}
           </div>
         )}
 
         {phase === "done" && (
           <YesNoRow
-            yesLabel="Yes, tell more"
-            noLabel="No, I'm done"
+            yesLabel={t("train.chatYesTellMore")}
+            noLabel={t("train.chatNoDone")}
             onYes={handleMore}
             onNo={handleDone}
           />

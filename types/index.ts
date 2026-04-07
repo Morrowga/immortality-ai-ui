@@ -31,9 +31,11 @@ export interface ExtractedMemory {
 }
 
 export interface TrainingSubmitResponse {
-  session_id: string
-  extracted: ExtractedMemory
+  session_id:   string
+  extracted:    ExtractedMemory
   original_text: string
+  souls_deducted?: number  
+  tokens_used?:    number  
 }
 
 export interface ChatMessage {

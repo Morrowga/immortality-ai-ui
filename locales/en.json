@@ -121,7 +121,8 @@
     "relationships": "Relationships",
     "voice": "Voice",
     "slang": "Slang",
-    "signout": "Sign Out"
+    "signout": "Sign Out",
+    "insufficientSouls": "Not enough souls to train. Please top up to continue."
   },
   "dashboard": {
     "greeting": "Good to see you",
@@ -298,40 +299,28 @@
     "pageTitle":            "Share a memory",
     "pageSubtitle":         "Tell your agent something real. A feeling, a belief, a moment that shaped you.",
 
-    "stepWrite":            "Write",
-    "stepReview":           "Review",
-    "stepSaved":            "Saved",
-
-    "placeholder":          "Tell me something about yourself. A memory, a belief, how you feel about something. Speak naturally — like you're talking to someone who wants to understand you.",
-    "characters":           "{n} characters",
-    "processing":           "Processing…",
-    "processMemory":        "Process Memory",
-    "languageNote":         "You can write in any language. The system handles translation automatically.",
-
-    "captured":             "What the system captured",
-    "fieldWhatHappened":    "What happened",
-    "fieldHowFelt":         "How you felt",
-    "fieldWhyMattered":     "Why it mattered",
-    "fieldWhatLearned":     "What you learned",
-    "fieldInstinct":        "Instinct formed",
-    "originalVersion":      "Original language version",
-
     "memoryWeight":         "Memory weight",
     "minor":                "Minor",
     "lifeDefining":         "Life-defining",
     "neverForget":          "Marked as never forget",
-    "metaSection":          "Section",
-    "metaType":             "Type",
-    "coreMemory":           "Core memory",
 
-    "startOver":            "Start over",
-    "saving":               "Saving…",
-    "confirmSave":          "Confirm & save",
-
-    "reinforced":           "Memory reinforced",
-    "reinforcedMeta":       "You've shared this {count} time(s) now. Weight increased to {weight}.",
-    "savedSuccess":         "Saved successfully",
-    "trainAnother":         "Train another memory"
+    "chatInitialMessage":      "What memory would you like to share with me?",
+    "reviewFieldWhatHappened": "What happened",
+    "reviewFieldHowIFelt":     "How I felt",
+    "reviewFieldWhyMattered":  "Why it mattered",
+    "reviewFieldWhatLearned":  "What I learned",
+    "reviewFieldInstinct":     "Instinct formed",
+    "reviewQuestion":          "Should I install this into my memory?",
+    "chatReinforced":          "This memory has been reinforced — strengthened {count} times now. Would you like to tell me more?",
+    "chatSaved":               "Your memory is successfully installed in my brain. Would you like to tell me more?",
+    "chatReenter":             "Of course — please tell me what you'd like to say.",
+    "chatSavingHint":          "Saving to memory...",
+    "chatYesTellMore":         "Yes, tell more",
+    "chatNoDone":              "No, I'm done",
+    "chatUserYesSave":         "Yes, save it",
+    "chatUserNoReenter":       "No, let me re-enter",
+    "chatUserYesMore":         "Yes, I have more to share",
+    "chatSavedMessage":        "Your memory is saved successfully"
   },
   "chat": {
     "title":                "Testing Chat",   
@@ -341,6 +330,9 @@
     "change":               "Change",
     "startTalking":         "Start talking",
     "inputHint":            "Enter to send · Shift+Enter for new line",
+    "inputPlaceholder":     "Say something.",
+    "thumbsUp":             "Correct",
+    "thumbsDown":           "Incorrect",
 
     "gateWhoAreYou":        "Who are you to this person?",
     "gateAboutYourself":    "A little about yourself",

@@ -114,7 +114,8 @@
     "relationships": "Отношения",
     "voice": "Голос",
     "slang": "Сленг",
-    "signout": "Выйти"
+    "signout": "Выйти",
+    "insufficientSouls": "Not enough souls to train. Please top up to continue."
   },
   "dashboard": {
     "greeting": "Рад вас видеть",
@@ -291,40 +292,28 @@
     "pageTitle": "Поделитесь воспоминанием",
     "pageSubtitle": "Расскажите агенту что-то настоящее. Чувство, убеждение, момент, который вас сформировал.",
 
-    "stepWrite": "Написать",
-    "stepReview": "Проверить",
-    "stepSaved": "Сохранено",
-
-    "placeholder": "Расскажите мне что-нибудь о себе. Воспоминание, убеждение, то, как вы относитесь к чему-то. Говорите естественно — как будто разговариваете с тем, кто хочет вас понять.",
-    "characters": "{n} символов",
-    "processing": "Обработка…",
-    "processMemory": "Обработать воспоминание",
-    "languageNote": "Вы можете писать на любом языке. Система автоматически выполняет перевод.",
-
-    "captured": "Что система зафиксировала",
-    "fieldWhatHappened": "Что произошло",
-    "fieldHowFelt": "Как вы себя чувствовали",
-    "fieldWhyMattered": "Почему это было важно",
-    "fieldWhatLearned": "Что вы из этого вынесли",
-    "fieldInstinct": "Сформированный инстинкт",
-    "originalVersion": "Оригинальная версия на вашем языке",
-
     "memoryWeight": "Вес воспоминания",
     "minor": "Незначительное",
     "lifeDefining": "Определяющее жизнь",
     "neverForget": "Отмечено как «никогда не забыть»",
-    "metaSection": "Раздел",
-    "metaType": "Тип",
-    "coreMemory": "Основное воспоминание",
-
-    "startOver": "Начать заново",
-    "saving": "Сохранение…",
-    "confirmSave": "Подтвердить и сохранить",
-
-    "reinforced": "Воспоминание усилено",
-    "reinforcedMeta": "Вы делились этим {count} раз(а). Вес увеличен до {weight}.",
-    "savedSuccess": "Успешно сохранено",
-    "trainAnother": "Добавить ещё воспоминание"
+    
+    "chatInitialMessage":      "Каким воспоминанием вы хотите поделиться со мной?",
+    "reviewFieldWhatHappened": "Что произошло",
+    "reviewFieldHowIFelt":     "Как я себя чувствовал(а)",
+    "reviewFieldWhyMattered":  "Почему это важно",
+    "reviewFieldWhatLearned":  "Что я узнал(а)",
+    "reviewFieldInstinct":     "Сформированный инстинкт",
+    "reviewQuestion":          "Установить это в мою память?",
+    "chatReinforced":          "Это воспоминание укреплено — усилено уже {count} раз(а). Хотите рассказать больше?",
+    "chatSaved":               "Ваше воспоминание успешно установлено в моём мозге. Хотите рассказать больше?",
+    "chatReenter":             "Конечно — скажите, что вы хотите сообщить.",
+    "chatSavingHint":          "Сохранение в память...",
+    "chatYesTellMore":         "Да, рассказать больше",
+    "chatNoDone":              "Нет, я закончил(а)",
+    "chatUserYesSave":         "Да, сохранить",
+    "chatUserNoReenter":       "Нет, ввести заново",
+    "chatUserYesMore":         "Да, мне есть что добавить",
+    "chatSavedMessage":        "Your memory is saved successfully"
   },
   "chat": {
     "title": "тестирование чата",
@@ -334,6 +323,9 @@
     "change": "Изменить",
     "startTalking": "Начните говорить",
     "inputHint": "Enter — отправить · Shift+Enter — новая строка",
+    "inputPlaceholder":     "Say something.",
+    "thumbsUp":             "Correct",
+    "thumbsDown":           "Incorrect",
 
     "gateWhoAreYou": "Кто вы для этого человека?",
     "gateAboutYourself": "Немного о себе",

@@ -8,11 +8,12 @@ import { useQuery } from "@tanstack/react-query"
 import { agentAPI } from "@/lib/api"
 import { MessageSquare, BookOpen, LogOut, Home, Settings, Brain, Sun, Moon } from "lucide-react"
 import { useTranslation } from "@/locales"
+import SoulsWidget from "@/components/billing/SoulsWidget"
 import "@/styles/layout.css"
+import SoulsDepletedDialog from "@/components/billing/SoulsDepletedDialog"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router   = useRouter()
-  // const [langInitialized, setLangInitialized] = useState(false)
   const pathname = usePathname()
   const {
     user, isLoading, logout,
@@ -97,6 +98,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </nav>
 
+        {/* ── Souls balance widget ── */}
+        {mounted && user && (
+          <div className="sidebar-souls" suppressHydrationWarning>
+            <div className="sidebar-sep" />
+            <SoulsWidget />
+          </div>
+        )}
+
         <div className="sidebar-lang" suppressHydrationWarning>
           {mounted && user?.language && user.language !== "en" && (
             <>
@@ -158,6 +167,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main className="layout-main">
         {children}
       </main>
+
+      <SoulsDepletedDialog />
     </div>
   )
 }

@@ -173,9 +173,6 @@ export default function ChatPage() {
               </div>
             )}
             <button className="c-change-btn" onClick={c.handleReset}>{t("chat.change")}</button>
-            <div className="c-agent-pill">
-              <div className="c-agent-dot" /> {t("chat.listening")}
-            </div>
           </div>
         </div>
 
