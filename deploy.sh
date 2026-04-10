@@ -2,7 +2,7 @@
 set -e
 
 echo "Deploying frontend..."
-cd ~/immortality-frontend
+cd ~/immortality-ai-ui
 git pull
 npm install
 npm run build
