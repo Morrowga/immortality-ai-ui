@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 import { useEffect, useState }       from "react"
@@ -104,9 +105,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* ── Brand / user identity ── */}
         <div className="sidebar-brand" suppressHydrationWarning>
-          <div className="sidebar-logo" suppressHydrationWarning>
-            imm<span>or</span>tality
-          </div>
+          <a href="/" className="sidebar-logo" suppressHydrationWarning>
+              <img 
+                src={darkMode ? "/logo/logo-light.png" : "/logo/logo-dark.png"}
+                alt="Immortality"
+                style={{ width: '120px', height: 'auto', marginBottom: 15 }}
+              />
+          </a>
 
           <div className="sidebar-identity" suppressHydrationWarning>
             <div className="sidebar-avatar" suppressHydrationWarning>

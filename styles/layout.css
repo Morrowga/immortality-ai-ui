@@ -76,13 +76,12 @@
 }
 
 .sidebar-logo {
-  font-family: 'Lora', serif;
-  font-size: 15px;
+font-family: 'Lora', serif;
   font-weight: 500;
   color: var(--imm-txt);
   letter-spacing: -0.01em;
   line-height: 1;
-  margin-bottom: 12px;
+  /* margin-bottom: 12px; */
 }
 .sidebar-logo span {
   color: var(--imm-matrix);

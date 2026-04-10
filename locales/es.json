@@ -115,7 +115,7 @@
     "voice": "Voz",
     "slang": "Argot",
     "signout": "Cerrar sesión",
-    "insufficientSouls": "Not enough souls to train. Please top up to continue."
+    "insufficientSouls": "No tienes suficientes almas para entrenar. Por favor, recarga para continuar"
   },
   "dashboard": {
     "greeting": "Qué bueno verte",
@@ -166,127 +166,6 @@
     "progressEmpty":         "Aún no hay recuerdos. Empieza a entrenar para ver tu progreso aquí.",
     "memoriesCount":         "{count} recuerdos"
   },
-  "questions": {
-    "stranger_formality": "Con desconocidos, eres:",
-    "disagreement_style": "Cuando no estás de acuerdo con alguien:",
-    "response_length": "¿Cómo de largas son tus respuestas habituales al hablar?",
-    "close_friends_talking_style": "Describe cómo hablas con tus amigos íntimos:",
-    "anger_expression": "Cuando te enfadas, las personas a tu alrededor:",
-    "conflict_handling": "¿Cómo gestionas los conflictos?",
-    "stress_behaviour": "Cuando estás estresado/a:",
-    "stranger_first_instinct": "Cuando conoces a alguien nuevo, tu primer instinto es:",
-    "trust_speed": "¿Cuánto tardas en confiar en alguien?",
-    "misunderstood_trait": "¿Qué es lo que la gente malinterpreta de ti?",
-    "slang_frequency": "¿Con qué frecuencia usas argot?",
-    "language_mixing": "¿Mezclas idiomas al hablar?",
-    "humor_style": "Tu estilo de humor:",
-    "swearing_frequency": "¿Sueltas tacos?",
-    "decision_style": "Al tomar una decisión:",
-    "advice_style": "¿Cómo das consejos a las personas que te importan?",
-    "worldview": "¿Cómo ves el mundo en general?",
-    "core_thinking_trait": "Algo fundamental sobre cómo piensas que la gente debería saber:",
-    "daily_language_style": "En tu día a día, cuando hablas o escribes, usas:",
-    "language_mix_frequency": "¿Con qué naturalidad mezclas idiomas a mitad de frase?",
-    "other_languages": "¿Hablas o entiendes otros idiomas? (opcional)",
-    "options": {
-      "stranger_formality": [
-        "Muy formal — tono profesional siempre",
-        "Educado pero distendido — amable sin abrirme demasiado",
-        "Amigable desde el primer momento — trato a todo el mundo como si ya los conociera",
-        "Depende del ambiente — primero leo a la persona"
-      ],
-      "disagreement_style": [
-        "Lo digo directamente — le cuento lo que pienso",
-        "Lo digo con cuidado — procuro no ofender",
-        "Me callo — no merece la pena el conflicto",
-        "Depende de con quién sea"
-      ],
-      "response_length": [
-        "Corta — voy al grano enseguida",
-        "Media — explico lo suficiente para que me entiendan",
-        "Larga — doy todo el contexto para que no haya malentendidos"
-      ],
-      "anger_expression": [
-        "Lo notan enseguida — se me nota en la cara y en el tono",
-        "Pueden intuirlo, pero lo controlo — no exploto",
-        "Normalmente no se nota — me lo guardo",
-        "Me quedo callado/a — el silencio es mi enfado"
-      ],
-      "stress_behaviour": [
-        "Hablo más — necesito procesar en voz alta",
-        "Me quedo callado/a — necesito espacio para pensar",
-        "Me pongo irritable — las pequeñas cosas me molestan más",
-        "Me enfoco y lo trabajo — el estrés me hace más productivo/a"
-      ],
-      "stranger_first_instinct": [
-        "Abierto/a y curioso/a — quiero conocerlos",
-        "Amable pero observador/a — soy simpático/a, pero los estoy evaluando",
-        "Educado/a pero prudente — mantengo la distancia hasta que los conozca",
-        "Reservado/a — dejo que se acerquen ellos"
-      ],
-      "trust_speed": [
-        "Rápido — le doy a la gente una oportunidad hasta que demuestren lo contrario",
-        "Moderado — necesito verlos ser constantes con el tiempo",
-        "Lento — la confianza se gana, no se regala",
-        "Rara vez confío plenamente en alguien"
-      ],
-      "slang_frequency": [
-        "Raramente — hablo de forma bastante estándar",
-        "A veces — principalmente con personas cercanas",
-        "A menudo — es algo natural en mi forma de hablar",
-        "Mucho — el argot es simplemente como hablo"
-      ],
-      "language_mixing": [
-        "Nunca — me quedo en un solo idioma",
-        "A veces — ciertas palabras encajan mejor en otro idioma",
-        "A menudo — cambio de idioma a mitad de frase con naturalidad",
-        "Depende de con quién esté hablando"
-      ],
-      "humor_style": [
-        "Seco/deadpan — digo cosas graciosas con cara seria",
-        "Sarcástico — bromeo diciendo lo contrario",
-        "Cálido y obvio — me río de mis propios chistes",
-        "Oscuro — encuentro humor en las cosas oscuras",
-        "Raramente — no soy mucho de hacer bromas"
-      ],
-      "swearing_frequency": [
-        "Nunca",
-        "Solo cuando estoy muy frustrado/a",
-        "A veces — de forma casual, no de manera agresiva",
-        "A menudo — forma parte de mi manera de hablar"
-      ],
-      "decision_style": [
-        "Me fío del instinto inmediatamente — confío en mi intuición",
-        "Lo pienso con lógica — necesito analizar",
-        "Primero hablo con gente — quiero escuchar opiniones",
-        "Me lo pienso con calma — necesito tiempo"
-      ],
-      "advice_style": [
-        "Directo/a — les digo exactamente lo que pienso, aunque sea difícil",
-        "Con suavidad — hago preguntas para guiarlos hacia la respuesta",
-        "Solo si me lo piden — no doy consejos sin que me los pidan",
-        "Cuento mi experiencia y les dejo decidir"
-      ],
-      "worldview": [
-        "Optimista — las cosas terminan saliendo bien",
-        "Realista — veo las cosas tal como son",
-        "Pesimista — me preparo para lo peor",
-        "Depende del área de la vida"
-      ],
-      "daily_language_style": [
-        "Solo mi idioma nativo — raramente uso el inglés",
-        "Principalmente mi idioma nativo — con algunas palabras en inglés mezcladas de forma natural",
-        "Mitad nativo, mitad inglés — cambio constantemente",
-        "Principalmente inglés — mi idioma nativo aparece a veces"
-      ],
-      "language_mix_frequency": [
-        "Siempre — simplemente me sale así",
-        "A menudo — sobre todo con amigos",
-        "A veces — solo ciertas palabras",
-        "Raramente — intento quedarme en un solo idioma"
-      ]
-    }
-  },
   "train": {
     "eyebrow":              "Entrenamiento",
     "pageTitle":            "Comparte un recuerdo",
@@ -313,7 +192,7 @@
     "chatUserYesSave":         "Sí, guardarlo",
     "chatUserNoReenter":       "No, volver a ingresar",
     "chatUserYesMore":         "Sí, tengo más que compartir",
-    "chatSavedMessage":        "Your memory is saved successfully"
+    "chatSavedMessage":        "Tu memoria se ha guardado correctamente"
   },
   "chat": {
     "title":                "chat de prueba",
@@ -323,9 +202,9 @@
     "change":               "Cambiar",
     "startTalking":         "Empieza a hablar",
     "inputHint":            "Intro para enviar · Mayús+Intro para nueva línea",
-    "inputPlaceholder":     "Say something.",
-    "thumbsUp":             "Correct",
-    "thumbsDown":           "Incorrect",
+    "inputPlaceholder": "Di algo.",
+    "thumbsUp":         "Correcto",
+    "thumbsDown":       "Incorrecto",
 
     "gateWhoAreYou":        "¿Quién eres para esta persona?",
     "gateAboutYourself":    "Un poco sobre ti",

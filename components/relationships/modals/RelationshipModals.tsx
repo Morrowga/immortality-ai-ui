@@ -378,7 +378,7 @@ export function EditPersonModal({ person, onClose, onSave, isPending, t }: {
             <option value="">{t("relationships.genderNotSpecified")}</option>
             <option value="male">{t("relationships.genderMale")}</option>
             <option value="female">{t("relationships.genderFemale")}</option>
-            <option value="other">{t("relationships.genderOther")}</option>
+            {/* <option value="other">{t("relationships.genderOther")}</option> */}
           </select>
           <p className="rs-forms-hint py-2">{t("relationships.autoPickHint")}</p>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
@@ -77,9 +78,9 @@ export default function LoginPage() {
         <div className="auth-form-wrap">
 
           <Link href="/" className="auth-back">
-            <ArrowLeft /> Immortality
+            <ArrowLeft /> <img src="/logo/logo-light.png" alt="Immortality" style={{ width: '100px', height: 'auto' }} />
           </Link>
-
+          
           <h1 className="auth-heading">
             Welcome <em>back</em>
           </h1>

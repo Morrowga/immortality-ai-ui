@@ -24,11 +24,11 @@ interface VialProps {
   delay: number
 }
 
-function fmt(n: number): string {
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M"
-  if (n >= 1_000)     return (n / 1_000).toFixed(0) + "K"
-  return String(n)
-}
+// function fmt(n: number): string {
+//   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M"
+//   if (n >= 1_000)     return (n / 1_000).toFixed(0) + "K"
+//   return String(n)
+// }
 
 const GW   = 96
 const GH   = 280
@@ -161,9 +161,9 @@ function WaterVial({ count, name, delay }: VialProps) {
       <div style={{ fontSize: 11, color: "var(--imm-txt2)", fontWeight: 500, textAlign: "center" }}>
         {name}
       </div>
-      <div style={{ fontSize: 10, color: "var(--imm-txt3)", fontWeight: 300 }}>
+      {/* <div style={{ fontSize: 10, color: "var(--imm-txt3)", fontWeight: 300 }}>
         {fmt(count)} / {fmt(MAX_COUNT)}
-      </div>
+      </div> */}
     </div>
   )
 }

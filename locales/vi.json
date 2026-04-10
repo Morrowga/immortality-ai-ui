@@ -115,7 +115,7 @@
     "voice": "Giọng nói",
     "slang": "Tiếng lóng",
     "signout": "Đăng xuất",
-    "insufficientSouls": "Not enough souls to train. Please top up to continue."
+    "insufficientSouls": "Không đủ linh hồn để huấn luyện. Vui lòng nạp thêm để tiếp tục."
   },
   "dashboard": {
     "greeting": "Vui khi gặp lại bạn",
@@ -162,127 +162,6 @@
     "progressEmpty": "Chưa có ký ức nào. Bắt đầu huấn luyện để xem tiến trình ở đây.",
     "memoriesCount": "{count} ký ức"
   },
-  "questions": {
-    "stranger_formality": "Với người lạ, bạn thường:",
-    "disagreement_style": "Khi không đồng ý với ai đó, bạn:",
-    "response_length": "Câu trả lời thông thường của bạn thường dài như thế nào?",
-    "close_friends_talking_style": "Mô tả cách bạn nói chuyện với bạn thân:",
-    "anger_expression": "Khi bạn tức giận, những người xung quanh:",
-    "conflict_handling": "Bạn xử lý mâu thuẫn như thế nào?",
-    "stress_behaviour": "Khi căng thẳng, bạn:",
-    "stranger_first_instinct": "Khi gặp người mới, bản năng đầu tiên của bạn là:",
-    "trust_speed": "Bạn mất bao lâu để tin tưởng ai đó?",
-    "misunderstood_trait": "Mọi người thường hiểu lầm gì về bạn?",
-    "slang_frequency": "Bạn dùng tiếng lóng thường xuyên không?",
-    "language_mixing": "Bạn có pha trộn ngôn ngữ khi nói chuyện không?",
-    "humor_style": "Phong cách hài hước của bạn:",
-    "swearing_frequency": "Bạn có hay nói tục không?",
-    "decision_style": "Khi đưa ra quyết định, bạn:",
-    "advice_style": "Bạn đưa lời khuyên cho người thân như thế nào?",
-    "worldview": "Nhìn chung, bạn nhìn thế giới như thế nào?",
-    "core_thinking_trait": "Điều cốt lõi về cách bạn suy nghĩ mà mọi người nên biết:",
-    "daily_language_style": "Khi nói hay viết hàng ngày, bạn dùng:",
-    "language_mix_frequency": "Bạn tự nhiên pha trộn ngôn ngữ giữa câu đến mức nào?",
-    "other_languages": "Bạn có thể nói hoặc hiểu ngôn ngữ nào khác không? (tuỳ chọn)",
-    "options": {
-      "stranger_formality": [
-        "Rất lịch sự — luôn giữ giọng điệu chuyên nghiệp",
-        "Lịch sự nhưng thân thiện — không quá cởi mở",
-        "Thân thiện ngay lập tức — coi mọi người như người quen",
-        "Tuỳ cảm giác — tôi quan sát đối phương trước"
-      ],
-      "disagreement_style": [
-        "Nói thẳng — tôi nói những gì tôi nghĩ",
-        "Nói khéo — tôi cẩn thận để không xúc phạm",
-        "Im lặng — không đáng để cãi nhau",
-        "Tuỳ người"
-      ],
-      "response_length": [
-        "Ngắn — tôi đi thẳng vào vấn đề",
-        "Vừa phải — tôi giải thích đủ để được hiểu",
-        "Dài — tôi cung cấp đầy đủ bối cảnh để không bị hiểu lầm"
-      ],
-      "anger_expression": [
-        "Biết ngay — thể hiện qua nét mặt và giọng điệu",
-        "Có thể nhận ra nhưng tôi kiểm soát được — không bùng phát",
-        "Thường không nhận ra — tôi giữ trong lòng",
-        "Tôi im lặng — im lặng là cơn giận của tôi"
-      ],
-      "stress_behaviour": [
-        "Nói nhiều hơn — tôi cần xử lý bằng lời nói",
-        "Im lặng — tôi cần không gian để suy nghĩ",
-        "Dễ cáu — những chuyện nhỏ cũng làm tôi khó chịu hơn",
-        "Tập trung và giải quyết — căng thẳng giúp tôi làm việc hiệu quả hơn"
-      ],
-      "stranger_first_instinct": [
-        "Cởi mở và tò mò — tôi muốn tìm hiểu họ",
-        "Thân thiện nhưng quan sát — tôi niềm nở nhưng vẫn theo dõi",
-        "Lịch sự nhưng giữ khoảng cách — đến khi hiểu rõ hơn",
-        "Kín đáo — để họ chủ động đến với tôi"
-      ],
-      "trust_speed": [
-        "Nhanh — tôi cho người khác cơ hội cho đến khi họ chứng minh ngược lại",
-        "Vừa phải — tôi cần thấy họ nhất quán theo thời gian",
-        "Lâu — niềm tin phải được kiếm, không phải trao sẵn",
-        "Hiếm khi tin tưởng hoàn toàn ai"
-      ],
-      "slang_frequency": [
-        "Hiếm khi — tôi nói khá chuẩn",
-        "Đôi khi — chủ yếu với người thân quen",
-        "Thường xuyên — tự nhiên trong cách nói chuyện của tôi",
-        "Rất nhiều — tiếng lóng là cách tôi nói chuyện"
-      ],
-      "language_mixing": [
-        "Không bao giờ — tôi dùng một ngôn ngữ nhất quán",
-        "Đôi khi — một số từ phù hợp hơn trong ngôn ngữ khác",
-        "Thường xuyên — tôi tự nhiên chuyển đổi giữa câu",
-        "Tuỳ người tôi đang nói chuyện"
-      ],
-      "humor_style": [
-        "Khô/thẳng mặt — tôi nói chuyện hài hước với gương mặt nghiêm túc",
-        "Mỉa mai — tôi đùa bằng cách nói ngược lại",
-        "Ấm áp và rõ ràng — tôi cười cả câu đùa của mình",
-        "Tối tăm — tôi thấy sự hài hước trong những điều u ám",
-        "Hiếm khi — tôi không phải người hay đùa"
-      ],
-      "swearing_frequency": [
-        "Không bao giờ",
-        "Chỉ khi rất bực bội",
-        "Đôi khi — bình thường, không hung hăng",
-        "Thường xuyên — đó chỉ là cách tôi nói chuyện"
-      ],
-      "decision_style": [
-        "Theo bản năng ngay — tôi tin vào linh cảm",
-        "Suy nghĩ logic — tôi cần phân tích",
-        "Hỏi người khác trước — tôi muốn nghe ý kiến",
-        "Để qua đêm — tôi cần thêm thời gian"
-      ],
-      "advice_style": [
-        "Thẳng thắn — tôi nói đúng những gì tôi nghĩ dù khó nghe",
-        "Nhẹ nhàng — tôi đặt câu hỏi để dẫn dắt họ tự tìm ra câu trả lời",
-        "Chỉ khi được hỏi — tôi không đưa lời khuyên không được yêu cầu",
-        "Tôi chia sẻ kinh nghiệm và để họ tự quyết định"
-      ],
-      "worldview": [
-        "Lạc quan — mọi thứ rồi sẽ ổn",
-        "Thực tế — tôi nhìn mọi thứ như bản chất của nó",
-        "Bi quan — tôi chuẩn bị cho điều tệ nhất",
-        "Tuỳ lĩnh vực trong cuộc sống"
-      ],
-      "daily_language_style": [
-        "Chỉ tiếng Việt — tôi hiếm khi dùng tiếng Anh",
-        "Chủ yếu tiếng Việt — thỉnh thoảng xen vài từ tiếng Anh tự nhiên",
-        "Nửa tiếng Việt, nửa tiếng Anh — tôi chuyển đổi liên tục",
-        "Chủ yếu tiếng Anh — tiếng Việt xen vào đôi khi"
-      ],
-      "language_mix_frequency": [
-        "Luôn luôn — nó cứ tự nhiên ra vậy",
-        "Thường xuyên — đặc biệt với bạn bè",
-        "Đôi khi — chỉ một số từ nhất định",
-        "Hiếm khi — tôi cố gắng giữ một ngôn ngữ"
-      ]
-    }
-  },
   "train": {
     "eyebrow": "Huấn luyện",
     "pageTitle": "Chia sẻ một ký ức",
@@ -309,7 +188,7 @@
     "chatUserYesSave":         "Có, lưu lại",
     "chatUserNoReenter":       "Không, để tôi nhập lại",
     "chatUserYesMore":         "Có, tôi còn muốn chia sẻ thêm",
-    "chatSavedMessage":        "Your memory is saved successfully"
+    "chatSavedMessage":        "Bộ nhớ của bạn đã được lưu thành công"
   },
   "chat": {
     "title": "kiểm thử trò chuyện",
@@ -319,9 +198,10 @@
     "change": "Thay đổi",
     "startTalking": "Bắt đầu nói",
     "inputHint": "Enter để gửi · Shift+Enter để xuống dòng",
-    "inputPlaceholder":     "Say something.",
-    "thumbsUp":             "Correct",
-    "thumbsDown":           "Incorrect",
+    "inputPlaceholder": "Hãy nói gì đó.",
+    "thumbsUp":         "Đúng",
+    "thumbsDown":       "Sai",
+
     
     "gateWhoAreYou": "Bạn là ai với người này?",
     "gateAboutYourself": "Một chút về bạn",

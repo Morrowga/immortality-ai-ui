@@ -161,7 +161,7 @@
   text-transform: uppercase;
   color: var(--imm-txt3);
   text-decoration: none;
-  margin-bottom: 36px;
+  /* margin-bottom: 36px; */
   transition: color 0.18s;
 }
 .auth-back:hover { color: var(--imm-txt); }

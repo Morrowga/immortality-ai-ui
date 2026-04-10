@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
@@ -95,8 +96,9 @@ export default function RegisterPage() {
         <div className="auth-form-wrap">
 
           <Link href="/" className="auth-back">
-            <ArrowLeft /> Immortality
+            <ArrowLeft /> <img src="/logo/logo-light.png" alt="Immortality" style={{ width: '100px', height: 'auto' }} />
           </Link>
+          
 
           <h1 className="auth-heading">Create your <em>agent</em></h1>
           <p className="auth-subheading">{t("auth.registerSubtitle")}</p>

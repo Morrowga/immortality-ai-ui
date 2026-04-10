@@ -115,7 +115,7 @@
     "voice": "음성",
     "slang": "슬랭",
     "signout": "로그아웃",
-    "insufficientSouls": "Not enough souls to train. Please top up to continue."
+    "insufficientSouls": "훈련할 소울이 부족합니다. 계속하려면 충전해 주세요"
   },
   "dashboard": {
     "greeting": "반갑습니다",
@@ -162,127 +162,6 @@
     "progressEmpty": "아직 기억이 없습니다. 훈련을 시작하면 진행 상황을 볼 수 있습니다.",
     "memoriesCount": "기억 {count}개"
   },
-  "questions": {
-    "stranger_formality": "낯선 사람에게 당신은:",
-    "disagreement_style": "누군가와 의견이 다를 때, 당신은:",
-    "response_length": "대화할 때 보통 얼마나 길게 답하나요?",
-    "close_friends_talking_style": "친한 친구들과 어떻게 대화하는지 설명해주세요:",
-    "anger_expression": "화가 날 때, 주변 사람들은:",
-    "conflict_handling": "갈등을 어떻게 다루나요?",
-    "stress_behaviour": "스트레스를 받을 때, 당신은:",
-    "stranger_first_instinct": "새로운 사람을 만났을 때, 첫 번째 본능은:",
-    "trust_speed": "누군가를 신뢰하는 데 얼마나 걸리나요?",
-    "misunderstood_trait": "사람들이 당신에 대해 오해하는 것은?",
-    "slang_frequency": "슬랭을 얼마나 자주 사용하나요?",
-    "language_mixing": "대화할 때 언어를 섞어 사용하나요?",
-    "humor_style": "당신의 유머 스타일은:",
-    "swearing_frequency": "욕을 하나요?",
-    "decision_style": "결정을 내릴 때 당신은:",
-    "advice_style": "소중한 사람들에게 조언을 어떻게 하나요?",
-    "worldview": "일반적으로 세상을 어떻게 바라보나요?",
-    "core_thinking_trait": "사람들이 알아야 할 당신의 핵심적인 사고 방식:",
-    "daily_language_style": "일상에서 말하거나 글을 쓸 때, 당신은:",
-    "language_mix_frequency": "문장 중간에 언어를 얼마나 자연스럽게 섞나요?",
-    "other_languages": "구사하거나 이해할 수 있는 다른 언어가 있나요? (선택)",
-    "options": {
-      "stranger_formality": [
-        "매우 격식체 — 항상 전문적인 어조",
-        "예의 바르지만 편안하게 — 너무 열지 않고 친근하게",
-        "바로 친근하게 — 누구든 아는 사람처럼 대함",
-        "분위기에 따라 — 상대를 먼저 파악함"
-      ],
-      "disagreement_style": [
-        "직접 말한다 — 내 생각을 솔직하게 전달",
-        "조심스럽게 말한다 — 상대방을 상처주지 않으려 노력",
-        "조용히 있는다 — 갈등을 피하는 게 나음",
-        "상대에 따라 다르다"
-      ],
-      "response_length": [
-        "짧게 — 요점만 빠르게",
-        "보통 — 이해할 수 있을 만큼만 설명",
-        "길게 — 오해가 없도록 전체 맥락을 설명"
-      ],
-      "anger_expression": [
-        "바로 안다 — 표정과 말투에 바로 드러남",
-        "눈치채지만 조절한다 — 폭발하지 않음",
-        "대체로 모른다 — 속으로 삭임",
-        "조용해진다 — 침묵이 나의 분노 표현"
-      ],
-      "stress_behaviour": [
-        "말이 많아진다 — 소리내어 생각을 정리해야 함",
-        "조용해진다 — 생각할 공간이 필요",
-        "예민해진다 — 작은 일에도 더 신경 쓰임",
-        "집중해서 해결한다 — 스트레스가 오히려 생산적으로 만들어줌"
-      ],
-      "stranger_first_instinct": [
-        "열려 있고 호기심 많게 — 상대를 알고 싶음",
-        "친근하지만 관찰하며 — 친절하지만 지켜봄",
-        "예의 바르지만 거리 유지 — 알기 전까지 선 유지",
-        "조용히 있는다 — 상대가 먼저 다가오게 둠"
-      ],
-      "trust_speed": [
-        "빠르게 — 상대가 실망시킬 때까지 기회를 줌",
-        "보통 — 시간이 지나 일관된 모습을 봐야 함",
-        "오래 걸린다 — 신뢰는 주는 게 아니라 쌓는 것",
-        "거의 완전히 신뢰하지 않는다"
-      ],
-      "slang_frequency": [
-        "거의 안 쓴다 — 꽤 표준적인 말투",
-        "가끔 — 주로 가까운 사람들과",
-        "자주 — 자연스럽게 나옴",
-        "많이 — 슬랭이 그냥 내 말투"
-      ],
-      "language_mixing": [
-        "절대 안 함 — 한 언어만 사용",
-        "가끔 — 어떤 단어는 다른 언어가 더 잘 맞음",
-        "자주 — 자연스럽게 문장 중간에 전환됨",
-        "상대에 따라 다름"
-      ],
-      "humor_style": [
-        "건조하게/무표정하게 — 웃기는 말을 진지하게 함",
-        "비꼬듯 — 반대로 말하며 농담함",
-        "따뜻하고 티 나게 — 내 농담에 내가 웃음",
-        "어둡게 — 어두운 것에서도 유머를 찾음",
-        "거의 안 함 — 농담하는 편이 아님"
-      ],
-      "swearing_frequency": [
-        "절대 안 함",
-        "매우 화날 때만",
-        "가끔 — 가볍게, 공격적이지 않게",
-        "자주 — 그냥 내 말투의 일부"
-      ],
-      "decision_style": [
-        "바로 직감으로 — 내 직감을 믿음",
-        "논리적으로 따져본다 — 분석이 필요",
-        "먼저 사람들에게 물어본다 — 다른 의견이 필요",
-        "자고 일어나서 생각한다 — 시간이 필요"
-      ],
-      "advice_style": [
-        "직접적으로 — 힘들어도 정확히 내 생각을 말함",
-        "부드럽게 — 질문을 통해 스스로 답을 찾도록 안내",
-        "부탁받을 때만 — 먼저 나서서 조언하지 않음",
-        "내 경험을 나누고 상대가 결정하게 함"
-      ],
-      "worldview": [
-        "낙관주의자 — 결국 잘 된다",
-        "현실주의자 — 있는 그대로 봄",
-        "비관주의자 — 최악을 대비함",
-        "삶의 영역에 따라 다름"
-      ],
-      "daily_language_style": [
-        "모국어만 — 영어는 거의 안 씀",
-        "주로 모국어 — 일부 영어 단어가 자연스럽게 섞임",
-        "반반 — 계속 전환함",
-        "주로 영어 — 모국어는 가끔 나옴"
-      ],
-      "language_mix_frequency": [
-        "항상 — 그냥 그렇게 나옴",
-        "자주 — 특히 친구들과",
-        "가끔 — 특정 단어만",
-        "거의 안 함 — 한 언어를 유지하려 노력"
-      ]
-    }
-  },
   "train": {
     "eyebrow": "훈련",
     "pageTitle": "기억 공유하기",
@@ -309,7 +188,7 @@
     "chatUserYesSave":         "네, 저장해요",
     "chatUserNoReenter":       "아니요, 다시 입력할게요",
     "chatUserYesMore":         "네, 더 공유하고 싶어요",
-    "chatSavedMessage":        "Your memory is saved successfully"
+    "chatSavedMessage":        "메모리가 성공적으로 저장되었습니다"
   },
   "chat": {
     "title": "테스트 채팅",
@@ -319,9 +198,9 @@
     "change": "변경",
     "startTalking": "말을 시작하세요",
     "inputHint": "Enter로 전송 · Shift+Enter로 줄바꿈",
-    "inputPlaceholder":     "Say something.",
-    "thumbsUp":             "Correct",
-    "thumbsDown":           "Incorrect",
+    "inputPlaceholder": "말해보세요.",
+    "thumbsUp":         "맞아요",
+    "thumbsDown":       "틀렸어요",
     
     "gateWhoAreYou": "이 사람과 어떤 관계인가요?",
     "gateAboutYourself": "자신에 대해 간략히",
