@@ -261,7 +261,7 @@ function DashboardContent() {
 export default function DashboardPage() {
   const { checking } = useOnboardingGuard()
 
-  if (!checking) return <OnboardingLoader />
+  if (checking) return <OnboardingLoader />
 
   return (
     <DashboardLayout>
