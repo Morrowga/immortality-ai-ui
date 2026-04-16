@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { trainingAPI } from "@/lib/api"
 import { toast } from "sonner"
 import { TrainingSubmitResponse } from "@/types"
@@ -8,6 +7,8 @@ import { TrainingSubmitResponse } from "@/types"
 export type TrainingStep = "input" | "review" | "done"
 
 export function useTraining() {
+  const queryClient = useQueryClient()
+  
   const [step,         setStep]         = useState<TrainingStep>("input")
   const [text,         setText]         = useState("")
   const [submitResult, setSubmitResult] = useState<TrainingSubmitResponse | null>(null)
@@ -21,21 +22,15 @@ export function useTraining() {
       setSubmitResult(res.data)
       setWeight(Math.round(res.data.extracted.suggested_weight))
       setStep("review")
-
-      // Show souls deducted toast
       const souls = res.data.souls_deducted
       if (souls != null) {
-        toast(`-${souls} Souls`, {
-          description: "Deducted for training",
-        })
+        toast(`-${souls} Souls`, { description: "Deducted for training" })
       }
     },
     onError: (err: any) => {
       const detail = err.response?.data?.detail
-      // Handle souls depleted (402)
       if (err.response?.status === 402) {
-        const code = typeof detail === "object" ? detail?.code : null
-        const msg  = typeof detail === "object" ? detail?.message : detail
+        const msg = typeof detail === "object" ? detail?.message : detail
         toast.error(msg || "Not enough Souls to train")
         return
       }
@@ -53,6 +48,12 @@ export function useTraining() {
       } else {
         toast.success("Memory saved")
       }
+
+      // ✅ Invalidate all relevant queries
+      queryClient.invalidateQueries({ queryKey: ["progress"] })
+      queryClient.invalidateQueries({ queryKey: ["memories"] })
+      queryClient.invalidateQueries({ queryKey: ["agent"] })
+      queryClient.invalidateQueries({ queryKey: ["lifecycle"] })
     },
     onError: (err: any) => {
       toast.error(err.response?.data?.detail || "Failed to save memory")
@@ -82,15 +83,11 @@ export function useTraining() {
   }
 
   return {
-    // state
     step, text, setText,
     submitResult, weight, setWeight,
     doneResult, showDetails, setShowDetails,
-    // mutations
     submitMutation, confirmMutation,
-    // handlers
     handleSubmit, handleConfirm, handleReset,
-    // derived
     extracted:  submitResult?.extracted ?? null,
     stepIndex:  step === "input" ? 0 : step === "review" ? 1 : 2,
   }
