@@ -495,14 +495,14 @@
     "localName":            "Local name",
     "systemTypeHint":       "System type — English name cannot be changed.",
 
-    "newRoleTitle":         "New role in {typeName}",
+    "newRoleTitle":         "New Role - {typeName}",
     "roleName":             "Role name",
     "forbiddenParticles":   "Forbidden particles (comma separated)",
     "toneDescription":      "Tone description",
     "editRoleTitle":        "Edit role — {name}",
     "systemRoleHint":       "System role — name cannot be changed.",
 
-    "addPersonTitle":       "Add person — {roleName}",
+    "addPersonTitle":       "Add Person — {roleName}",
     "fieldName":            "Name",
     "fieldGender":          "Gender",
     "fieldAge":             "Age",

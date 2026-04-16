@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
 }
 
 .st-loading {
@@ -171,7 +171,7 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--imm-brown);
-  font-family: 'DM Mono', 'Courier New', monospace;
+  font-family: 'Oxanium', sans-serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -236,7 +236,7 @@
   background: transparent;
   padding: 11px 12px 11px 0;
   font-size: 13px;
-  font-family: 'DM Mono', 'Courier New', monospace;
+  font-family: 'Oxanium', sans-serif;
   font-weight: 500;
   color: var(--imm-brown);
   outline: none;
@@ -246,7 +246,7 @@
 .st-slug-input::placeholder {
   color: var(--imm-txt3);
   font-weight: 300;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   letter-spacing: 0;
 }
 
@@ -283,7 +283,7 @@
   border: 1px solid var(--imm-bdr);
   background: none;
   font-size: 12px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   color: var(--imm-txt3);
   cursor: pointer;
   transition: background 0.15s;
@@ -299,7 +299,7 @@
   border: none;
   background: var(--imm-gold);
   font-size: 12px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   font-weight: 500;
   color: #fff;
   cursor: pointer;
@@ -317,7 +317,7 @@
   border: 1px solid rgba(220, 53, 69, 0.3);
   background: rgba(220, 53, 69, 0.06);
   font-size: 13px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   font-weight: 500;
   color: #c04444;
   cursor: pointer;
@@ -349,7 +349,7 @@
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 13px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   font-weight: 300;
   color: var(--imm-txt);
   outline: none;
@@ -400,7 +400,7 @@
   background: var(--imm-sand);
   cursor: pointer;
   text-align: left;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   transition: background 0.15s, border-color 0.15s;
   margin-bottom: 6px;
 }

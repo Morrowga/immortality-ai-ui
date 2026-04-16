@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
 }
 
 .rs-loading {
@@ -114,7 +114,7 @@
   border-radius: 7px;
   padding: 4px 10px;
   cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
   transition: background 0.18s, border-color 0.18s;
 }
 .rs-add-btn:hover { background: var(--imm-gold-light); border-color: var(--imm-gold); }
@@ -144,7 +144,7 @@
   text-align: left;
   transition: background 0.15s, border-color 0.15s;
   margin-bottom: 2px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Oxanium', sans-serif;
 }
 .rs-item:hover { background: var(--imm-sand2); }
 .rs-item.selected {
