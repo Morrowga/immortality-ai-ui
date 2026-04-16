@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
@@ -85,9 +86,15 @@ export default function PronounSetupPage() {
       {/* Header */}
       <div className="sv-header">
         <div className="sv-header-left">
-          <span className="sv-brand">imm<span>or</span>tality</span>
-          <div className="sv-header-sep" />
-          <span className="sv-header-label">{t("survey.pronounSetupLabel")}</span>
+           <a href="/" className="sidebar-logo" suppressHydrationWarning>
+              <img 
+                src={darkMode ? "/logo/logo-light.png" : "/logo/logo-dark.png"}
+                alt="Immortality"
+                style={{ width: '120px', height: 'auto', marginBottom: 15 }}
+              />
+          </a>
+          {/* <div className="sv-header-sep" />
+          <span className="sv-header-label">{t("survey.pronounSetupLabel")}</span> */}
         </div>
         <div className="sv-header-right">
           <span className="sv-counter">{t("survey.pronounStepCounter")}</span>

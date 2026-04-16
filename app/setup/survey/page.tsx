@@ -56,7 +56,7 @@ if (w.pageState === "submitting") {
     <div className={`sv-fullpage dashboard${w.mounted && darkMode ? " dark-panel" : ""}`}>
       <div className="sv-fullpage-icon loading"><Loader2 className="animate-spin" /></div>
       <div>
-        <p className="sv-fullpage-title">{t("survey.submittingTitle")}</p>
+        {/* <p className="sv-fullpage-title">{t("survey.submittingTitle")}</p> */}
         <p className="sv-fullpage-sub">{t("survey.saving")}</p>
       </div>
     </div>
