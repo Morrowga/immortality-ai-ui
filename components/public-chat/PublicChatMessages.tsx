@@ -56,9 +56,9 @@ export function PublicChatMessages({
               <div style={{ minWidth: 0 }}>
                 <div className="pc-bubble agent">{msg.content}</div>
                 <div className="pc-meta">
-                  {msg.memories_used !== undefined && (
+                  {/* {msg.memories_used !== undefined && (
                     <p className="pc-memories-used">{msg.memories_used} memories used</p>
-                  )}
+                  )} */}
                   {msg.response_id && correcting !== msg.response_id && (
                     <div className="pc-feedback">
                       <button className="pc-fb-btn like" onClick={() => onLike(msg.response_id!)}>
