@@ -105,7 +105,7 @@ export default function PublicChatPage({ params }: { params: { slug: string } })
           {p.session && p.identity && (
             <div className="pc-speaker-pill">
               <span className="pc-speaker-name">{p.identity.name}</span>
-              <span className="pc-speaker-rel">· {p.session.role_name_local || p.session.role_name}</span>
+              <span className="pc-speaker-rel">· {p.session.role_name}</span>
               <span className="pc-speaker-verified" title="Verified">✓</span>
             </div>
           )}
