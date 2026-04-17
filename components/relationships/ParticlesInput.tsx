@@ -20,7 +20,7 @@ export function ParticlesInput({ label, hint, value, onChange }: Props) {
       {hint && <p className="rs-forms-hint">{hint}</p>}
       <input className="rs-input" value={raw}
         onChange={e => setRaw(e.target.value)} onBlur={commit}
-        placeholder="comma-separated, e.g. နင်, မင်း" />
+        placeholder="comma-separated, e.g. dog, bitch" />
     </div>
   )
 }

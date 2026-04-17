@@ -74,7 +74,7 @@ export function AddTypeModal({ name, nameLocal, setName, setNameLocal, onClose, 
         placeholder="e.g. Mentor" autoFocus />
       <label className="rs-label">{t("relationships.nameLocal")}</label>
       <input className="rs-input" value={nameLocal} onChange={e => setNameLocal(e.target.value)}
-        placeholder="e.g. လမ်းညွှန်ဆရာ" />
+        placeholder="..." />
       <ModalButtons
         onClose={onClose} onSave={onSave} isPending={isPending}
         cancelLabel={t("relationships.modalCancel")}
@@ -301,7 +301,7 @@ export function AddPersonModal({ roleName, name, gender, age, addrForms, selfFor
         <span style={{ fontWeight: 300, opacity: 0.6 }}> {t("relationships.realMessagesSub")}</span>
       </label>
       <textarea className="rs-textarea" value={samples} onChange={e => setSamples(e.target.value)}
-        placeholder={"မေမေ ကောင်းနေလား\nဒီနေ့ ဘာစားမလဲ"} rows={3} />
+        placeholder={"..."} rows={3} />
       <div className="rs-key-section">
         <div className="rs-key-section-header">
           <Key style={{ width: 12, height: 12 }} />

@@ -528,7 +528,7 @@
     "formsAddBtn":          "Add",
     "formsEmpty":           "No forms — click Add to start.",
     "formsCustomPlaceholder": "In English — e.g. younger female, older male 1-15 years",
-    "particlesPlaceholder": "comma-separated, e.g. နင်, မင်း"
+    "particlesPlaceholder": "comma-separated, e.g. dog, bitch"
   },
   "memories": {
     "title":                "Memories",

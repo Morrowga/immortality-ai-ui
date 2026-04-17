@@ -60,6 +60,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   logout: () => {
     localStorage.removeItem("immortality_token")
     localStorage.removeItem("immortality_user")
+    localStorage.removeItem("imm_display_lang")
     set({ user: null, token: null, isLoading: false, displayLanguage: "en" })
     window.location.href = "/login"
   },

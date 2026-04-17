@@ -78,7 +78,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   useEffect(() => {
     if (!user?.language) return
     const saved = localStorage.getItem("imm_display_lang")
-    setDisplayLanguage(saved ?? user.language)
+    const valid = saved === "en" || saved === user.language
+    const lang  = valid ? (saved ?? user.language) : user.language
+    setDisplayLanguage(lang)
   }, [user?.language])
 
   // ── survey guard ──
