@@ -143,7 +143,8 @@ export default function BillingPage() {
                 <button
                   className="billing-upgrade-btn"
                   onClick={upgrade}
-                  disabled={upgrading}
+                  // disabled={upgrading}
+                  disabled={true}
                 >
                   {upgrading ? "Upgrading…" : "Upgrade — $14.99"}
                 </button>
