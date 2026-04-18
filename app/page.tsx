@@ -53,7 +53,7 @@ export default function Home() {
                 onMouseEnter={() => { setGlitchBegin(true); setTimeout(() => setGlitchBegin(false), 700) }}
               >
                 <span className="btn-label">{beginText}</span>
-                <span className="arrow">▶</span>
+                {/* <span className="arrow">▶</span> */}
               </button>
             </Link>
             <Link href="/login" style={{ textDecoration: 'none' }}>
