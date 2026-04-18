@@ -527,3 +527,48 @@ html, body { background: #020408; margin: 0; padding: 0; }
   background: var(--imm-bdr);
   margin: 4px 0;
 }
+
+@media (max-width: 768px) {
+  .root { overflow-y: auto; height: auto; min-height: 100svh; }
+  .grid {
+    grid-template-columns: 1fr;
+    height: 100svh;
+  }
+  .right { display: none; }
+  .left {
+    padding: 48px 32px 48px 32px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  /* ── Shell: single column ── */
+  .auth-shell {
+    flex-direction: column;
+    min-height: 100svh;
+  }
+
+  /* ── Left: shrink, no fixed height ── */
+  .auth-left {
+    width: 100%;
+    padding: 48px 24px 24px;
+    gap: 20px;
+  }
+
+  /* ── Right: form flows below ── */
+  .auth-right {
+    width: 100%;
+    padding: 0 24px 48px;
+    align-items: stretch;
+  }
+
+  .auth-form-wrap {
+    max-width: 100%;
+  }
+
+  /* ── Hide the corner accents on right side ── */
+  .auth-corner-tr,
+  .auth-corner-br {
+    display: none;
+  }
+}
