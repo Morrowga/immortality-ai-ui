@@ -790,7 +790,6 @@
 
 .d-action-text { flex: 1; }
 
-
 @media (max-width: 768px) {
  
   /* ── Root ── */
@@ -890,6 +889,12 @@
  
   .d-prog-ct {
     font-size: 10px;
+  }
+ 
+  /* Scale vials down on mobile — override rendered width/height only */
+  .vial-svg {
+    width: 56px !important;
+    height: 160px !important;
   }
  
   /* ── Right column: natural flow ── */
