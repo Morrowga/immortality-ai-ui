@@ -591,3 +591,175 @@
   .st-col-right { position: static; }
 }
 
+@media (max-width: 768px) {
+ 
+  /* ── Root: let layout-main handle scrolling ── */
+  .st-root {
+    padding: 16px 12px 24px;
+    height: auto;
+    overflow: visible;
+  }
+ 
+  /* ── Body: no inner scroll trap ── */
+  .st-body {
+    overflow-y: visible;
+  }
+ 
+  /* ── Header ── */
+  .st-title {
+    font-size: 20px;
+  }
+ 
+  .st-subtitle {
+    font-size: 12px;
+  }
+ 
+  /* ── Body: single column ── */
+  .st-body {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding-top: 14px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+ 
+  .st-col-right {
+    position: static;
+    gap: 14px;
+  }
+ 
+  .st-col-left {
+    gap: 14px;
+  }
+ 
+  /* ── Cards ── */
+  .st-card {
+    padding: 16px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+ 
+  .st-card-title {
+    font-size: 12px;
+  }
+ 
+  .st-card-sub {
+    font-size: 11px;
+  }
+ 
+  /* ── Profile field rows ── */
+  .st-field-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 0;
+  }
+ 
+  .st-field-label {
+    font-size: 10px;
+    min-width: unset;
+  }
+ 
+  .st-field-value {
+    font-size: 13px;
+    text-align: left;
+  }
+ 
+  /* ── Slug row ── */
+  .st-slug-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+  }
+ 
+  .st-slug-display {
+    width: 100%;
+  }
+ 
+  .st-slug-origin {
+    font-size: 11px;
+  }
+ 
+  .st-slug-value {
+    font-size: 12px;
+  }
+ 
+  .st-slug-actions {
+    align-self: flex-end;
+  }
+ 
+  /* ── Slug edit ── */
+  .st-slug-edit-actions {
+    justify-content: stretch;
+    gap: 6px;
+  }
+ 
+  .st-btn-ghost,
+  .st-btn-primary {
+    flex: 1;
+    justify-content: center;
+  }
+ 
+  /* ── Nav buttons ── */
+  .st-nav-btn {
+    padding: 12px 14px;
+    gap: 12px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+  }
+ 
+  .st-nav-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+ 
+  .st-nav-label {
+    font-size: 12px;
+  }
+ 
+  .st-nav-sub {
+    font-size: 10px;
+  }
+ 
+  /* ── Danger zone ── */
+  .st-btn-danger {
+    width: 100%;
+    justify-content: center;
+  }
+ 
+  .st-delete-input {
+    font-size: 12px;
+    padding: 9px 12px;
+  }
+ 
+  /* ── Modal ── */
+  .neo-modal-overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+ 
+  .neo-modal {
+    border-radius: 16px 16px 12px 12px;
+    padding: 20px;
+    max-width: 100%;
+    gap: 12px;
+  }
+ 
+  .neo-modal-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+ 
+  .neo-btn-ghost,
+  .neo-btn-danger {
+    width: 100%;
+    justify-content: center;
+  }
+ 
+  /* ── Skeleton adjustments ── */
+  .st-sk {
+    max-width: 100%;
+  }
+}

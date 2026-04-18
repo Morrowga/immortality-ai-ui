@@ -769,3 +769,177 @@
   border-color: rgba(37, 99, 235, 0.40);         /* was rgba(201,146,74,0.40) — warm gold → blue */
   color: var(--imm-brown);
 }
+
+@media (max-width: 768px) {
+ 
+  /* ── Root: allow scrolling ── */
+  .mem-root {
+    overflow: auto;
+  }
+ 
+  /* ── Header ── */
+  .mem-header {
+    padding: 16px 16px 0;
+  }
+ 
+  .mem-title {
+    font-size: 20px;
+  }
+ 
+  .mem-subtitle {
+    font-size: 12px;
+  }
+ 
+  /* ── Stats row: wrap instead of overflow ── */
+  .mem-stats {
+    gap: 14px;
+    margin-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+  }
+ 
+  .mem-stat-value {
+    font-size: 16px;
+  }
+ 
+  .mem-stat-label {
+    font-size: 9px;
+  }
+ 
+  .mem-stat-divider {
+    display: none;
+  }
+ 
+  /* ── Review banner ── */
+  .mem-review-banner {
+    font-size: 11px;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+ 
+  .mem-review-banner-cta {
+    display: none;
+  }
+ 
+  /* ── Toolbar: stack vertically ── */
+  .mem-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 16px;
+  }
+ 
+  /* ── Tabs: scrollable row ── */
+  .mem-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+ 
+  .mem-tabs::-webkit-scrollbar {
+    display: none;
+  }
+ 
+  .mem-tab {
+    font-size: 11px;
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+ 
+  /* ── Search: full width ── */
+  .mem-search-wrap {
+    width: 100%;
+  }
+ 
+  /* ── Section pills: scrollable row ── */
+  .mem-sections {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+  }
+ 
+  .mem-sections::-webkit-scrollbar {
+    display: none;
+  }
+ 
+  .mem-section-btn {
+    font-size: 10px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+ 
+  /* ── Reveal btn: align right ── */
+  .mem-reveal-btn {
+    align-self: flex-end;
+  }
+ 
+  /* ── List area ── */
+  .mem-list {
+    padding: 12px 16px 24px;
+    gap: 8px;
+  }
+ 
+  /* ── Memory card ── */
+  .mem-card {
+    padding: 12px 14px;
+  }
+ 
+  /* Always show delete button on mobile (no hover) */
+  .mem-card-actions {
+    opacity: 1;
+  }
+ 
+  .mem-card-body {
+    font-size: 13px;
+  }
+ 
+  .mem-card-section,
+  .mem-card-mode {
+    font-size: 8px;
+  }
+ 
+  .mem-weight-bar {
+    width: 36px;
+  }
+ 
+  /* ── Delete confirm: stack on small screens ── */
+  .mem-delete-confirm {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    justify-content: center;
+  }
+ 
+  .mem-delete-msg {
+    width: 100%;
+    text-align: center;
+  }
+ 
+  /* ── Review dialog ── */
+  .mem-review-dialog {
+    max-width: 100% !important;
+    max-height: 90vh;
+    margin: 0 8px;
+  }
+ 
+  .mem-review-list {
+    max-height: 60vh;
+  }
+ 
+  .mem-review-btn {
+    font-size: 10px;
+    padding: 5px 8px;
+    gap: 4px;
+  }
+ 
+  /* ── Load more ── */
+  .mem-load-more {
+    padding: 4px 0;
+  }
+ 
+  .mem-load-btn {
+    font-size: 11px;
+    padding: 7px 20px;
+  }
+}
