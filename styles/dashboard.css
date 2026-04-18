@@ -789,3 +789,218 @@
 }
 
 .d-action-text { flex: 1; }
+
+
+@media (max-width: 768px) {
+ 
+  /* ── Root ── */
+  .d-root {
+    padding: 16px;
+    gap: 12px;
+    overflow: auto;
+  }
+ 
+  /* ── Top bar: stack vertically ── */
+  .d-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+ 
+  .d-greeting-title {
+    font-size: 1.4rem;
+  }
+ 
+  .d-greeting-sub {
+    font-size: 12px;
+    max-width: 100%;
+  }
+ 
+  .d-status-pill {
+    align-self: flex-start;
+    font-size: 10px;
+    padding: 6px 12px 6px 10px;
+  }
+ 
+  /* ── Nudge ── */
+  .d-nudge {
+    font-size: 11px;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+ 
+  /* ── Stat cards: 2-col grid ── */
+  .d-stats,
+  .d-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+ 
+  .d-stat,
+  .d-stat-card,
+  .d-card {
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+ 
+  .d-stat-num,
+  .d-stat-value {
+    font-size: 28px;
+  }
+ 
+  .d-stat-num span,
+  .d-stat-value span {
+    font-size: 16px;
+  }
+ 
+  .d-stat-badge {
+    font-size: 8px;
+    padding: 2px 8px;
+    margin-bottom: 8px;
+  }
+ 
+  .d-stat-lbl,
+  .d-stat-hint {
+    font-size: 10px;
+  }
+ 
+  /* ── Mid row: single column ── */
+  .d-mid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    flex: unset;
+    min-height: unset;
+  }
+ 
+  /* ── Progress card ── */
+  .d-progress-card {
+    padding: 16px 18px;
+    border-radius: 14px;
+    min-height: unset;
+    overflow: visible;
+  }
+ 
+  .d-prog-list {
+    gap: 10px;
+  }
+ 
+  .d-prog-name {
+    font-size: 11px;
+  }
+ 
+  .d-prog-ct {
+    font-size: 10px;
+  }
+ 
+  /* ── Right column: natural flow ── */
+  .d-right-col {
+    gap: 8px;
+    min-height: unset;
+  }
+ 
+  .d-info-card,
+  .d-panel {
+    padding: 16px 18px;
+    border-radius: 14px;
+    min-height: unset;
+    overflow: visible;
+  }
+ 
+  .d-meta-key {
+    font-size: 10px;
+  }
+ 
+  .d-meta-val {
+    font-size: 11px;
+  }
+ 
+  .d-meta-row {
+    padding: 8px 0;
+  }
+ 
+  /* ── Action cards ── */
+  .d-action {
+    padding: 12px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+ 
+  .d-action-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+ 
+  .d-action-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+ 
+  .d-action-title {
+    font-size: 13px;
+  }
+ 
+  .d-action-sub {
+    font-size: 10px;
+  }
+ 
+  .d-action-arrow {
+    width: 22px;
+    height: 22px;
+  }
+ 
+  /* ── Mini cards ── */
+  .d-mini {
+    padding: 12px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+ 
+  .d-mini-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+  }
+ 
+  .d-mini-icon svg {
+    width: 13px;
+    height: 13px;
+  }
+ 
+  .d-mini-label {
+    font-size: 12px;
+  }
+ 
+  .d-mini-hint {
+    font-size: 10px;
+  }
+ 
+  /* ── Card labels ── */
+  .d-card-label,
+  .d-info-card-label {
+    font-size: 8px;
+    margin-bottom: 12px;
+  }
+ 
+  /* ── Pattern tags ── */
+  .d-pattern-tag {
+    font-size: 9px;
+    padding: 3px 10px;
+  }
+ 
+  /* ── Skeleton ── */
+  .d-topbar.d-fu > div:first-child {
+    width: 100%;
+  }
+ 
+  /* ── Actions list ── */
+  .d-actions {
+    gap: 6px;
+  }
+ 
+  .d-action-btn {
+    padding: 11px 14px;
+    border-radius: 10px;
+    gap: 10px;
+  }
+}

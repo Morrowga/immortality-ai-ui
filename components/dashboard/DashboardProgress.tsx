@@ -24,14 +24,8 @@ interface VialProps {
   delay: number
 }
 
-// function fmt(n: number): string {
-//   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M"
-//   if (n >= 1_000)     return (n / 1_000).toFixed(0) + "K"
-//   return String(n)
-// }
-
-const GW   = 96
-const GH   = 280
+const GW   = 64   // was 96
+const GH   = 180  // was 280
 const WALL = 2
 const PR   = GW / 2
 const IW   = GW - WALL * 2
@@ -56,7 +50,6 @@ function WaterVial({ count, name, delay }: VialProps) {
     const waveEl = waveRef.current
     if (rectEl === null || waveEl === null) return
 
-    // capture as non-nullable so TypeScript trusts them inside tick
     const rect: SVGRectElement  = rectEl
     const wave: SVGPathElement  = waveEl
 
@@ -106,7 +99,7 @@ function WaterVial({ count, name, delay }: VialProps) {
   const vh = GH + 8
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
       <svg width={vw} height={vh} viewBox={`0 0 ${vw} ${vh}`} style={{ overflow: "visible" }}>
         <defs>
           <clipPath id={clipId}>
@@ -141,7 +134,7 @@ function WaterVial({ count, name, delay }: VialProps) {
 
         <rect
           x={OX + WALL + 6} y={OY + PR + 4}
-          width="4" height={IH - PR * 2 - 8}
+          width="3" height={IH - PR * 2 - 8}
           rx="2" fill="rgba(255,255,255,0.09)"
         />
 
@@ -150,7 +143,7 @@ function WaterVial({ count, name, delay }: VialProps) {
           return (
             <line
               key={pct}
-              x1={OX + GW - WALL - 10} x2={OX + GW - WALL - 4}
+              x1={OX + GW - WALL - 8} x2={OX + GW - WALL - 4}
               y1={ty} y2={ty}
               stroke="rgba(59,130,246,0.28)" strokeWidth="1"
             />
@@ -158,12 +151,9 @@ function WaterVial({ count, name, delay }: VialProps) {
         })}
       </svg>
 
-      <div style={{ fontSize: 11, color: "var(--imm-txt2)", fontWeight: 500, textAlign: "center" }}>
+      <div style={{ fontSize: 10, color: "var(--imm-txt2)", fontWeight: 500, textAlign: "center" }}>
         {name}
       </div>
-      {/* <div style={{ fontSize: 10, color: "var(--imm-txt3)", fontWeight: 300 }}>
-        {fmt(count)} / {fmt(MAX_COUNT)}
-      </div> */}
     </div>
   )
 }

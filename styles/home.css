@@ -571,4 +571,8 @@ html, body { background: #020408; margin: 0; padding: 0; }
   .auth-corner-br {
     display: none;
   }
+
+   .login-memory-stack {
+    display: none;
+  }
 }

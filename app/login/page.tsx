@@ -68,7 +68,9 @@ export default function LoginPage() {
         <div className="title-block">
           <GlitchTitle text="IMMORTAL AI" speed={200} />
         </div>
-        <MemoryStack />
+        <div className="login-memory-stack">
+          <MemoryStack />
+        </div>
         <div className="auth-corner auth-corner-tl" />
         <div className="auth-corner auth-corner-bl" />
       </div>

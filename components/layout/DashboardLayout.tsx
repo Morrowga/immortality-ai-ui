@@ -10,6 +10,7 @@ import { agentAPI }                  from "@/lib/api"
 import {
   MessageSquare, BookOpen, LogOut,
   Home, Settings, Brain, Sun, Moon,
+  Menu, X,
 } from "lucide-react"
 import { useTranslation }            from "@/locales"
 import SoulsWidget                   from "@/components/billing/SoulsWidget"
@@ -46,11 +47,22 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     darkMode, toggleDarkMode,
   } = useAuthStore()
 
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted]                     = useState(false)
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
+
   useEffect(() => setMounted(true), [])
 
-  const lang    = mounted ? displayLanguage : "en"
-  const { t }   = useTranslation(lang)
+  // Close sidebar on route change
+  useEffect(() => { setMobileSidebarOpen(false) }, [pathname])
+
+  // Prevent body scroll when mobile sidebar is open
+  useEffect(() => {
+    document.body.style.overflow = mobileSidebarOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [mobileSidebarOpen])
+
+  const lang  = mounted ? displayLanguage : "en"
+  const { t } = useTranslation(lang)
 
   const NAV = [
     { href: "/dashboard", label: t("nav.home"),     icon: Home },
@@ -95,128 +107,187 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const initials = user?.name ? getInitials(user.name) : "??"
   const showLang = mounted && user?.language && user.language !== "en"
 
+  // ── Shared sidebar inner content ──────────────────────────────────────
+  const SidebarContent = ({ onClose }: { onClose?: () => void }) => (
+    <>
+      {/* ── Brand / user identity ── */}
+      <div className="sidebar-brand" suppressHydrationWarning>
+        <a href="/" className="sidebar-logo" suppressHydrationWarning>
+          <img
+            src={darkMode ? "/logo/logo-light.png" : "/logo/logo-dark.png"}
+            alt="Immortality"
+            style={{ width: "120px", height: "auto", marginBottom: 15 }}
+          />
+        </a>
+
+        <div className="sidebar-identity" suppressHydrationWarning>
+          <div className="sidebar-avatar" suppressHydrationWarning>
+            {initials}
+          </div>
+          <div suppressHydrationWarning>
+            <p className="sidebar-username" suppressHydrationWarning>
+              {user?.name ?? ""}
+            </p>
+            <p className="sidebar-memories" suppressHydrationWarning>
+              {agentData
+                ? `${agentData.total_memories} ${t("dashboard.memories")}`
+                : ""}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Navigation ── */}
+      <nav className="sidebar-nav" suppressHydrationWarning>
+        {NAV.map(item => {
+          const Icon   = item.icon
+          const active = pathname === item.href
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`nav-item${active ? " active" : ""}`}
+              onClick={onClose}
+              suppressHydrationWarning
+            >
+              <Icon />
+              <span suppressHydrationWarning>{item.label}</span>
+            </Link>
+          )
+        })}
+      </nav>
+
+      {/* ── Souls balance ── */}
+      {mounted && user && (
+        <div className="sidebar-souls" suppressHydrationWarning>
+          <SoulsWidget />
+        </div>
+      )}
+
+      {/* ── Language toggle ── */}
+      {showLang && (
+        <div className="sidebar-lang" suppressHydrationWarning>
+          <div className="sidebar-sep" />
+          <span className="sidebar-lang-label" suppressHydrationWarning>
+            {t("nav.language")}
+          </span>
+
+          <button
+            onClick={() => {
+              setDisplayLanguage("en")
+              localStorage.setItem("imm_display_lang", "en")
+            }}
+            className={`lang-btn${displayLanguage === "en" ? " active" : ""}`}
+          >
+            {LANG_LABELS["en"]}
+          </button>
+
+          <button
+            onClick={() => {
+              setDisplayLanguage(user!.language)
+              localStorage.setItem("imm_display_lang", user!.language)
+            }}
+            className={`lang-btn${displayLanguage === user!.language ? " active" : ""}`}
+          >
+            {LANG_LABELS[user!.language] ?? user!.language.toUpperCase()}
+          </button>
+        </div>
+      )}
+
+      {/* ── Theme toggle ── */}
+      <div className="sidebar-theme" suppressHydrationWarning>
+        <div className="sidebar-sep" />
+        <button
+          className="theme-toggle-btn"
+          onClick={toggleDarkMode}
+          suppressHydrationWarning
+        >
+          {darkMode
+            ? <><Sun  size={14} /><span suppressHydrationWarning>Light mode</span></>
+            : <><Moon size={14} /><span suppressHydrationWarning>Dark mode</span></>
+          }
+        </button>
+      </div>
+
+      {/* ── Sign out ── */}
+      <div className="sidebar-footer">
+        <div className="sidebar-sep" />
+        <button
+          onClick={logout}
+          className="signout-btn"
+          suppressHydrationWarning
+        >
+          <LogOut size={14} />
+          <span suppressHydrationWarning>{t("nav.signout")}</span>
+        </button>
+      </div>
+    </>
+  )
+
   return (
     <div
       className={`layout-shell dashboard${darkMode ? " dark-panel" : ""}`}
       suppressHydrationWarning
     >
+
       {/* ══════════════════════════════════
-          SIDEBAR
+          MOBILE TOP BAR
           ══════════════════════════════════ */}
-      <aside className="sidebar" suppressHydrationWarning>
+      <header className={`mobile-topbar${darkMode ? " dark-panel" : ""}`} suppressHydrationWarning>
+        <button
+          className="mobile-hamburger"
+          onClick={() => setMobileSidebarOpen(v => !v)}
+          aria-label="Open navigation"
+          suppressHydrationWarning
+        >
+          <Menu size={22} color="#3883f2" />
+        </button>
 
-        {/* ── Brand / user identity ── */}
-        <div className="sidebar-brand" suppressHydrationWarning>
-          <a href="/" className="sidebar-logo" suppressHydrationWarning>
-              <img 
-                src={darkMode ? "/logo/logo-light.png" : "/logo/logo-dark.png"}
-                alt="Immortality"
-                style={{ width: '120px', height: 'auto', marginBottom: 15 }}
-              />
-          </a>
+        <a href="/" suppressHydrationWarning>
+          <img
+            src={darkMode ? "/logo/logo-light.png" : "/logo/logo-dark.png"}
+            alt="Immortality"
+            style={{ height: 28, width: "auto" }}
+          />
+        </a>
 
-          <div className="sidebar-identity" suppressHydrationWarning>
-            <div className="sidebar-avatar" suppressHydrationWarning>
-              {initials}
-            </div>
-            <div suppressHydrationWarning>
-              <p className="sidebar-username" suppressHydrationWarning>
-                {user?.name ?? ""}
-              </p>
-              <p className="sidebar-memories" suppressHydrationWarning>
-                {agentData
-                  ? `${agentData.total_memories} ${t("dashboard.memories")}`
-                  : ""}
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* Right spacer keeps logo centred */}
+        <div style={{ width: 36 }} suppressHydrationWarning />
+      </header>
 
-        {/* ── Navigation ── */}
-        <nav className="sidebar-nav" suppressHydrationWarning>
-          {NAV.map(item => {
-            const Icon   = item.icon
-            const active = pathname === item.href
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`nav-item${active ? " active" : ""}`}
-                suppressHydrationWarning
-              >
-                <Icon />
-                <span suppressHydrationWarning>{item.label}</span>
-              </Link>
-            )
-          })}
-        </nav>
+      {/* ══════════════════════════════════
+          MOBILE SIDEBAR OVERLAY
+          ══════════════════════════════════ */}
+      {/* Dim backdrop */}
+      <div
+        className={`mobile-backdrop${mobileSidebarOpen ? " open" : ""}`}
+        onClick={() => setMobileSidebarOpen(false)}
+        aria-hidden="true"
+      />
 
-        {/* ── Souls balance ── */}
-        {mounted && user && (
-          <div className="sidebar-souls" suppressHydrationWarning>
-            {/* <div className="sidebar-sep" /> */}
-          <SoulsWidget />
-          </div>
-        )}
+      {/* Sidebar panel — slides in from left */}
+      <aside
+        className={`sidebar mobile-sidebar${mobileSidebarOpen ? " open" : ""}${darkMode ? " dark-panel" : ""}`}
+        suppressHydrationWarning
+      >
+        {/* ✕ close button inside sidebar */}
+        <button
+          className="mobile-sidebar-close"
+          onClick={() => setMobileSidebarOpen(false)}
+          aria-label="Close navigation"
+          suppressHydrationWarning
+        >
+          <X size={18} />
+        </button>
 
-        {/* ── Language toggle ── */}
-        {showLang && (
-          <div className="sidebar-lang" suppressHydrationWarning>
-            <div className="sidebar-sep" />
-            <span className="sidebar-lang-label" suppressHydrationWarning>
-              {t("nav.language")}
-            </span>
+        <SidebarContent onClose={() => setMobileSidebarOpen(false)} />
+      </aside>
 
-            <button
-              onClick={() => {
-                setDisplayLanguage("en")
-                localStorage.setItem("imm_display_lang", "en")
-              }}
-              className={`lang-btn${displayLanguage === "en" ? " active" : ""}`}
-            >
-              {LANG_LABELS["en"]}
-            </button>
-
-            <button
-              onClick={() => {
-                setDisplayLanguage(user!.language)
-                localStorage.setItem("imm_display_lang", user!.language)
-              }}
-              className={`lang-btn${displayLanguage === user!.language ? " active" : ""}`}
-            >
-              {LANG_LABELS[user!.language] ?? user!.language.toUpperCase()}
-            </button>
-          </div>
-        )}
-
-        {/* ── Theme toggle ── */}
-        <div className="sidebar-theme" suppressHydrationWarning>
-          <div className="sidebar-sep" />
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleDarkMode}
-            suppressHydrationWarning
-          >
-            {darkMode
-              ? <><Sun  size={14} /><span suppressHydrationWarning>Light mode</span></>
-              : <><Moon size={14} /><span suppressHydrationWarning>Dark mode</span></>
-            }
-          </button>
-        </div>
-
-        {/* ── Sign out ── */}
-        <div className="sidebar-footer">
-          <div className="sidebar-sep" />
-          <button
-            onClick={logout}
-            className="signout-btn"
-            suppressHydrationWarning
-          >
-            <LogOut size={14} />
-            <span suppressHydrationWarning>{t("nav.signout")}</span>
-          </button>
-        </div>
-
+      {/* ══════════════════════════════════
+          DESKTOP SIDEBAR  (completely unchanged)
+          ══════════════════════════════════ */}
+      <aside className="sidebar desktop-sidebar" suppressHydrationWarning>
+        <SidebarContent />
       </aside>
 
       <div className="layout-divider" />
